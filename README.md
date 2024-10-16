@@ -61,7 +61,7 @@
 3. **Fazer Commit das Alterações**:
    - Comite suas alterações com uma mensagem descritiva:
      ```bash
-     git commit -m "Adiciona a estrutura da página inicial"
+     git commit -m "abacaxi"
      ```
 
 ---
