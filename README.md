@@ -1,3 +1,7 @@
+
+AQUI TA O LINK DO TRELO ENTRA LA PARA VER AS TASK E COMEÇAR A FAZER COMPONENTES `https://trello.com/invite/b/670d48b8837e6692a8680b35/ATTI96800ee753aa5428d4c06e9979fae77d64ACD6EE/kanban-nossa-sa`
+
+
 # Casa de Aposta
 
 ## Guia para Clonar e Dar Push no Repositório do GitHub Usando o VSCode
