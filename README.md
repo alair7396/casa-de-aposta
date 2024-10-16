@@ -33,7 +33,7 @@
 6. **Clonar o Repositório**:
    - Execute o comando abaixo no terminal:
      ```bash
-     git clone https://github.com/usuario/casa-de-aposta.git
+     git clone https://github.com/...
      ```
    - Substitua pelo link que você copiou. Isso criará uma pasta chamada **casa-de-aposta**.
 
