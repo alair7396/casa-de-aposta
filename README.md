@@ -46,19 +46,6 @@
 
 ---
 
-### **Passo 3: Criar uma Branch para Desenvolvimento**
-
-1. **Abrir o Terminal Integrado (se ainda não estiver aberto)**:
-   - Use o atalho `Ctrl + `` para abrir o terminal.
-
-2. **Criar uma Nova Branch**:
-   - No terminal, crie uma nova branch:
-     ```bash
-     git checkout -b feature/nome-da-sua-funcionalidade
-     ```
-   - Substitua **nome-da-sua-funcionalidade** por um nome descritivo para a sua branch, como **pagina-inicial**.
-
----
 
 ### **Passo 4: Fazer Alterações e Commitar**
 
@@ -79,51 +66,18 @@
 
 ---
 
-### **Passo 5: Sincronizar com a Branch Main**
 
-1. **Sincronizar com a Branch Main**:
-   - Primeiro, mude para a branch main:
-     ```bash
-     git checkout main
-     ```
 
-2. **Atualizar a branch main**:
+4. **Por fim**:
    - Execute:
      ```bash
-     git pull origin main
-     ```
-
-3. **Voltar para sua branch de funcionalidade**:
-   - Execute:
-     ```bash
-     git checkout feature/nome-da-sua-funcionalidade
-     ```
-
-4. **Mesclar as mudanças da main na sua branch**:
-   - Execute:
-     ```bash
-     git merge main
+     git push
      ```
 
 ---
 
-### **Passo 6: Fazer Push das Alterações**
 
-- **Fazer Push da Branch**:
-  - Após garantir que sua branch está atualizada e que suas alterações estão prontas, faça push da sua branch para o repositório remoto:
-    ```bash
-    git push origin feature/nome-da-sua-funcionalidade
-    ```
 
 ---
 
-### **Passo 7: Criar um Pull Request**
 
-1. **Acessar o Repositório no GitHub**:
-   - No navegador, vá para o repositório no GitHub.
-
-2. **Criar um Pull Request**:
-   - Clique na aba **Pull requests**.
-   - Clique em **New pull request**.
-   - Selecione sua branch e clique em **Create pull request**.
-   - Adicione uma descrição clara do que foi feito e clique em **Create pull request** novamente.
