@@ -1,16 +1,22 @@
-.cabecalho {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    background-color: white;
-    padding: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.Cabecalho {
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
-.menu {
-    list-style: none; 
-    padding: 5px;      
-    margin: 5px;       
-    display: flex;  
-    justify-content: space-between; 
+
+.botao {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.botao:hover {
+    background-color: #0056b3;
 }

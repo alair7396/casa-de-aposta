@@ -1,21 +1,30 @@
+
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import BtCriarConta from '../BtCriarConta/BtCriarConta';
+import BtEntrar from '../BtEntrar/BtEntrar';
+import BtIinicio from '../BtInicio/BtIinicio';
+import BtJogar from '../BtJogar/BtJogar';
+import BtPerfil from '../BtPerfil/BtPerfil';
+import BtSair from '../BtSair/BtSair';
+import BtSobre from '../BtSobre/BtSobre';
 import './Cabecalho.css';
 
-
 const Cabecalho = () => {
+    const navigate = useNavigate(); // Hook para navegação
+  
     return (
-        <header className='cabecalho'>
-            
-            <h1>DuckTax</h1>
-            <nav>
-                <ul className="menu">
-                    <li><a href="/">Início</a></li>
-                    <li><a href="/sobre">Sobre</a></li>
-                    <li><a href="/serviços">Serviços</a></li>
-                    <li><a href="/contato">Contato</a></li>
-                </ul>
-            </nav>
-        </header>
+      <header className="Cabecalho">
+        <BtIinicio onClick={() => navigate('/inicio')} texto="Início" />
+        <BtSobre onClick={() => navigate('/sobre')} texto="Sobre" />
+        <BtPerfil onClick={() => navigate('/perfil')} texto="Perfil" />
+        <BtJogar onClick={() => navigate('/jogar')} texto="Jogar" />
+        <BtCriarConta onClick={() => navigate('/criar-conta')} texto="Criar Conta" />
+        <BtEntrar onClick={() => navigate('/entrar')} texto="Entrar" />
+        <BtSair onClick={() => navigate('/sair')} texto="Sair" />
+      </header>
     );
-};
+  };
 
-export default Cabecalho;
+
+export default Cabecalho ;
