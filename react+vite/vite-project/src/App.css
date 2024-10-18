@@ -1,0 +1,16 @@
+/* src/index.css */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que a altura mínima da página seja 100% da janela */
+}
+
+main {
+  flex-grow: 1; /* Faz o main ocupar o espaço restante */
+}
