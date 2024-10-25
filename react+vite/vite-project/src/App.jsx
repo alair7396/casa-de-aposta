@@ -17,8 +17,9 @@ const App=()=>{
 
   return(
     <Router>
-      <div className="container">
-        <Cabecalho/>
+       
+       <div className="container">
+       <Cabecalho/>
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/body2" element={<Cadastro />} />
