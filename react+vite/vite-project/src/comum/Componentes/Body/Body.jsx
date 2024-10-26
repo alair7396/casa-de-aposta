@@ -4,7 +4,7 @@ import './Body.css'
 
 const Body = () => {
     return (
-        <main style={{ padding: '20px' }}>
+        <main>
             <ImputLog/>
         </main>
     );
