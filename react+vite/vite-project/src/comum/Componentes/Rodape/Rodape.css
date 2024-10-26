@@ -8,7 +8,7 @@
     border: 1px solid #5C5F19;
     transition: opacity 0.3s;
     font-size: 32px;
-    font-family: 'Irish Grover', cursive;
+    font-family: 'Irish Grover';
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     text-align: center; /* Adicionado para centralizar o texto */

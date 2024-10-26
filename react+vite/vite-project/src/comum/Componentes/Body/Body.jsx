@@ -4,7 +4,7 @@ import './Body.css'
 
 const Body = () => {
     return (
-        <main>
+        <main className='body'>
             <ImputLog/>
         </main>
     );

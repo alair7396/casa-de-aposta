@@ -1,31 +1,27 @@
-.login-input {
-    display: flex;
-    width: 286px;
-    height: 58px;
-    background-color: black;
-    color: #5C5F19;
-    opacity: 0.7;
+.input {
     border-radius: 40px;
+    width: 100%; /* Largura completa do container */
+    height: 60px; /* Altura fixa */
     border: 5px solid black;
-    transition: opacity 0.3s;
-    font-size: 16px;
-    font-family: 'Irish Grover', cursive;
-    text-align: center; /* Adicionado para centralizar o texto */
-    position: absolute; /* Permite definir a posição exata */
+    opacity: 0.8;
+    background-color: black;
+    text-align: center; /* Centraliza o texto */
+    font-size: 32px; /* Tamanho do texto */
+    font-family: 'Irish Grover'; /* Fonte com fallback */
+    color: #5C5F19;
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
+    
+   
 }
-
-
-.login-input::placeholder {
-    color: #5C5F19; /* Cor do placeholder */
-}
-
-.login-input:hover, .login-input:focus {
+.input:hover, .input:focus {
     opacity: 1; /* Aumenta a opacidade ao passar o mouse ou focar */
     
 }
+  
+
 .titulo{
     display: flex;
-    position: absolute; /* Permite definir a posição exata */
     font-size: 32px;
-    font-family: 'Irish Grover', cursive;
+    font-family: 'Irish Grover';
+    justify-content: center;
 }

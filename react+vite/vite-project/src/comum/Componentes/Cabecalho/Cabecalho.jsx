@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import './Cabecalho.css'
 const Cabecalho = () => {
     return (
-        <div className='cabeça'>
-        <header>
+        
+        <header className='cabeca'>
             
             <nav className='nav'>
                 <Link to="/">Entrar</Link> | 
@@ -18,7 +18,7 @@ const Cabecalho = () => {
                 
             </nav>
         </header>
-        </div>
+        
         
     );
 };
