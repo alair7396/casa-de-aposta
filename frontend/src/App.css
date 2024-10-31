@@ -1,0 +1,23 @@
+/* src/index.css */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  
+  background-image: url('public/backgrund entrar.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+main {
+  flex-grow: 1; /* Faz o main ocupar o espaço restante */
+}
+
+
