@@ -7,7 +7,7 @@ const ImputLog = () => {
     return (
         <>
         <div>
-        <label className='titulo' >Login</label>
+        <label className='titulo' >Loguin</label>
         <input className='input' type="text" placeholder='Digite seu usuario'  />
         <label className='titulo' >Senha</label>
         <input className='input' type="text" placeholder='Digite sua senha' />
