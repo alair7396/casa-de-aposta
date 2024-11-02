@@ -1,6 +1,8 @@
 const PaginaSair=()=>{
     return(
-        <div><h1>PaginaSair</h1></div>
+        <div className='body'> 
+            <h1>Conteúdo do Body 7</h1>  
+        </div>
     )
 }
 export default PaginaSair;

@@ -1,32 +1,22 @@
 .cabeca {
     display: flex;
-    background-size: cover;
+    /*background-size: cover;*/
     background-position: center;
     background-image: url('public/pato do menu.jpeg');
-    width: 100%;
     height: 160px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-    border: 5px solid black;
-    
+    border: 1px solid #5C5F19;
     align-items:end;
-    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
     justify-content: center;
   }
-  
   .nav a:hover {
     color: #5C5F19; 
   }
-  .cabeca:hover, .cabeca:focus {
-    opacity: 1; /* Aumenta a opacidade ao passar o mouse ou focar */
-    
-}
-  
 .nav{
   font-size: 15px;
   background-color: black;
   border-radius: 10px;
   border: 2px solid #5C5F19;
-  
 }
 

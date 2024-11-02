@@ -1,9 +1,9 @@
 .body {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh; /* Altura da janela de visualização */
-    margin: 0;
+    align-items: center;  
+    flex-grow: 1;
+   
 }
     
     

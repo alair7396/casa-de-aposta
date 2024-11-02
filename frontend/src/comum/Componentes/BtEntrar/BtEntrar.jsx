@@ -1,18 +1,12 @@
 
-import './BtEntrar.css'; // Importa o arquivo de estilos
+import './BtEntrar.css'; 
 
-// Definindo os botões como componentes funcionais
-const BtEntrar = ({ onClick, texto }) => {
+const BtEntrar = () => {
   return (
-    <button onClick={onClick} className="btentrar">
-      {texto}Let's Rock
+    <button className="btentrar">
+      Let's Rock
     </button>
   );
 };
-
-
-
-
-
 
 export default BtEntrar;

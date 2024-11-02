@@ -1,24 +1,21 @@
 .btentrar {
     display: flex;
-    width: 100%;
-    height: 90px;
-    background-color: black; /* Cor de fundo padrão */
-    color: #5C5F19; /* Cor do texto */
-    border-radius: 40px; /* Bordas arredondadas */
-    border: 5px solid #000000; /* Borda */
-    font-size: 50px; /* Tamanho da fonte */
-    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     text-align: center; /* Centraliza o texto */
+    background-color: black; /* Cor de fundo padrão */
+    color: #5C5F19; /* Cor do texto */
+    border-radius: 40px; /* Bordas arredondadas */
+    font-size: 50px; /* Tamanho da fonte */
+    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
     opacity: 0.7;
     padding: 20px;
     margin-top: 40px;
+    width: 100%;
+    border: 1px solid #5C5F19;
 }
-
 /* Estilo ao passar o mouse */
 .btentrar:hover {
     opacity: 1; /* Aumenta a opacidade ao passar o mouse */
-    color: rgb(189, 186, 34); /* Muda a cor do texto para preto, se desejado */
+    color: rgb(189, 186, 34); /* Muda a cor do texto*/
 }
-

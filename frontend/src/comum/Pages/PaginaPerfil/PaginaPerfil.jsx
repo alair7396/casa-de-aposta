@@ -1,6 +1,8 @@
 const PaginaPerfil=()=>{
     return(
-        <div><h1>PaginaPerfil</h1></div>
+        <div className='body'> 
+            <h1>Conteúdo do Body 5</h1>  
+        </div>
     )
 }
 export default PaginaPerfil;

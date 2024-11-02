@@ -11,10 +11,8 @@ const ImputLog = () => {
         <input className='input' type="text" placeholder='Digite seu usuario'  />
         <label className='titulo' >Senha</label>
         <input className='input' type="text" placeholder='Digite sua senha' />
-        <BtEntrar className='input'/>
+        <BtEntrar/>
         </div>
-        
-        
         </>
     );
 };
