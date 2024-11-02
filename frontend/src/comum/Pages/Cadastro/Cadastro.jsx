@@ -1,12 +1,22 @@
+import InputCadastro from '../../Componentes/InputCadastro/InputCadastro';
 import './Cadastro.css'
-
+import { Link } from 'react-router-dom'
 
 const Cadastro = () => {
     return (
         <>
+            <nav className='nav'>
+                <Link to="/">Entrar</Link> |  
+                <Link to='/sobre'>Sobre</Link> | 
+            </nav>
+        
         <div className='body'> 
-            <h1>Conteúdo do Body 2</h1>  
+            <InputCadastro></InputCadastro>
+            
+            
         </div>
+        
+        
         </>
     );
 };

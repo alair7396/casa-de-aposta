@@ -7,8 +7,8 @@ const Cabecalho = () => {
         <header className='cabeca'>
             
             <nav className='nav'>
-                <Link to="/">Entrar</Link> | 
                 <Link to="/body2">Criar Conta</Link> | 
+                <Link to="/">Entrar</Link> | 
                 <Link to='/inicio'>Inicio</Link> | 
                 <Link to='/sobre'>Sobre</Link> | 
                 <Link to='/perfil'>Perfil</Link> | 

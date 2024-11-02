@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,} from 'react-router-dom';
 import'./App.css';
 import Rodape from "./comum/Componentes/Rodape/Rodape";
 import Cabecalho from "./comum/Componentes/Cabecalho/Cabecalho";
@@ -14,7 +14,7 @@ import PaginaSair from './comum/Pages/PaginaSair/PaginaSair';
 
 
 const App=()=>{
-
+  
   return(
     <Router>
        
