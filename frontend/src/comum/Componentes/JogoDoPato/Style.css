@@ -1,5 +1,6 @@
+/* Estilo original dos quadrados */
 .square {
-    background: #661a0c; 
+    background: #661a0c;
     width: 100px;
     height: 100px;
     border: 2px solid #9b910d;
@@ -7,34 +8,73 @@
     font-size: 24px;
     font-weight: bold;
     line-height: 34px;
-    
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-   
-  }
-.alinhar{
-    display: flex;
-    flex-direction: column;
-  }
-  .jogar, .reiniciar {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 2px solid #333;
-    border-radius: 5px;
-    background-color: #f0f0f0;
+    box-shadow: 0 20px 88px rgb(5, 3, 3);
 }
 
-.jogar:hover, .reiniciar:hover {
+/* Estilo para os quadrados quando o jogo estiver habilitado */
+.square.ativo {
+    background-color: #4caf50; /* Cor verde quando ativado */
+    color: white;  /* Cor do texto para contraste */
+}
+
+/* Estilo para o botão Jogar quando o tabuleiro estiver ativo */
+.jogar.ativo {
+    background-color: #000000; /* Cor mais escura de verde para o botão Jogar */
+    color: #5C5F19;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Os outros estilos permanecem os mesmos */
+.alinhar {
+    display: flex;
+    flex-direction: column;
+}
+
+ .reiniciar, .apostar {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    text-align: center; /* Centraliza o texto */
+    background-color: black; /* Cor de fundo padrão */
+    color: #5C5F19; /* Cor do texto */
+    border-radius: 20px; /* Bordas arredondadas */
+    font-size: 25px; /* Tamanho da fonte */
+    font-family: 'Irish Grover'; /* Fonte personalizada */
+    opacity: 0.9;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid #5C5F19;
+}
+.jogar{
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    text-align: center; /* Centraliza o texto */
+    background-color: rgb(243, 239, 13); /* Cor de fundo padrão */
+    color: #5C5F19; /* Cor do texto */
+    border-radius: 20px; /* Bordas arredondadas */
+    font-size: 25px; /* Tamanho da fonte */
+    font-family: 'Irish Grover'; /* Fonte personalizada */
+    opacity: 0.9;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid #5C5F19;
+}
+
+.jogar:hover, .reiniciar:hover, .apostar:hover {
     background-color: #d0d0d0;
+    box-shadow: 0 4px 8px rgba(247, 0, 0, 0.2);
 }
 
 .pontuacao {
     margin-top: 20px;
-    font-size:xx-large;
+    font-size: xx-large;
     font-weight: bold;
     color: blue;
 }
@@ -43,4 +83,34 @@
     margin-top: 10px;
     font-size: 18px;
     color: green;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(97, 5, 5);
+    padding: 20px;
+    max-width: 300px;
+    width: 80%;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(247, 0, 0, 0.2);
+    border: 1px solid #5C5F19;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(247, 0, 0, 0.2);
+}
+
+.tentativas {
+    color: chartreuse;
 }
