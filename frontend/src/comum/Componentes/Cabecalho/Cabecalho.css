@@ -1,6 +1,6 @@
 .cabeca {
     display: flex;
-    /*background-size: cover;*/
+    background-size: cover;
     background-position: center;
     background-image: url('public/pato do menu.jpeg');
     height: 160px;
