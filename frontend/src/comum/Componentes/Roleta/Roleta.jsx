@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Roleta.css";
 
-// Importação manual das imagens
+// Importação das imagens
 import img0 from "../../../assets/images/0.png";
 import img1 from "../../../assets/images/1.png";
 import img2 from "../../../assets/images/2.png";
@@ -48,6 +48,7 @@ const imageArray = [
 ];
 
 const Roleta = () => {
+  const [resizedImages, setResizedImages] = useState([]);
   const [selectedSegment, setSelectedSegment] = useState(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [balance, setBalance] = useState(100);
@@ -57,6 +58,30 @@ const Roleta = () => {
   const NUM_SEGMENTS = 36;
   const SPIN_TIME = 10; // Tempo de rotação em segundos
   const MAX_BETS = 10;
+
+  useEffect(() => {
+    // Redimensiona cada imagem para 300x300 pixels
+    const resizeImages = async () => {
+      const promises = imageArray.map((image) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = image;
+          img.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 300; // Largura desejada
+            canvas.height = 300; // Altura desejada
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, 300, 300);
+            resolve(canvas.toDataURL()); // Converte para Data URL
+          };
+        });
+      });
+      const resizedImagesArray = await Promise.all(promises);
+      setResizedImages(resizedImagesArray);
+    };
+
+    resizeImages();
+  }, []);
 
   useEffect(() => {
     let interval;
@@ -94,7 +119,7 @@ const Roleta = () => {
       }
       setBet(0);
       setBetNumbers({});
-    }, 500); // Atraso de 500 ms para garantir que o número seja exibido
+    }, 10000); // Atraso de 500 ms para garantir que o número seja exibido
   };
 
   const startSpinning = () => {
@@ -133,27 +158,25 @@ const Roleta = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <h2>Saldo: ${balance}</h2>
-        <h3>Aposta Atual: ${bet}</h3>
-        <p>
-          Números Apostados:{" "}
-          {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
-        </p>
-      </div>
+    <div>
+      Saldo: ${balance}
+      Aposta Atual: ${bet}
+      <p>
+        Números Apostados:{" "}
+        {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
+      </p>
 
       <div className="roleta-euro">
         <div className="roleta-euro__sectors">
           <img
-            src={imageArray[selectedSegment !== null ? selectedSegment : currentSegment]}
+            src={resizedImages[selectedSegment !== null ? selectedSegment : currentSegment]}
             alt={`Segmento ${selectedSegment !== null ? selectedSegment : currentSegment}`}
             className="roulette-image"
           />
         </div>
       </div>
 
-      <div className="bet-number-buttons">
+      <div className="botoes">
         {Array.from({ length: NUM_SEGMENTS }, (_, i) => (
           <button
             key={i}

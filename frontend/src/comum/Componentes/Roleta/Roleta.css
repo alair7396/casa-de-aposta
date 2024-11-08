@@ -1,54 +1,36 @@
-.container {
-  text-align: center;
-  padding: 20px;
-}
-
-.header {
-  margin-bottom: 20px;
-  color: white;
-}
-
 .roleta-euro {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-
 .roleta-euro__sectors {
-  width: 300px;
+  width: 300px; /* Define a área de exibição da imagem */
   height: 300px;
-  position: relative;
-}
-
-.roulette-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.bet-number-buttons {
+  overflow: hidden;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
 }
-
-.bet-number-button {
-  width: 50px;
-  height: 50px;
-  margin: 5px;
-  font-size: 16px;
-  border: none;
-  border-radius: 50%; /* Botões arredondados */
-  color: white;
-  cursor: pointer;
+.roulette-image {
+  width: 100%; /* Ajusta a imagem para preencher a largura */
+  height: 100%; /* Ajusta a imagem para preencher a altura */
+  object-fit: cover; /* Cobre o contêiner */
 }
-
+.botoes {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 colunas de tamanho igual */
+}
+.botoes button {
+   color: #4CAF50;
+  font-size: 14px; /* Fonte menor */
+  width: 100%; /* Faz com que o botão preencha totalmente a coluna */
+  height: 20px; /* Define uma altura fixa para manter o tamanho uniforme */
+}
 /* Cor específica para o botão 0 */
 .bet-number-button:nth-child(1) {
   background-color: #4CAF50; /* Verde */
+  color: #000000;
 }
-
 /* Cor vermelha para os números citados */
 .bet-number-button:nth-child(33),
 .bet-number-button:nth-child(20),
@@ -70,35 +52,26 @@
 .bet-number-button:nth-child(4) {
   background-color: #FF0000; /* Vermelho */
 }
-
 /* Cor preta para os números não citados */
 .bet-number-button {
-  background-color: #000; /* Preto por padrão */
+  background-color: #000000; /* Preto por padrão */
 }
-
 /* Estilo para os botões "Girar" e "Limpar Apostas" */
 .spin-button, .clear-button {
   padding: 10px 20px;
   font-size: 18px;
-  color: white;
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px; /* Botões retangulares */
   width: 120px; /* Mesmo tamanho */
 }
-
-.spin-button {
-  background-color: #4CAF50; /* Verde */
-}
-
 .clear-button {
   background-color: #FF5555; /* Vermelho */
 }
-
 .spin-button:disabled, .clear-button:disabled {
-  background-color: #ddd;
+  background-color: #0a6b12;
   cursor: not-allowed;
 }
-
 .button-group {
   display: flex;
   justify-content: center;
@@ -106,21 +79,4 @@
   margin-top: 20px;
 }
 
-@media (max-width: 600px) {
-  .roleta-euro__sectors {
-    width: 200px;
-    height: 200px;
-  }
 
-  .bet-number-button {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  }
-
-  .spin-button, .clear-button {
-    padding: 8px 16px;
-    font-size: 16px;
-    width: 100px; /* Tamanho menor para telas menores */
-  }
-}

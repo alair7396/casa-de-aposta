@@ -28,7 +28,7 @@ const App=()=>{
           <Route path="/sobre" element={<PaginaSobre />} />
           <Route path="/perfil" element={<PaginaPerfil />} />
           <Route path="/jogar" element={<PaginaJogar />} />
-          <Route path="Roleta" element={<PaginaRoleta />} />
+          <Route path="/roleta" element={<PaginaRoleta />} />
           <Route path="/sair" element={<PaginaSair />} />
         </Routes>
         <Rodape/>
