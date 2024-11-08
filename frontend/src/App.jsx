@@ -10,6 +10,7 @@ import PaginaSobre from './comum/Pages/PaginaSobre/PaginaSobre';
 import PaginaPerfil from './comum/Pages/PaginaPerfil/PaginaPerfil';
 import PaginaJogar from './comum/Pages/PaginaJogar/PaginaJogar';
 import PaginaSair from './comum/Pages/PaginaSair/PaginaSair';
+import PaginaRoleta from './comum/Pages/PaginaRoleta/PaginaRoleta';
 
 
 
@@ -27,6 +28,7 @@ const App=()=>{
           <Route path="/sobre" element={<PaginaSobre />} />
           <Route path="/perfil" element={<PaginaPerfil />} />
           <Route path="/jogar" element={<PaginaJogar />} />
+          <Route path="Roleta" element={<PaginaRoleta />} />
           <Route path="/sair" element={<PaginaSair />} />
         </Routes>
         <Rodape/>

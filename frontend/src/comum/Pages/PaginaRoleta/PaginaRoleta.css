@@ -1,0 +1,53 @@
+/* PaginaRoleta.css */
+
+.pagina-roleta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .pagina-roleta-roleta {
+    width: 100%;
+    max-width: 727px; /* tamanho máximo da roleta */
+  }
+  
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+  
+  /* Media queries para diferentes tamanhos de tela */
+  
+  /* Ajuste para tablets */
+  @media (max-width: 768px) {
+    .pagina-roleta-container {
+      padding: 10px;
+    }
+  
+    .pagina-roleta-roleta {
+      max-width: 600px;
+    }
+  
+    .header h2, .header h3, .header p {
+      font-size: 16px;
+    }
+  }
+  
+  /* Ajuste para telas de dispositivos móveis */
+  @media (max-width: 480px) {
+    .header h2, .header h3, .header p {
+      font-size: 14px;
+    }
+  
+    .pagina-roleta-roleta {
+      max-width: 350px;
+    }
+  }
+  

@@ -12,7 +12,8 @@ const Cabecalho = () => {
                 <Link to='/inicio'>Inicio</Link> | 
                 <Link to='/sobre'>Sobre</Link> | 
                 <Link to='/perfil'>Perfil</Link> | 
-                <Link to='/jogar'>Jogar</Link> | 
+                <Link to='/jogar'>Jogar</Link> |
+                <Link to='/Roleta'>Roleta</Link> |
                 <Link to='/sair'>Sair</Link> 
                   
                 
