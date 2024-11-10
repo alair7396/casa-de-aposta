@@ -1,12 +1,18 @@
-const Quadrados = ({ value, index, clicadoFilho,ativo }) => {
+const Quadrados = ({ value, index, clicadoFilho, ativo }) => {
     return (
-        <>
-            <button  className={`square ${ativo ? 'ativo' : ''}`} 
-            onClick={() => clicadoFilho(index)} 
-            disabled={!ativo} >
+        <div className="animated-button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <button  
+                className={`square ${ativo ? 'ativo' : ''} ${value === "Ganhou +200$" ? 'ganhou' : ''} ${value === "Perdeu -100$" ? 'perdeu' : ''}`} 
+                onClick={() => clicadoFilho(index)} 
+                disabled={!ativo}
+            >
                 {value}
-            </button>
-        </>
+            </button> 
+        </div>
     );
 }
 

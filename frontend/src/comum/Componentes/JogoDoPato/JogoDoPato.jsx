@@ -2,6 +2,7 @@ import './Style.css';
 import Quadrados from "./Quadrados";
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
+import BotaoEstiloso from '../BotaoEtiloso/BotaoEstiloso';
 
 const JogoDoPato = () => {
     const [use, setUse] = useState(Array(9).fill(null));
@@ -100,16 +101,18 @@ const JogoDoPato = () => {
                 <Quadrados value={use[7]} index={7} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
                 <Quadrados value={use[8]} index={8} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
             </div>
+        
+            {/*{mensagem && <div className="resultado">{mensagem}</div>}*/}
             
-            {mensagem && <div className="resultado">{mensagem}</div>}
-
-            <button className={`jogar ${tabuleiroAtivo ? 'ativo' : ''}`} onClick={habilitarTabuleiro}>
-                Jogar
+                <button className={`jogar ${tabuleiroAtivo ? 'ativo' : ''}`} onClick={habilitarTabuleiro}>
+                Jogar<span></span>
             </button>
-            
             <button className="reiniciar" onClick={reiniciarJogo}>
                 Reiniciar
             </button>
+            
+            
+            
             <Modal 
                 mostrar={mostrarModal} 
                 comprarTentativas={comprarTentativas} 

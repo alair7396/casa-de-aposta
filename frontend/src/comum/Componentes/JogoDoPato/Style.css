@@ -1,6 +1,6 @@
 /* Estilo original dos quadrados */
 .square {
-    background: #661a0c;
+    background: linear-gradient(-30deg, #3d0b0b 50%, #2b0808 50%);
     width: 100px;
     height: 100px;
     border: 2px solid #9b910d;
@@ -17,15 +17,24 @@
 
 /* Estilo para os quadrados quando o jogo estiver habilitado */
 .square.ativo {
-    background-color: #4caf50; /* Cor verde quando ativado */
-    color: white;  /* Cor do texto para contraste */
+    background: linear-gradient(50deg, #3caa3c 50%, #045c2c 50%);
+    color: rgb(255, 0, 0);  /* Cor do texto para contraste */
 }
-
+.square.ativo.ganhou {
+    background: linear-gradient(0deg, #c7a40b 5%, #075c31 50%);
+    color: rgb(48, 204, 17); /* Ajuste a cor do texto para contraste */
+    font-family: 'Irish Grover';
+}
 /* Estilo para o botão Jogar quando o tabuleiro estiver ativo */
 .jogar.ativo {
     background-color: #000000; /* Cor mais escura de verde para o botão Jogar */
     color: #5C5F19;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.square.ativo.perdeu {
+    background: linear-gradient(0deg, #050505 5%, #580404 50%);; /* Cor para "Perdeu -100$" */
+    color: rgb(255, 3, 3); /* Ajuste para contraste */
+    font-family: 'Irish Grover';
 }
 
 /* Os outros estilos permanecem os mesmos */

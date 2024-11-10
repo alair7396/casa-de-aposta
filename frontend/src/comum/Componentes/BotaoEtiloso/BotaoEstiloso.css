@@ -1,0 +1,86 @@
+.animated-button {
+    position: relative;
+    background: linear-gradient(-30deg, #3d0b0b 50%, #2b0808 50%);
+    display: inline-block;
+    box-shadow: 0px 5px 5px 5px rgb(0, 0, 0);
+    /*overflow: hidden;*/
+    overflow: hidden;
+  }
+  
+  .animated-button span {
+    position: absolute;
+  }
+  
+  .animated-button span:nth-child(1) {
+    top: 50px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to left, rgba(43, 8, 8, 0), #ff0000);
+    animation: animateTop 2s linear infinite;
+  }
+  
+  .animated-button span:nth-child(2) {
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to top, rgba(43, 8, 8, 0), #0dd30d);
+    animation: animateRight 2s linear -1s infinite;
+  }
+  
+  .animated-button span:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, rgba(43, 8, 8, 0), #070707);
+    animation: animateBottom 2s linear infinite;
+  }
+  
+  .animated-button span:nth-child(4) {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(43, 8, 8, 0), #00ff40);
+    animation: animateLeft 2s linear -1s infinite;
+  }
+  
+  @keyframes animateTop {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @keyframes animateRight {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  @keyframes animateBottom {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes animateLeft {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  
+  
