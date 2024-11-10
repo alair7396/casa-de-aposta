@@ -12,12 +12,12 @@
   }
   
   .animated-button span:nth-child(1) {
-    top: 50px;
+    top: 15px;
     left: 0px;
     width: 100%;
     height: 2px;
-    background: linear-gradient(to left, rgba(43, 8, 8, 0), #ff0000);
-    animation: animateTop 2s linear infinite;
+    background: linear-gradient(to left, rgba(23, 124, 19, 0), #9b910d);
+    animation: animateTop 5s linear infinite;
   }
   
   .animated-button span:nth-child(2) {
