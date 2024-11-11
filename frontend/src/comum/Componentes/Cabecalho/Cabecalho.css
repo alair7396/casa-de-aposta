@@ -2,7 +2,7 @@
     display: flex;
     background-size: cover;
     background-position: center;
-    background-image: url('public/pato do menu.jpeg');
+    background-image: url('/pato do menu.jpeg');
     height: 160px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;

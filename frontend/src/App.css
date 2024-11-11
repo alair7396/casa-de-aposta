@@ -5,7 +5,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  background-image: url('public/backgrund entrar.jpeg');
+  background-image: url('/icons/backgrund entrar.jpeg');
   background-position: center;
   height: 100vh;
   background-size: cover;
