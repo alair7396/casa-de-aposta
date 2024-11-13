@@ -8,7 +8,7 @@ import BtCadastrar from '../BtCadastrar/BtCadastrar';
 const InputCadastro = () => {
     return (
         <>
-        <div>
+        <div className='fundoImput'>
         <label className='titulo' >Nome</label>
         <input className='input' type="text" placeholder='Digite seu nome'  />
         <label className='titulo' >Email</label>

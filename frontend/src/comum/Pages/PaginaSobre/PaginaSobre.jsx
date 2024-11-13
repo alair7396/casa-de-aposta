@@ -8,7 +8,9 @@ const PaginaSobre=()=>{
             <Link to='/inicio'>Inicio</Link> | 
             <Link to='/perfil'>Perfil</Link> | 
             <Link to='/jogar'>Jogar</Link> | 
-            <Link to='/sair'>Sair</Link>     
+            <Link to='/sair'>Sair</Link>  | 
+            <Link to='/roleta'>Roleta</Link> |  
+             
         </nav>
         
         <div className='body'> 

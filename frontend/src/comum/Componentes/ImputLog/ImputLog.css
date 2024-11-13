@@ -1,13 +1,18 @@
 .input {
     border-radius: 40px;
-    width: 100%; /* Largura completa do container */
+    width: 80%; /* Largura completa do container */
     opacity: 0.8;
     background-color: black;
     text-align: center; /* Centraliza o texto */
     font-size: 32px; /* Tamanho do texto */
     font-family: 'Irish Grover'; /* Fonte com fallback */
     color: #5C5F19;
-    border: 1px solid #5C5F19;
+    border: 3px solid rgb(22, 44, 172);
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 }
 .input:hover, .input:focus {
     opacity: 1; /* Aumenta a opacidade ao passar o mouse ou focar */
@@ -17,5 +22,18 @@
     font-size: 32px;
     font-family: 'Irish Grover';
     justify-content: center;
-    color: rgb(0, 0, 0); 
+    color: rgb(189, 186, 34); 
+}
+.fundoImput{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7); /* 0.5 representa 50% de opacidade */
+    border: 3px solid rgb(189, 34, 106);
+    border-radius: 10%;
+    opacity: 0.9;
+    padding: 10px;
+    
+    
+    
 }

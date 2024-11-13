@@ -158,13 +158,17 @@ const Roleta = () => {
   };
 
   return (
-    <div>
-      Saldo: ${balance}
-      Aposta Atual: ${bet}
-      <p>
+    <div className="fundoImput">
+      <div className="legenda">
+       <strong className="strong">Saldo: </strong> $ {balance}<br/>
+       <strong className="strong">Aposta Atual: </strong> $ {bet}<br/>
+        <strong className="strong">
         Números Apostados:{" "}
-        {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
-      </p>
+        </strong>
+      {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
+        </div>
+      
+      
 
       <div className="roleta-euro">
         <div className="roleta-euro__sectors">

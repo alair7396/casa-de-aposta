@@ -1,11 +1,11 @@
 
 .rodape {
-    background-color: black;
+    background-color: rgba(221, 23, 23, 0.2);
     display: flex;
     height: 68px;
-    color: #5C5F19;
-    opacity: 0.4;
-    border: 1px solid #5C5F19;
+    color: #000000;
+    border-radius: 10%;
+    border: 3px solid #20125f;
     transition: opacity 0.3s;
     font-size: 32px;
     font-family: 'Irish Grover';
@@ -13,13 +13,9 @@
     align-items: center; /* Centraliza verticalmente */
     text-align: center; /* Adicionado para centralizar o texto */
 }
-
-
 .rodape::placeholder {
     color: #5C5F19; /* Cor do placeholder */
 }
-
 .rodape:hover, .login-input:focus {
-    opacity: 1; /* Aumenta a opacidade ao passar o mouse ou focar */
-    
+    opacity: 1; /* Aumenta a opacidade ao passar o mouse ou focar */ 
 }

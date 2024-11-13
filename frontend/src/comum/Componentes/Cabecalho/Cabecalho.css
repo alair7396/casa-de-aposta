@@ -6,7 +6,7 @@
     height: 160px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-    border: 1px solid #5C5F19;
+    border: 3px solid #195f3c;
     align-items:end;
     justify-content: center;
   }
@@ -15,8 +15,8 @@
   }
 .nav{
   font-size: 15px;
-  background-color: black;
+  background-color: rgba(192, 181, 31, 0.685);
   border-radius: 10px;
-  border: 2px solid #5C5F19;
+  border: 3px solid #19179b;
 }
 
