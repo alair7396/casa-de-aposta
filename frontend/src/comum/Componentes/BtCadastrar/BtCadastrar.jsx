@@ -1,10 +1,8 @@
+import './BtCadastrar.css';
 
-
-import './BtCadastrar.css'; 
-
-const BtCadastrar = () => {
+const BtCadastrar = ({ onClick }) => {
   return (
-    <button className="btcadastrar">
+    <button className="btcadastrar" onClick={onClick}>
       Cadastrar
     </button>
   );

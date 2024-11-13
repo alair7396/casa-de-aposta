@@ -11,12 +11,16 @@ import PaginaPerfil from './comum/Pages/PaginaPerfil/PaginaPerfil';
 import PaginaJogar from './comum/Pages/PaginaJogar/PaginaJogar';
 import PaginaSair from './comum/Pages/PaginaSair/PaginaSair';
 import PaginaRoleta from './comum/Pages/PaginaRoleta/PaginaRoleta';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const App=()=>{
   
   return(
+    <>
+    <ToastContainer/>
     <Router>
        
        <div className="container">
@@ -34,6 +38,7 @@ const App=()=>{
         <Rodape/>
     </div>
     </Router>
+    </>
   )
 }
 

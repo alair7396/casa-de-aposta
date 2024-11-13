@@ -1,12 +1,13 @@
 
 import './BtEntrar.css'; 
 
-const BtEntrar = () => {
+const BtEntrar = ({ onClick }) => {
   return (
-    <button className="btentrar">
+    <button className="btentrar"onClick={onClick}>
       Let's Rock
     </button>
   );
 };
 
 export default BtEntrar;
+
