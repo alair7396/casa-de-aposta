@@ -1,0 +1,27 @@
+.avatar_root {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: var(--cor-fundo-padrao);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar_perfil {
+  height: 100px;
+  width: 100px;
+  background-color: var(--cor-texto-claro);
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

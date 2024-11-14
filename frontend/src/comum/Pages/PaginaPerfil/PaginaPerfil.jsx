@@ -1,8 +1,90 @@
-const PaginaPerfil=()=>{
-    return(
-        <div className='body'> 
-            <h1>Conteúdo do Body 5</h1>  
-        </div>
-    )
-}
+import { useNavigate } from 'react-router-dom';
+
+
+
+import { useState, useEffect } from 'react';
+import ServicoAutenticacao from '../../servicos/ServicoAutenticacao';
+import Avatar from '../../Componentes/Avatar/Avatar';
+
+const instanciaServicoAutenticacao = new ServicoAutenticacao();
+
+const PaginaPerfil = () => {
+  const navigate = useNavigate();
+  const usuarioLogado = instanciaServicoAutenticacao.buscarUsuarioLogado();
+
+  const [imagemUsuario, setImagemUsuario] = useState('');
+  const [saldo, setSaldo] = useState(0);
+
+  // Recupera a imagem do avatar e o saldo do usuário ao carregar o componente
+  useEffect(() => {
+    const avatarSalvo = localStorage.getItem('avatarUsuario');
+    if (avatarSalvo) {
+      setImagemUsuario(avatarSalvo);
+    }
+
+    if (usuarioLogado && usuarioLogado.carteira) {
+      setSaldo(usuarioLogado.carteira);
+    }
+  }, [usuarioLogado]);
+
+  const sair = () => {
+    instanciaServicoAutenticacao.sair();
+    navigate('/');
+  };
+
+  const mudarAvatar = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const base64String = event.target.result;
+        setImagemUsuario(base64String);
+
+        // Salva a imagem no localStorage
+        localStorage.setItem('avatarUsuario', base64String);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  return (
+    <div titulo="Meu Perfil" voltarPara="/">
+      <input
+        type="file"
+        accept="image/*"
+        multiple={false}
+        id="fileInput"
+        style={{ display: 'none' }}
+        onChange={mudarAvatar}
+      />
+      <button
+        onClick={() => document.getElementById('fileInput').click()}
+        style={{ backgroundColor: 'transparent', border: 'none', display: 'flex', justifyContent: 'center' }}
+      >
+        <Avatar nome={usuarioLogado.nome} perfil={true} imagem={imagemUsuario} />
+      </button>
+
+      <div className="campo">
+        <label>Nome</label>
+        <input type="text" value={usuarioLogado.nome} disabled />
+      </div>
+
+      <div className="campo">
+        <label>Email</label>
+        <input type="text" value={usuarioLogado.email} disabled />
+      </div>
+
+      <div className="campo">
+        <label>Saldo da Carteira</label>
+        <input type="text" value={`$ ${saldo}`} disabled />
+      </div>
+
+      {/* Botão padrão substituindo o BotaoCustomizado */}
+      <button onClick={sair} style={{ padding: '10px 20px', backgroundColor: '#ff6347', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        Sair
+      </button>
+    </div>
+  );
+};
+
 export default PaginaPerfil;

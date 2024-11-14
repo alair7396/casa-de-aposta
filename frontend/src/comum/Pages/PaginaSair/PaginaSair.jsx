@@ -1,7 +1,7 @@
 const PaginaSair=()=>{
     return(
         <div className='body'> 
-            <h1>Conteúdo do Body 7</h1>  
+            <h1>Conteúdo do PaginaSair</h1>  
         </div>
     )
 }
