@@ -28,7 +28,7 @@ const InputCadastro = () => {
       return;
     }
 
-    const usuario = { nome, email, telefone, senha };
+    const usuario = { nome, email, telefone, senha, carteira: 500 };
     console.log('Usuário cadastrado:', usuario);
     try {
       instanciaServicoUsuarios.cadastrarUsuario(usuario);

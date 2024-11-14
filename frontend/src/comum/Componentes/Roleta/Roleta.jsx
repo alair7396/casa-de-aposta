@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Roleta.css";
+import ServicoUsuarios from "../../servicos/ServicoUsuarios"; // Importe o serviço de usuário
+import ServicoAutenticacao from "../../servicos/ServicoAutenticacao";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// Importação das imagens
+
+
+
 import img0 from "../../../assets/images/0.png";
 import img1 from "../../../assets/images/1.png";
 import img2 from "../../../assets/images/2.png";
@@ -47,20 +53,35 @@ const imageArray = [
   img30, img31, img32, img33, img34, img35
 ];
 
+const servicoUsuarios = new ServicoUsuarios();
+const servicoAutenticacao = new ServicoAutenticacao();
+
+// Obtém o usuário logado
+const usuarioLogado = servicoAutenticacao.buscarUsuarioLogado();
+const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null; // Verifica se o usuário está logado
+
 const Roleta = () => {
   const [resizedImages, setResizedImages] = useState([]);
   const [selectedSegment, setSelectedSegment] = useState(null);
   const [isSpinning, setIsSpinning] = useState(false);
-  const [balance, setBalance] = useState(100);
+  const [balance, setBalance] = useState(0);
   const [bet, setBet] = useState(0);
   const [betNumbers, setBetNumbers] = useState({});
   const [currentSegment, setCurrentSegment] = useState(0);
   const NUM_SEGMENTS = 36;
-  const SPIN_TIME = 10; // Tempo de rotação em segundos
+  const SPIN_TIME = 10;
   const MAX_BETS = 10;
 
   useEffect(() => {
-    // Redimensiona cada imagem para 300x300 pixels
+    if (!emailUsuarioLogado) {
+      toast.error("Nenhum usuário logado!");
+      return;
+    }
+    // Busca o saldo inicial do usuário
+    const saldoInicial = servicoUsuarios.obterSaldoUsuario(emailUsuarioLogado); // Chamada corrigida
+    setBalance(saldoInicial);
+
+    // Redimensiona as imagens
     const resizeImages = async () => {
       const promises = imageArray.map((image) => {
         return new Promise((resolve) => {
@@ -68,11 +89,11 @@ const Roleta = () => {
           img.src = image;
           img.onload = () => {
             const canvas = document.createElement("canvas");
-            canvas.width = 300; // Largura desejada
-            canvas.height = 300; // Altura desejada
+            canvas.width = 300;
+            canvas.height = 300;
             const ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, 300, 300);
-            resolve(canvas.toDataURL()); // Converte para Data URL
+            resolve(canvas.toDataURL());
           };
         });
       });
@@ -86,7 +107,7 @@ const Roleta = () => {
   useEffect(() => {
     let interval;
     if (isSpinning) {
-      const totalSpins = NUM_SEGMENTS * 2; // Duas voltas completas
+      const totalSpins = NUM_SEGMENTS * 2;
       const intervalTime = (SPIN_TIME * 1000) / totalSpins;
       let spins = 0;
 
@@ -106,32 +127,35 @@ const Roleta = () => {
     const randomSegment = Math.floor(Math.random() * NUM_SEGMENTS);
     setSelectedSegment(randomSegment);
 
-    // Adicionar um pequeno atraso antes de mostrar a mensagem
     setTimeout(() => {
       const betCount = betNumbers[randomSegment] || 0;
+      let novoSaldo = balance;
       if (betCount > 0) {
         const prize = bet * betCount * 2;
-        setBalance(balance + prize);
-        alert(`Parabéns! Você acertou o número ${randomSegment} e ganhou ${prize}!`);
+        novoSaldo += prize;
+        toast.success(`Parabéns! Você acertou o número ${randomSegment} e ganhou ${prize}!`);
       } else {
-        setBalance(balance - bet);
-        alert(`Que pena! O número sorteado foi ${randomSegment}. Você perdeu a aposta de ${bet}.`);
+        novoSaldo -= bet;
+        toast.success(`Que pena! O número sorteado foi ${randomSegment}. Você perdeu a aposta de ${bet}.`);
       }
+
+      setBalance(novoSaldo);
+      servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo);
+
       setBet(0);
       setBetNumbers({});
-      setIsSpinning(false); // Permitir novas apostas
-
-    }, 1000); // Atraso para garantir que o número seja exibido
+      setIsSpinning(false);
+    }, 1000);
   };
 
   const startSpinning = () => {
     if (bet <= 0 || bet > balance) {
-      alert("Insira uma aposta válida dentro do seu saldo.");
+      toast.info("Insira uma aposta válida dentro do seu saldo.");
       return;
     }
 
     if (Object.keys(betNumbers).length === 0) {
-      alert("Escolha ao menos um número para apostar.");
+      toast.info("Escolha ao menos um número para apostar.");
       return;
     }
 
@@ -142,7 +166,7 @@ const Roleta = () => {
   const addBet = (num) => {
     if (isSpinning) return;
     if (Object.values(betNumbers).reduce((sum, count) => sum + count, 0) >= MAX_BETS) {
-      alert(`Você pode apostar no máximo ${MAX_BETS} vezes no total.`);
+      toast.info(`Você pode apostar no máximo ${MAX_BETS} vezes no total.`);
       return;
     }
 
@@ -162,15 +186,11 @@ const Roleta = () => {
   return (
     <div className="fundoImput">
       <div className="legenda">
-       <strong className="strong">Saldo: </strong> $ {balance}<br/>
-       <strong className="strong">Aposta Atual: </strong> $ {bet}<br/>
-        <strong className="strong">
-        Números Apostados:{" "}
-        </strong>
-      {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
-        </div>
-      
-      
+        <strong className="strong">Saldo: </strong> $ {balance}<br />
+        <strong className="strong">Aposta Atual: </strong> $ {bet}<br />
+        <strong className="strong">Números Apostados: </strong>
+        {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
+      </div>
 
       <div className="roleta-euro">
         <div className="roleta-euro__sectors">
