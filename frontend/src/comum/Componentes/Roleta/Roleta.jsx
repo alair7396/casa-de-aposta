@@ -119,7 +119,9 @@ const Roleta = () => {
       }
       setBet(0);
       setBetNumbers({});
-    }, 10000); // Atraso para garantir que o número seja exibido
+      setIsSpinning(false); // Permitir novas apostas
+
+    }, 1000); // Atraso para garantir que o número seja exibido
   };
 
   const startSpinning = () => {
