@@ -13,10 +13,45 @@
   .nav a:hover {
     color: #5C5F19; 
   }
-.nav{
-  font-size: 15px;
-  background-color: rgba(192, 181, 31, 0.685);
-  border-radius: 10px;
-  border: 3px solid #19179b;
-}
-
+  .nav {
+    font-size: 18px; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Adiciona negrito para destacar mais */
+    background-color: rgba(192, 181, 31, 0.85); /* Aumenta a opacidade para dar mais destaque */
+    border-radius: 10px;
+    border: 3px solid #19179b;
+    padding: 10px 20px; /* Adiciona um pouco de espaço interno para melhorar a aparência */
+    text-align: center; /* Centraliza os links na barra */
+  }
+  
+  .nav a {
+    color: #19179b; /* Cor da fonte dos links */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    padding: 0 10px; /* Adiciona espaçamento entre os links */
+    transition: color 0.3s ease, transform 0.3s ease; /* Efeito suave nas transições */
+  }
+  
+  .nav a:hover {
+    color: #fff; /* Cor do link quando o mouse passa por cima */
+    transform: scale(1.1); /* Aumenta um pouco o tamanho do link ao passar o mouse */
+  }
+  
+  .nav a:active {
+    color: #ff0; /* Muda a cor do link quando ele é clicado */
+  }
+  
+  /* Para garantir que o mesmo estilo seja aplicado nas escritas internas */
+  .page-title {
+    font-size: 24px; /* Maior tamanho de fonte para títulos */
+    font-weight: bold;
+    color: #19179b;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .page-text {
+    font-size: 16px; /* Tamanho de fonte confortável para o texto */
+    line-height: 1.5;
+    color: #333;
+    margin: 15px 0;
+  }
+  

@@ -1,0 +1,117 @@
+/* Barra de navegação */
+.nav {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(192, 181, 31, 0.85); 
+    border-radius: 10px;
+    border: 3px solid #19179b;
+    padding: 10px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .nav a {
+    color: #19179b;
+    text-decoration: none;
+    padding: 0 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav a:hover {
+    color: #fff;
+    transform: scale(1.1);
+  }
+  
+  /* Conteúdo do Admin */
+  .admin-content {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .admin-content input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .admin-content button {
+    padding: 10px 20px;
+    background-color: #19179b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .admin-content button:hover {
+    background-color: #2a2a8a;
+  }
+  
+  /* Ofertas */
+  .offer-list {
+    margin-top: 30px;
+  }
+  
+  .offer-card {
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .offer-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  
+  /* Usuários */
+  .user-list {
+    margin-top: 30px;
+  }
+  
+  .user-card {
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: #ddd;
+    background-color: aquamarine;
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  

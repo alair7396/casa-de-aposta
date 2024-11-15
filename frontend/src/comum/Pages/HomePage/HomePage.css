@@ -1,0 +1,87 @@
+/* Barra de navegação */
+.nav {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(192, 181, 31, 0.85); /* Mantém a cor de fundo amarela */
+    border-radius: 10px;
+    border: 3px solid #19179b;
+    padding: 10px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .nav a {
+    color: #19179b;
+    text-decoration: none;
+    padding: 0 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav a:hover {
+    color: #fff;
+    transform: scale(1.1);
+  }
+  
+  .nav a:active {
+    color: #ff0;
+  }
+  
+  /* Conteúdo da página Home */
+  .content {
+    text-align: center;
+    margin: 20px;
+   
+   
+    
+  }
+  
+  .content h2 {
+    font-size: 24px;
+    color: #19179b;
+    margin-bottom: 20px;
+  }
+  
+  .content p {
+    font-size: 18px;
+    color: #4c0b97;
+  }
+  
+  .offer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .offer-card {
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .offer-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .buy-button {
+    background-color: #19179b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .buy-button:hover {
+    background-color: #2a2a8a;
+  }
+  
