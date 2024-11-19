@@ -65,8 +65,8 @@ function AdminPage() {
       
 
       {/* Conteúdo da página Admin */}
-      <div className="admin-content">
-        <h2>Adicionar Oferta de Moedas</h2>
+      <div className="nav">
+        <h3>Adicionar Oferta de Moedas</h3>
         <input
           type="text"
           name="image"

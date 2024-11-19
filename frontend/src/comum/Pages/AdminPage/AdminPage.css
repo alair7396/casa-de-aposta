@@ -1,32 +1,19 @@
 
+.admin-content {
+   
   
-  
-  
-  
-  
- 
-  
-  
-  
+    
+  }
   .admin-content button {
    
     background-color: #19179b;
     color: white;
     border: none;
-    cursor: pointer;
-    
+    cursor: pointer;  
   }
-  
   .admin-content button:hover {
     background-color: #2a2a8a;
   }
-  
- 
-  
-
-  
-  
-  
   .delete-button {
     background-color: red;
     color: white;
@@ -36,13 +23,9 @@
     cursor: pointer;
     margin-top: 10px;
   }
-  
   .delete-button:hover {
     background-color: darkred;
   }
-  
-  
-  
   .user-card {
     height: 50%px;
     width: 70%;

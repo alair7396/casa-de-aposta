@@ -81,10 +81,13 @@ const JogoDoPato = () => {
     return (
       <>  
         <div className='alinhar'>
-            <div className="pontuacao">
+            <div className='nav'>
                 Dinheiro: {pontuacao} <br />
                 Tentativas: {tentativas}
             </div>
+            <div className="fundoImput">
+                
+            
             
             <div className="board-row">
                 <Quadrados value={use[0]} index={0} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
@@ -110,7 +113,7 @@ const JogoDoPato = () => {
             <button className="reiniciar" onClick={reiniciarJogo}>
                 Reiniciar
             </button>
-            
+            </div>
             
             
             <Modal 
