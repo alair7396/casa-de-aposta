@@ -14,13 +14,14 @@ const PaginaSobre = () => {
         <Link to='/admin'>Admin</Link> |  
         <Link to='/home'>Home</Link>
       </nav>
-
+<div className='body'>
       <div className='nav'>
         <h2 className='page-title'>Sobre o Jogo</h2>
         <p className='page-text'>
           Este jogo é uma roleta interativa onde você pode testar sua sorte com diferentes opções. A cada rodada, você tem a chance de ganhar prêmios emocionantes!
         </p>
       </div>
+    </div>
     </>
   );
 };

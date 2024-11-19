@@ -41,9 +41,8 @@ function HomePage() {
   };
 
   return (
-    <div>
-      {/* Barra de navegação */}
-      <nav className='nav'>
+    <>
+    <nav className='nav'>
         <Link to='/sobre'>Sobre</Link> |  
         <Link to='/inicio'>Início</Link> |  
         <Link to='/perfil'>Perfil</Link> |  
@@ -52,6 +51,9 @@ function HomePage() {
         <Link to='/admin'>Admin</Link> |  
         <Link to='/home'>Home</Link>
       </nav>
+    <div className='body'>
+      {/* Barra de navegação */}
+      
       
       {/* Ofertas de moedas */}
       <div className="nav">
@@ -69,7 +71,7 @@ function HomePage() {
           ))}
         </div>
       </div>
-    </div>
+    </div></>
   );
 }
 

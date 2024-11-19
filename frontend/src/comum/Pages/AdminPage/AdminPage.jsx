@@ -50,9 +50,8 @@ function AdminPage() {
   };
 
   return (
-    <div>
-      {/* Barra de navegação */}
-      <nav className='nav'>
+    <>
+    <nav className='nav'>
         <Link to='/sobre'>Sobre</Link> |  
         <Link to='/inicio'>Início</Link> |  
         <Link to='/perfil'>Perfil</Link> |  
@@ -61,6 +60,9 @@ function AdminPage() {
         <Link to='/admin'>Admin</Link> |  
         <Link to='/home'>Home</Link>
       </nav>
+    <div className='bodyadm'>
+      {/* Barra de navegação */}
+      
 
       {/* Conteúdo da página Admin */}
       <div className="admin-content">
@@ -124,7 +126,7 @@ function AdminPage() {
           )}
         </div>
       </div>
-    </div>
+    </div></>
   );
 }
 
