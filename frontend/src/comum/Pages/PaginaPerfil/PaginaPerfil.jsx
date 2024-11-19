@@ -51,15 +51,15 @@ const PaginaPerfil = () => {
     <>
     <nav className='nav'> 
         <Link to='/sobre'>Sobre</Link> |  
-        <Link to='/inicio'>Início</Link> |  
-        <Link to='/perfil'>Perfil</Link> |  
+        <Link to='/inicio'>Início</Link> |   
         <Link to='/jogar'>Jogar</Link> |  
         <Link to='/sair'>Sair</Link> |  
         <Link to='/admin'>Admin</Link> |  
-        <Link to='/home'>Home</Link>
+        <Link to='/home'>Home</Link>|
+        <Link to='/roleta'>Roleta</Link>
       </nav>
     <div className='body'>
-    
+    <div className='nav'>
     <div titulo="Meu Perfil" voltarPara="/">
       <input
         type="file"
@@ -96,7 +96,7 @@ const PaginaPerfil = () => {
         Sair
       </button>
     </div>
-    </div>
+    </div></div>
     </>
   );
 };

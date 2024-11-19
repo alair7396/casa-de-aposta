@@ -8,12 +8,12 @@ const PaginaSair=()=>{
         <Link to='/inicio'>Início</Link> |  
         <Link to='/perfil'>Perfil</Link> |  
         <Link to='/jogar'>Jogar</Link> |  
-        <Link to='/sair'>Sair</Link> |  
         <Link to='/admin'>Admin</Link> |  
-        <Link to='/home'>Home</Link>
+        <Link to='/home'>Home</Link>|
+        <Link to='/roleta'>Roleta</Link>
       </nav>
       <div className='body'> 
-            <h1>Conteúdo do PaginaSair</h1>  
+            <h1 className="nav">Conteúdo do PaginaSair</h1>  
         </div>
         </>
         
