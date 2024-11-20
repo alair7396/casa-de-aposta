@@ -106,5 +106,12 @@
   
 }
 .color{
-  color: #f507cd;
+  color: #f5079a;
+  font-family: 'Irish Grover';
+  font-size: larger;
+}
+.color2{
+  color: #8d0a0a;
+  font-family: 'Irish Grover';
+  font-size: larger;
 }

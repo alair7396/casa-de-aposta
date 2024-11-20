@@ -4,7 +4,7 @@
     align-items: center; /* Centraliza verticalmente */
     text-align: center; /* Centraliza o texto */
     background-color: rgba(32, 185, 70, 0.5); /* 0.5 representa 50% de opacidade */
-    color: #5C5F19; /* Cor do texto */
+    color: #fdfdfd; /* Cor do texto */
     border-radius: 30px; /* Bordas arredondadas */
     font-size: 50px; /* Tamanho da fonte */
     font-family: 'Irish Grover', cursive; /* Fonte personalizada */

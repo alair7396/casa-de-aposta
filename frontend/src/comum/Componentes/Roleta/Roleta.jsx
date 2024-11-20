@@ -42,6 +42,7 @@ import img32 from "../../../assets/images/32.png";
 import img33 from "../../../assets/images/33.png";
 import img34 from "../../../assets/images/34.png";
 import img35 from "../../../assets/images/35.png";
+import VerSaldoConsole from "../JogoDoPato/VerSaldoConsole";
 const imageArray = [
   img0, img32, img15, img19, img4, img21, img2, img25, img17, img34,
   img6, img27, img13, img11, img30, img8, img23, img10, img5,
@@ -206,7 +207,7 @@ const Roleta = () => {
     setBet(0);
     setBetNumbers({});
   };
-
+  
   return (
     <div className="fundoroleta">
       <div className="legenda">
@@ -244,8 +245,9 @@ const Roleta = () => {
         <button onClick={clearBets} disabled={isSpinning} className="clear-button">
           Limpar Apostas
         </button>
+        
       </div>
-    </div>
+    <VerSaldoConsole/></div>
   );
 };
 

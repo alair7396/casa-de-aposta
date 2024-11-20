@@ -123,3 +123,7 @@
 .tentativas {
     color: chartreuse;
 }
+.board-row{
+    display: flex;
+    flex-direction: row;
+}

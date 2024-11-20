@@ -2,15 +2,36 @@ import './Style.css';
 import Quadrados from "./Quadrados";
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
-import BotaoEstiloso from '../BotaoEtiloso/BotaoEstiloso';
-
+import { useEffect } from 'react';
+import VerSaldoConsole from './VerSaldoConsole.jsx';
+import ServicoUsuarios from "../../servicos/ServicoUsuarios.js";
+import ServicoAutenticacao from "../../servicos/ServicoAutenticacao.js";
+const servicoUsuarios = new ServicoUsuarios();
+const servicoAutenticacao = new ServicoAutenticacao();
 const JogoDoPato = () => {
     const [use, setUse] = useState(Array(9).fill(null));
     const [mensagem, setMensagem] = useState('');
-    const [pontuacao, setPontuacao] = useState(0);
+    const [pontuacao, setPontuacao] = useState(0); // Sincronizado com a carteira
     const [tabuleiroAtivo, setTabuleiroAtivo] = useState(false);
     const [tentativas, setTentativas] = useState(0);
-    const [mostrarModal, setMostrarModal] = useState(false); // Estado para mostrar o modal de compra
+    const [mostrarModal, setMostrarModal] = useState(false);
+
+     
+    const usuarioLogado = servicoAutenticacao.buscarUsuarioLogado();
+const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
+
+if (!emailUsuarioLogado) {
+    console.error("Nenhum usuário está logado.");
+    // Opcional: redirecionar ou exibir uma mensagem
+}
+    useEffect(() => {
+        const buscarSaldoInicial = async () => {
+            const saldo = await servicoUsuarios.obterSaldoUsuario(emailUsuarioLogado);
+            setPontuacao(saldo); // Inicializa a pontuação com o saldo da carteira
+        };
+
+        buscarSaldoInicial();
+    }, []);
 
     const clicadoPai = (index) => {
         if (tentativas <= 0) {
@@ -28,11 +49,15 @@ const JogoDoPato = () => {
         const novoTabuleiro = [...use];
         novoTabuleiro[index] = resultado;
         setUse(novoTabuleiro);
-
+        
         if (resultado === "Ganhou +200$") {
-            setPontuacao(pontuacao + 200);
+            const novoSaldo = pontuacao + 200;
+            setPontuacao(novoSaldo);
+            servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo); // Atualiza o saldo no serviço
         } else {
-            setPontuacao(pontuacao - 100);
+            const novoSaldo = pontuacao - 100;
+            setPontuacao(novoSaldo);
+            servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo); // Atualiza o saldo no serviço
         }
 
         setTentativas(tentativas - 1);
@@ -66,10 +91,12 @@ const JogoDoPato = () => {
 
     // Função para comprar tentativas
     const comprarTentativas = () => {
-        if (pontuacao >= 500) { // O custo para comprar uma tentativa
-            setPontuacao(pontuacao - 500); // Deduz 100 pontos
-            setTentativas(tentativas + 3); // Adiciona 1 tentativa
-            setMostrarModal(false); // Fecha o modal
+        if (pontuacao >= 500) {
+            const novoSaldo = pontuacao - 500;
+            setPontuacao(novoSaldo);
+            servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo); // Atualiza o saldo no serviço
+            setTentativas(tentativas + 3);
+            setMostrarModal(false);
         } else {
             alert("Você não tem pontos suficientes para comprar tentativas!");
         }
@@ -82,7 +109,7 @@ const JogoDoPato = () => {
       <>  
         <div className='alinhar'>
             <div className='nav'>
-                Dinheiro: {pontuacao} <br />
+                <strong className='color2'>Moedas:</strong> {pontuacao} <br />
                 Tentativas: {tentativas}
             </div>
             <div className="fundoImput">
@@ -123,6 +150,7 @@ const JogoDoPato = () => {
                 reiniciarJogo={reiniciarJogo} 
                 fechar={fechar}
             />
+            <VerSaldoConsole/>
         </div>
       </>
     );
