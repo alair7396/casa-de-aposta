@@ -9,6 +9,7 @@ body {
   background-position: center;
   height: 100vh;
   background-size: cover;
+  border: 3px solid #1b31aa;
 }
 
 

@@ -56,4 +56,6 @@
     align-items: center;  
     flex-grow: 1;
     flex-direction: column;
+    background-image: url('/icons/backgrund entrar.jpeg');
+    background-position: center;
   }

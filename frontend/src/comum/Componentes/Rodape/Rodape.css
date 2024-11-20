@@ -2,17 +2,20 @@
 .rodape {
     background-color: rgba(221, 23, 23, 0.2);
     display: flex;
-    height: 68px;
-    color: #000000;
-    border-radius: 10%;
-    border: 3px solid #20125f;
+    height: 100px;
+    color: #c78d11;
+    
+    border: 3px solid #59125f;
     transition: opacity 0.3s;
     font-size: 32px;
     font-family: 'Irish Grover';
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
+    background-image: url('/pato do menu.jpeg');
+    background-position: bottom;
     text-align: center; /* Adicionado para centralizar o texto */
 }
+
 .rodape::placeholder {
     color: #5C5F19; /* Cor do placeholder */
 }

@@ -70,7 +70,7 @@ const Roleta = () => {
   const [currentSegment, setCurrentSegment] = useState(segmentOrder[0]);
 
   const NUM_SEGMENTS = 35;
-  const MAX_BETS = 30;
+  const MAX_BETS = 10;
   const totalSpins = Math.floor(NUM_SEGMENTS * 4);
 
   const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF3", "#FFF333", "#07f54e"]; // Lista de cores
