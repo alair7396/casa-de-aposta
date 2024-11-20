@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Roleta.css";
-import ServicoUsuarios from "../../servicos/ServicoUsuarios"; // Importe o serviço de usuário
+import ServicoUsuarios from "../../servicos/ServicoUsuarios";
 import ServicoAutenticacao from "../../servicos/ServicoAutenticacao";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-
-
+// Importação das imagens
 import img0 from "../../../assets/images/0.png";
 import img1 from "../../../assets/images/1.png";
 import img2 from "../../../assets/images/2.png";
@@ -44,104 +42,133 @@ import img32 from "../../../assets/images/32.png";
 import img33 from "../../../assets/images/33.png";
 import img34 from "../../../assets/images/34.png";
 import img35 from "../../../assets/images/35.png";
-
-// Array com todas as imagens importadas
 const imageArray = [
-  img0, img1, img2, img3, img4, img5, img6, img7, img8, img9,
-  img10, img11, img12, img13, img14, img15, img16, img17, img18, img19,
-  img20, img21, img22, img23, img24, img25, img26, img27, img28, img29,
-  img30, img31, img32, img33, img34, img35
+  img0, img32, img15, img19, img4, img21, img2, img25, img17, img34,
+  img6, img27, img13, img11, img30, img8, img23, img10, img5,
+  img24, img16, img33, img1, img20, img14, img31, img9, img22, img18,
+  img29, img7, img28, img12, img35, img3, img26
+];
+
+
+const segmentOrder = [
+  0, 32, 15, 19, 4, 21, 2, 25, 17, 34,
+  6, 27, 13, 11, 30, 8, 23, 10, 5,
+  24, 16, 33, 1, 20, 14, 31, 9, 22, 18,
+  29, 7, 28, 12, 35, 3, 26
 ];
 
 const servicoUsuarios = new ServicoUsuarios();
 const servicoAutenticacao = new ServicoAutenticacao();
 
-// Obtém o usuário logado
-const usuarioLogado = servicoAutenticacao.buscarUsuarioLogado();
-const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null; // Verifica se o usuário está logado
-
 const Roleta = () => {
-  const [resizedImages, setResizedImages] = useState([]);
   const [selectedSegment, setSelectedSegment] = useState(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [balance, setBalance] = useState(0);
   const [bet, setBet] = useState(0);
   const [betNumbers, setBetNumbers] = useState({});
-  const [currentSegment, setCurrentSegment] = useState(0);
-  const NUM_SEGMENTS = 36;
-  const SPIN_TIME = 10;
-  const MAX_BETS = 10;
+  const [currentSegment, setCurrentSegment] = useState(segmentOrder[0]);
+
+  const NUM_SEGMENTS = 35;
+  const MAX_BETS = 30;
+  const totalSpins = Math.floor(NUM_SEGMENTS * 4);
+
+  const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF3", "#FFF333", "#07f54e"]; // Lista de cores
+
+  const usuarioLogado = servicoAutenticacao.buscarUsuarioLogado();
+  const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
+
+  // Função para atualizar bordas dinâmicas
+  const updateBorderColors = (classNames, colors, step) => {
+    classNames.forEach((className, index) => {
+      const elements = document.querySelectorAll(`.${className}`);
+      elements.forEach((element) => {
+        const colorIndex = (step + index) % colors.length;
+        element.style.borderColor = colors[colorIndex];
+      });
+    });
+  };
 
   useEffect(() => {
     if (!emailUsuarioLogado) {
       toast.error("Nenhum usuário logado!");
       return;
     }
-    // Busca o saldo inicial do usuário
-    const saldoInicial = servicoUsuarios.obterSaldoUsuario(emailUsuarioLogado); // Chamada corrigida
-    setBalance(saldoInicial);
-
-    // Redimensiona as imagens
-    const resizeImages = async () => {
-      const promises = imageArray.map((image) => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.src = image;
-          img.onload = () => {
-            const canvas = document.createElement("canvas");
-            canvas.width = 300;
-            canvas.height = 300;
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, 300, 300);
-            resolve(canvas.toDataURL());
-          };
-        });
-      });
-      const resizedImagesArray = await Promise.all(promises);
-      setResizedImages(resizedImagesArray);
+    const fetchSaldoInicial = async () => {
+      try {
+        const saldo = await servicoUsuarios.obterSaldoUsuario(emailUsuarioLogado);
+        setBalance(saldo);
+      } catch (error) {
+        toast.error("Erro ao buscar saldo do usuário.");
+      }
     };
 
-    resizeImages();
-  }, []);
+    fetchSaldoInicial();
+  }, [emailUsuarioLogado]);
 
   useEffect(() => {
     let interval;
     if (isSpinning) {
-      const totalSpins = NUM_SEGMENTS * 2;
-      const intervalTime = (SPIN_TIME * 1000) / totalSpins;
+      const maxSpeed = 30; // Velocidade máxima (mais rápido)
+      const minSpeed = 100; // Velocidade mínima (mais lento)
       let spins = 0;
+      let currentSpeed = minSpeed;
 
-      interval = setInterval(() => {
-        setCurrentSegment((prev) => (prev + 1) % NUM_SEGMENTS);
+      const adjustSpeed = () => {
+        if (spins < totalSpins / 3) {
+          currentSpeed = Math.max(maxSpeed, currentSpeed - 5); // Aceleração
+        } else if (spins > (2 * totalSpins) / 3) {
+          currentSpeed = Math.min(minSpeed, currentSpeed + 20); // Desaceleração
+        }
+      };
+
+      const spinRoulette = () => {
+        setCurrentSegment((prev) => {
+          const nextIndex = (segmentOrder.indexOf(prev) + 1) % segmentOrder.length;
+          return segmentOrder[nextIndex];
+        });
+
+        // Atualizar bordas dinâmicas de várias classes
+        updateBorderColors(["fundoroleta", "botoes", "botoes button"], colors, spins);
+
         spins += 1;
+        adjustSpeed();
+
         if (spins >= totalSpins) {
           clearInterval(interval);
           finalizeSpin();
+        } else {
+          clearInterval(interval);
+          interval = setInterval(spinRoulette, currentSpeed);
         }
-      }, intervalTime);
+      };
+
+      interval = setInterval(spinRoulette, currentSpeed);
+
+      return () => clearInterval(interval);
     }
-    return () => clearInterval(interval);
   }, [isSpinning]);
 
   const finalizeSpin = () => {
-    const randomSegment = Math.floor(Math.random() * NUM_SEGMENTS);
-    setSelectedSegment(randomSegment);
-
+    // O segmento atual será o número final onde a roleta parou
+    const finalSegment = currentSegment; 
+    setSelectedSegment(finalSegment);
+  
     setTimeout(() => {
-      const betCount = betNumbers[randomSegment] || 0;
+      const betCount = betNumbers[finalSegment] || 0;
       let novoSaldo = balance;
+  
       if (betCount > 0) {
         const prize = bet * betCount * 2;
         novoSaldo += prize;
-        toast.success(`Parabéns! Você acertou o número ${randomSegment} e ganhou ${prize}!`);
+        toast.success(`Você ganhou ${prize} no número ${finalSegment}!`);
       } else {
         novoSaldo -= bet;
-        toast.success(`Que pena! O número sorteado foi ${randomSegment}. Você perdeu a aposta de ${bet}.`);
+        toast.error(`Você perdeu! O número sorteado foi ${finalSegment}.`);
       }
-
+  
       setBalance(novoSaldo);
       servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo);
-
+  
       setBet(0);
       setBetNumbers({});
       setIsSpinning(false);
@@ -150,15 +177,13 @@ const Roleta = () => {
 
   const startSpinning = () => {
     if (bet <= 0 || bet > balance) {
-      toast.info("Insira uma aposta válida dentro do seu saldo.");
+      toast.info("Insira uma aposta válida dentro do saldo disponível.");
       return;
     }
-
     if (Object.keys(betNumbers).length === 0) {
-      toast.info("Escolha ao menos um número para apostar.");
+      toast.info("Escolha pelo menos um número para apostar.");
       return;
     }
-
     setIsSpinning(true);
     setSelectedSegment(null);
   };
@@ -166,14 +191,13 @@ const Roleta = () => {
   const addBet = (num) => {
     if (isSpinning) return;
     if (Object.values(betNumbers).reduce((sum, count) => sum + count, 0) >= MAX_BETS) {
-      toast.info(`Você pode apostar no máximo ${MAX_BETS} vezes no total.`);
+      toast.info(`Você pode apostar no máximo ${MAX_BETS} vezes.`);
       return;
     }
-
     setBet(bet + 10);
-    setBetNumbers((prevNumbers) => ({
-      ...prevNumbers,
-      [num]: (prevNumbers[num] || 0) + 1,
+    setBetNumbers((prev) => ({
+      ...prev,
+      [num]: (prev[num] || 0) + 1,
     }));
   };
 
@@ -184,22 +208,20 @@ const Roleta = () => {
   };
 
   return (
-    <div className="fundoImput">
+    <div className="fundoroleta">
       <div className="legenda">
-        <strong className="strong">Saldo: </strong> $ {balance}<br />
-        <strong className="strong">Aposta Atual: </strong> $ {bet}<br />
-        <strong className="strong">Números Apostados: </strong>
+        <strong className="color">Saldo: </strong>${balance}<br />
+        <strong className="color">Aposta Atual: </strong>${bet}<br />
+        <strong className="color">Números Apostados: </strong>
         {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
       </div>
 
       <div className="roleta-euro">
-        <div className="roleta-euro__sectors">
-          <img
-            src={resizedImages[selectedSegment !== null ? selectedSegment : currentSegment]}
-            alt={`Segmento ${selectedSegment !== null ? selectedSegment : currentSegment}`}
-            className="roulette-image"
-          />
-        </div>
+        <img
+          src={imageArray[segmentOrder.indexOf(selectedSegment !== null ? selectedSegment : currentSegment)]}
+          alt={`Segmento ${selectedSegment !== null ? selectedSegment : currentSegment}`}
+          className="roulette-image"
+        />
       </div>
 
       <div className="botoes">

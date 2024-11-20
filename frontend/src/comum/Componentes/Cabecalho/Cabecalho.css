@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     background-image: url('/pato do menu.jpeg');
-    height: 150px;
+    height:100px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     border: 3px solid #195f3c;
@@ -14,13 +14,15 @@
     color: #5C5F19; 
   }
   .nav {
-    font-size: 18px; /* Aumenta o tamanho da fonte */
+    
+    font-size: 15px; /* Aumenta o tamanho da fonte */
     font-weight: bold; /* Adiciona negrito para destacar mais */
     background-color: rgba(192, 181, 31, 0.85); /* Aumenta a opacidade para dar mais destaque */
     border-radius: 10px;
     border: 3px solid #19179b;
     padding: 10px 20px; /* Adiciona um pouco de espaço interno para melhorar a aparência */
     text-align: center; /* Centraliza os links na barra */
+    margin-bottom: none;
   }
   
   .nav a {

@@ -12,19 +12,24 @@
   align-items: center;
 }
 .roulette-image {
-  width: 100%; /* Ajusta a imagem para preencher a largura */
-  height: 100%; /* Ajusta a imagem para preencher a altura */
-  object-fit: cover; /* Cobre o contêiner */
+  width: 90%; /* Ajusta a imagem para preencher a largura */
+  height: 90%;
+  
 }
 .botoes {
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* 6 colunas de tamanho igual */
+  width: 200px; /* Ajusta a imagem para preencher a largura */
+  border: 3px solid rgb(34, 189, 73);
+  
 }
 .botoes button {
-   color: #4CAF50;
+   color: #07f54e;
   font-size: 14px; /* Fonte menor */
   width: 100%; /* Faz com que o botão preencha totalmente a coluna */
-  height: 20px; /* Define uma altura fixa para manter o tamanho uniforme */
+  
+  border: 1px solid rgb(49, 175, 18);
+  
 }
 /* Cor específica para o botão 0 */
 .bet-number-button:nth-child(1) {
@@ -50,7 +55,7 @@
 .bet-number-button:nth-child(8),
 .bet-number-button:nth-child(13),
 .bet-number-button:nth-child(4) {
-  background-color: #FF0000; /* Vermelho */
+  background-color: #fd0000; /* Vermelho */
 }
 /* Cor preta para os números não citados */
 .bet-number-button {
@@ -81,9 +86,25 @@
 
 
 .legenda{
-  color: #208624;
+  color: #32d332;
   font-family: 'Irish Grover';
 }
-.strong{
-  color: #e089cd;
+
+.fundoroleta{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7); /* 0.5 representa 50% de opacidade */
+  border: 3px solid rgb(189, 34, 106);
+  border-radius: 10%;
+  opacity: 0.9;
+  padding: 10px;
+  width: 300px;
+  justify-content: center;
+  
+  
+  
+}
+.color{
+  color: #f507cd;
 }
