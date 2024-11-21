@@ -1,4 +1,5 @@
 import './Style.css';
+import { toast } from "react-toastify";
 import Quadrados from "./Quadrados";
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
@@ -35,7 +36,7 @@ if (!emailUsuarioLogado) {
 
     const clicadoPai = (index) => {
         if (tentativas <= 0) {
-            alert("Você não tem mais tentativas!");
+           toast("Você não tem mais tentativas!");
             return;
         }
 
@@ -73,7 +74,7 @@ if (!emailUsuarioLogado) {
             setTabuleiroAtivo(true);  // Ativa o tabuleiro
             setMensagem('');  // Limpa a mensagem ao iniciar o jogo
         } else {
-            alert('Feche o modal para começar o jogo');
+           toast('Feche o modal para começar o jogo');
         }
         if (tentativas==0) {
             setMostrarModal(true)
@@ -98,7 +99,7 @@ if (!emailUsuarioLogado) {
             setTentativas(tentativas + 3);
             setMostrarModal(false);
         } else {
-            alert("Você não tem pontos suficientes para comprar tentativas!");
+           toast("Você não tem pontos suficientes para comprar tentativas!");
         }
     };
     const fechar=()=>{

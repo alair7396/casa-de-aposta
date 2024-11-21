@@ -30,7 +30,7 @@ const ImputLog = () => {
 
   return (
     <div className='fundoImput'>
-      <label className='titulo'>Login</label>
+      <label className='titulo'>Email</label>
       <input
         className='input'
         type="text"
