@@ -10,15 +10,15 @@ function Cabecalho() {
 
   return (
     <header className="cabeca">
-      <Link to="/perfil">
-        <img src="/vite.svg" height={40} />
+      <Link to="/perfil" >
+        
       </Link>
-
-      {usuarioLogado && (
+<div className='foto'>{usuarioLogado && (
         <Link to="/perfil">
           <Avatar nome={usuarioLogado.nome} />
         </Link>
-      )}
+      )}</div>
+      
     </header>
   );
 }

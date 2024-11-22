@@ -1,21 +1,23 @@
 .avatar_root {
-  height: 40px;
-  width: 40px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
-  background-color: var(--cor-fundo-padrao);
-
+  background-image: url('public/icons/composited_duck_casino.png');
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  align-items: end;
+  background-size: cover;
+  background-position: center;
+
 }
 
 .avatar_perfil {
   height: 100px;
   width: 100px;
-  background-color: var(--cor-texto-claro);
-
+  background-color: blue;
+  font-size: 30px;
   border-radius: 50%;
-
+  font-family: 'Irish Grover';
   display: flex;
   justify-content: center;
   align-items: center;

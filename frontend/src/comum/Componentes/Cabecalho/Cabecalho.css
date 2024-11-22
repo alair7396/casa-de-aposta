@@ -8,7 +8,7 @@
     border-bottom-right-radius: 50px;
     border: 3px solid #195f3c;
     align-items:end;
-    justify-content: center;
+    justify-content: end;
   }
   .nav a:hover {
     color: #5C5F19; 
@@ -56,4 +56,6 @@
     color: #333;
     margin: 15px 0;
   }
-  
+  .foto{
+    background-image: url('/pato do menu.jpeg');
+  }
