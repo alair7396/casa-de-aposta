@@ -16,6 +16,7 @@ export default defineConfig({
       manifest: {
         name: 'LuckDuck jogos da sorte',
         short_name: 'LuckDuck',
+        start_url: '/', // URL inicial do PWA
         description: 'É um projeto para jogos da sorte',
         theme_color: '#ffffff',
         background_color: '#ffffff',
