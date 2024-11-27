@@ -18,8 +18,8 @@ export default defineConfig({
         short_name: 'LuckDuck',
         start_url: '/', // URL inicial do PWA
         description: 'É um projeto para jogos da sorte',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
+        theme_color: '#FFD700',
+        background_color: '#1C1C1C',
         display: 'standalone',
         icons: [
           {
