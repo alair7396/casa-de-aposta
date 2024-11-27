@@ -11,22 +11,20 @@ import PaginaPerfil from './comum/Pages/PaginaPerfil/PaginaPerfil';
 import PaginaJogar from './comum/Pages/PaginaJogar/PaginaJogar';
 import PaginaSair from './comum/Pages/PaginaSair/PaginaSair';
 import PaginaRoleta from './comum/Pages/PaginaRoleta/PaginaRoleta';
-import AdminPage from './comum/Pages/AdminPage/AdminPage';  // Importação da página Admin
-import HomePage from './comum/Pages/HomePage/HomePage';    // Importação da página HomePage
+import AdminPage from './comum/Pages/AdminPage/AdminPage';  
+import HomePage from './comum/Pages/HomePage/HomePage';    
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './comum/Componentes/Login/Login';
 
 const App = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [showInstallButton, setShowInstallButton] = useState(false);
 
-  // Gerenciar o evento 'beforeinstallprompt'
   useEffect(() => {
     const handleBeforeInstallPrompt = (e) => {
+      console.log('Evento beforeinstallprompt capturado');
       e.preventDefault();
       setDeferredPrompt(e);
-      setShowInstallButton(true); // Mostra o botão de instalação
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -36,7 +34,6 @@ const App = () => {
     };
   }, []);
 
-  // Ação do botão de instalação
   const handleInstallClick = () => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -47,8 +44,9 @@ const App = () => {
           console.log('Usuário recusou instalar o PWA');
         }
         setDeferredPrompt(null);
-        setShowInstallButton(false); // Esconde o botão após a interação
       });
+    } else {
+      alert('A instalação do aplicativo não está disponível no momento.');
     }
   };
 
@@ -58,26 +56,24 @@ const App = () => {
       <Router>
         <div className="container">
           <Cabecalho />
-          {/* Botão de instalação */}
-          {showInstallButton && (
-            <button 
-              onClick={handleInstallClick} 
-              style={{
-                position: 'fixed',
-                bottom: '20px',
-                right: '20px',
-                padding: '10px 20px',
-                backgroundColor: '#007BFF',
-                color: '#FFF',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                zIndex: 1000,
-              }}
-            >
-              Instalar App
-            </button>
-          )}
+          {/* Botão de instalação sempre visível */}
+          <button 
+            onClick={handleInstallClick} 
+            style={{
+              position: 'fixed',
+              bottom: '20px',
+              right: '20px',
+              padding: '10px 20px',
+              backgroundColor: '#007BFF',
+              color: '#FFF',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              zIndex: 1000,
+            }}
+          >
+            Instalar App
+          </button>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
@@ -87,8 +83,8 @@ const App = () => {
             <Route path="/jogar" element={<PaginaJogar />} />
             <Route path="/roleta" element={<PaginaRoleta />} />
             <Route path="/sair" element={<PaginaSair />} />
-            <Route path="/admin" element={<AdminPage />} />    {/* Nova rota AdminPage */}
-            <Route path="/home" element={<HomePage />} />      {/* Nova rota HomePage */}
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/home" element={<HomePage />} />
           </Routes>
           <Rodape />
         </div>
