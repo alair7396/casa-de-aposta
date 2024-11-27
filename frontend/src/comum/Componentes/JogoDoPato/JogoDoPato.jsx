@@ -8,7 +8,7 @@ import VerSaldoConsole from './VerSaldoConsole.jsx';
 import ServicoUsuarios from "../../servicos/ServicoUsuarios.js";
 import ServicoAutenticacao from "../../servicos/ServicoAutenticacao.js";
 const servicoUsuarios = new ServicoUsuarios();
-const servicoAutenticacao = new ServicoAutenticacao();
+ServicoAutenticacao;
 const JogoDoPato = () => {
     const [use, setUse] = useState(Array(9).fill(null));
     const [mensagem, setMensagem] = useState('');

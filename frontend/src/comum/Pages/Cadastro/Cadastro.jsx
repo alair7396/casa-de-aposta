@@ -7,7 +7,7 @@ const Cadastro = () => {
         <>
             <nav className='nav'>
                 <Link to="/">Entrar</Link> |  
-                <Link to='/sobre'>Sobre</Link> | 
+                 
             </nav>
         
         <div className='body'> 

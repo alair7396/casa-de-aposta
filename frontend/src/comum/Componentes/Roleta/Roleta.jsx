@@ -59,7 +59,7 @@ const segmentOrder = [
 ];
 
 const servicoUsuarios = new ServicoUsuarios();
-const servicoAutenticacao = new ServicoAutenticacao();
+ServicoAutenticacao;
 
 const Roleta = () => {
   const [selectedSegment, setSelectedSegment] = useState(null);

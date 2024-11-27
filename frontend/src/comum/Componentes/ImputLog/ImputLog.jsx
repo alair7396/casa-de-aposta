@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import BtEntrar from '../BtEntrar/BtEntrar';
 import ServicoAutenticacao from '../../servicos/ServicoAutenticacao';
 
-const instanciaServicoAutenticacao = new ServicoAutenticacao();
+ServicoAutenticacao;
 
 const ImputLog = () => {
   const navigate = useNavigate();

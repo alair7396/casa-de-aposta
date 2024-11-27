@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Rodape from './comum/Componentes/Rodape/Rodape';
 import Cabecalho from './comum/Componentes/Cabecalho/Cabecalho';
-import Body from './comum/Componentes/Body/Body';
+
 import Cadastro from './comum/Pages/Cadastro/Cadastro';
 import PaginaInicio from './comum/Pages/PaginaInicio/PaginaInicio';
 import PaginaSobre from './comum/Pages/PaginaSobre/PaginaSobre';
@@ -14,6 +14,7 @@ import AdminPage from './comum/Pages/AdminPage/AdminPage';  // Importação da p
 import HomePage from './comum/Pages/HomePage/HomePage';    // Importação da página HomePage
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from './comum/Componentes/Login/Login';
 
 const App = () => {
   return (
@@ -23,8 +24,8 @@ const App = () => {
         <div className="container">
           <Cabecalho />
           <Routes>
-            <Route path="/" element={<Body />} />
-            <Route path="/body2" element={<Cadastro />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/inicio" element={<PaginaInicio />} />
             <Route path="/sobre" element={<PaginaSobre />} />
             <Route path="/perfil" element={<PaginaPerfil />} />

@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import ServicoAutenticacao from '../../servicos/ServicoAutenticacao';
 import Avatar from '../../Componentes/Avatar/Avatar';
 
-const instanciaServicoAutenticacao = new ServicoAutenticacao();
+ ServicoAutenticacao;
 
 const PaginaPerfil = () => {
   const navigate = useNavigate();

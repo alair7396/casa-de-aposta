@@ -28,7 +28,13 @@ const InputCadastro = () => {
       return;
     }
 
-    const usuario = { nome, email, telefone, senha, carteira: 500 };
+    const usuario = {
+       id:Date.now(),
+       nome, 
+       email, 
+       telefone, 
+       senha, 
+       carteira: 500 };
     console.log('Usuário cadastrado:', usuario);
     try {
       instanciaServicoUsuarios.cadastrarUsuario(usuario);

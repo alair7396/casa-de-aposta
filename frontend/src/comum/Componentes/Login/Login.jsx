@@ -1,13 +1,13 @@
 import ImputLog from '../ImputLog/ImputLog';
-import './Body.css'
+import './Login.css'
 import { Link } from 'react-router-dom'
 
-const Body = () => {
+const Login = () => {
     return (
         <>
         <nav className='nav'>
-                <Link to="/body2">Criar Conta</Link> |
-                <Link to='/sobre'>Sobre</Link> | 
+                <Link to="/cadastro">Criar Conta</Link> |
+                 
         </nav>
         
         <main className='body'>
@@ -18,4 +18,4 @@ const Body = () => {
     );
 };
 
-export default Body;
+export default Login;

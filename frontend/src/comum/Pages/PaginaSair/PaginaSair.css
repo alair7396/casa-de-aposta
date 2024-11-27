@@ -1,0 +1,45 @@
+/* Estilo para a barra de navegação */
+.nav {
+    font-size: 18px; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Adiciona negrito para destacar mais */
+    background-color: rgba(192, 181, 31, 0.85); /* Aumenta a opacidade para dar mais destaque */
+    border-radius: 10px;
+    border: 3px solid #19179b;
+    padding: 10px 20px; /* Adiciona um pouco de espaço interno para melhorar a aparência */
+    text-align: center; /* Centraliza os links na barra */
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+  }
+  
+  .nav a:hover {
+    color: #ff6347;
+  }
+  
+  /* Estilo para o corpo da página */
+  .body {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Estilo para o botão de logout */
+  .logout-button {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .logout-button:hover {
+    background-color: #ff4500;
+  }
+  

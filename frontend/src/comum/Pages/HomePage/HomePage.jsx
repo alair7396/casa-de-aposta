@@ -5,7 +5,7 @@ import ServicoAutenticacao from '../../servicos/ServicoAutenticacao';
 import './HomePage.css';
 
 const instanciaServicoUsuarios = new ServicoUsuarios();
-const instanciaServicoAutenticacao = new ServicoAutenticacao();
+ServicoAutenticacao;
 
 function HomePage() {
   const [offers, setOffers] = useState([]); // Ofertas disponíveis

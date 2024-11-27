@@ -2,7 +2,7 @@ import React from 'react';
 import ServicoUsuarios from "../../servicos/ServicoUsuarios.js";
 import ServicoAutenticacao from "../../servicos/ServicoAutenticacao.js";
 const servicoUsuarios = new ServicoUsuarios();
-const servicoAutenticacao = new ServicoAutenticacao();
+ServicoAutenticacao;
 
 
 
