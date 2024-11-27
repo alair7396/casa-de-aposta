@@ -32,6 +32,18 @@ export default defineConfig({
             type: 'image/png',
           },
         ],
+        screenshots: [
+          {
+            src: '/screenshots/screenshot1.png',
+            sizes: '1280x720',
+            type: 'image/png',
+          },
+          {
+            src: '/screenshots/screenshot2.png',
+            sizes: '1920x1080',
+            type: 'image/png',
+          },
+        ],
       },
     }),
   ],
@@ -39,3 +51,4 @@ export default defineConfig({
     outDir: './frontend/dist', // Certifique-se de que os arquivos são gerados no diretório dist
   },
 });
+

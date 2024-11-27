@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Rodape from './comum/Componentes/Rodape/Rodape';
@@ -17,12 +18,66 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './comum/Componentes/Login/Login';
 
 const App = () => {
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [showInstallButton, setShowInstallButton] = useState(false);
+
+  // Gerenciar o evento 'beforeinstallprompt'
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallButton(true); // Mostra o botão de instalação
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  // Ação do botão de instalação
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('Usuário aceitou instalar o PWA');
+        } else {
+          console.log('Usuário recusou instalar o PWA');
+        }
+        setDeferredPrompt(null);
+        setShowInstallButton(false); // Esconde o botão após a interação
+      });
+    }
+  };
+
   return (
     <>
       <ToastContainer />
       <Router>
         <div className="container">
           <Cabecalho />
+          {/* Botão de instalação */}
+          {showInstallButton && (
+            <button 
+              onClick={handleInstallClick} 
+              style={{
+                position: 'fixed',
+                bottom: '20px',
+                right: '20px',
+                padding: '10px 20px',
+                backgroundColor: '#007BFF',
+                color: '#FFF',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                zIndex: 1000,
+              }}
+            >
+              Instalar App
+            </button>
+          )}
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
