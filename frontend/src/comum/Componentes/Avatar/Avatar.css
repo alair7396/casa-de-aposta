@@ -2,7 +2,7 @@
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  background-image: url('public/icons/composited_duck_casino.png');
+  background-image: url('/icons/composited_duck_casino.png');
   display: flex;
   justify-content: end;
   align-items: end;
