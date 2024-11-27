@@ -14,20 +14,20 @@ export default defineConfig({
        'apple-touch-icon.png',
      ],
      manifest: {
-       name: 'Aulas Frontend com ReactJS + PWA',
-       short_name: 'Aulas Frontend PWA',
-       description: 'É um projeto para...',
-       theme_color: '#ffffff',
-       background_color: '#ffffff',
-       display: 'standalone',
+      name: 'LuckDuck jogos da sorte',
+      short_name: 'LuckDuck',
+      description: 'É um projeto para jogos da sorte',
+      theme_color: '#ffffff',
+      background_color: '#ffffff',
+      display: 'standalone',
        icons: [
          {
-           src: 'icons/icon-192x192.png',
+           src: '/icons/icon-192x192-transparent.png',
            sizes: '192x192',
            type: 'image/png',
          },
          {
-           src: 'icons/icon-512x512.png',
+           src: '/icons/icon-512x512-transparent.png',
            sizes: '512x512',
            type: 'image/png',
          },

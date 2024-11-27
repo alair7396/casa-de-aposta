@@ -75,7 +75,7 @@ const Roleta = () => {
 
   const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF3", "#FFF333", "#07f54e"]; // Lista de cores
 
-  const usuarioLogado = servicoAutenticacao.buscarUsuarioLogado();
+  const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
   const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
 
   // Função para atualizar bordas dinâmicas

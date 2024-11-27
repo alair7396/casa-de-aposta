@@ -7,7 +7,7 @@ ServicoAutenticacao;
 
 
 const VerSaldoConsole = () => {
-    const usuarioLogado = servicoAutenticacao.buscarUsuarioLogado();
+    const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
     const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
     
     if (!emailUsuarioLogado) {

@@ -19,7 +19,7 @@ const ImputLog = () => {
       return;
     }
 
-    const usuarioLogado = instanciaServicoAutenticacao.login(usuario, senha);
+    const usuarioLogado = ServicoAutenticacao.login(usuario, senha);
     if (usuarioLogado) {
       toast.success('Login realizado com sucesso!');
       navigate('/roleta'); // Redireciona para a página inicial
@@ -49,7 +49,7 @@ const ImputLog = () => {
       />
 
       <BtEntrar onClick={entrar} />
-      <Link to="/body2" className="link-cadastro">Ainda não tem conta?</Link>
+      <Link to="/cadastro" className="link-cadastro">Ainda não tem conta?</Link>
     </div>
   );
 };

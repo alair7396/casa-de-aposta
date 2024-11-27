@@ -10,7 +10,7 @@ import Avatar from '../../Componentes/Avatar/Avatar';
 
 const PaginaPerfil = () => {
   const navigate = useNavigate();
-  const usuarioLogado = instanciaServicoAutenticacao.buscarUsuarioLogado();
+  const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
 
   const [imagemUsuario, setImagemUsuario] = useState('');
   const [saldo, setSaldo] = useState(0);
@@ -27,10 +27,7 @@ const PaginaPerfil = () => {
     }
   }, [usuarioLogado]);
 
-  const sair = () => {
-    instanciaServicoAutenticacao.sair();
-    navigate('/');
-  };
+ 
 
   const mudarAvatar = (e) => {
     const file = e.target.files[0];
@@ -91,10 +88,7 @@ const PaginaPerfil = () => {
         <input type="text" value={`$ ${saldo}`} disabled />
       </div>
 
-      {/* Botão padrão substituindo o BotaoCustomizado */}
-      <button onClick={sair} style={{ padding: '10px 20px', backgroundColor: '#ff6347', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-        Sair
-      </button>
+     
     </div>
     </div></div>
     </>

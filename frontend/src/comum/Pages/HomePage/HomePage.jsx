@@ -18,7 +18,7 @@ function HomePage() {
     setOffers(savedOffers);
 
     // Busca o usuário logado no localStorage
-    const usuarioLogado = instanciaServicoAutenticacao.buscarUsuarioLogado();
+    const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
     if (usuarioLogado) {
       setUser(usuarioLogado);
       atualizarSaldo(usuarioLogado.email); // Atualiza o saldo do serviço

@@ -18,7 +18,7 @@ const JogoDoPato = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
 
      
-    const usuarioLogado = servicoAutenticacao.buscarUsuarioLogado();
+    const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
 const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
 
 if (!emailUsuarioLogado) {
