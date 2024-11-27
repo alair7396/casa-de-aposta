@@ -16,19 +16,19 @@ export default defineConfig({
       manifest: {
         name: 'LuckDuck jogos da sorte',
         short_name: 'LuckDuck',
-        start_url: '/', // URL inicial do PWA
+        start_url: '/',
         description: 'É um projeto para jogos da sorte',
         theme_color: '#FFD700',
         background_color: '#1C1C1C',
         display: 'standalone',
         icons: [
           {
-            src: '/icons/icon-192x192-transparent.png',
+            src: '/icons/icon-192x192-transparent2.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/icons/icon-512x512-transparent.png',
+            src: '/icons/icon-512x512-transparent2.png',
             sizes: '512x512',
             type: 'image/png',
           },
@@ -37,6 +37,6 @@ export default defineConfig({
     }),
   ],
   build: {
-    outDir: './frontend/dist', // Certifique-se de que os arquivos são gerados no diretório dist
+    outDir: './frontend/dist', 
   },
 });
