@@ -109,7 +109,7 @@ const Roleta = () => {
   useEffect(() => {
     let interval;
     if (isSpinning) {
-      const maxSpeed = 30; // Velocidade máxima (mais rápido)
+      const maxSpeed = 70; // Velocidade máxima (mais rápido)
       const minSpeed = 100; // Velocidade mínima (mais lento)
       let spins = 0;
       let currentSpeed = minSpeed;
