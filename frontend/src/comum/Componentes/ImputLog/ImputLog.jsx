@@ -22,7 +22,7 @@ const ImputLog = () => {
     const usuarioLogado = ServicoAutenticacao.login(usuario, senha);
     if (usuarioLogado) {
       toast.success('Login realizado com sucesso!');
-      navigate('/roleta'); // Redireciona para a página inicial
+      navigate('/inicio'); // Redireciona para a página inicial
     } else {
       toast.error('Usuário ou senha inválida.');
     }

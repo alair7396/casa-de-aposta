@@ -11,7 +11,20 @@ class ServicoUsuarios {
   // Cadastra um novo usuário no localStorage
   cadastrarUsuario(usuario) {
     const usuariosDoLocalStorage = this.listar();
-    usuariosDoLocalStorage.push(usuario);
+
+    // Verifica se o e-mail já está cadastrado
+    const usuarioExistente = usuariosDoLocalStorage.find((u) => u.email === usuario.email);
+    if (usuarioExistente) {
+      throw new Error('Usuário com este e-mail já está cadastrado.');
+    }
+
+    // Adiciona o papel (role) padrão como 'user' caso não seja fornecido
+    const usuarioComRole = {
+      ...usuario,
+      role: usuario.role || 'user',
+    };
+
+    usuariosDoLocalStorage.push(usuarioComRole);
     localStorage.setItem('lista-usuarios', JSON.stringify(usuariosDoLocalStorage));
   }
 
@@ -32,6 +45,18 @@ class ServicoUsuarios {
     }
   }
 
+  // Atualiza o papel (role) de um usuário com base no e-mail
+  atualizarRoleUsuario(email, novoRole) {
+    const usuarios = this.listar();
+    const usuarioIndex = usuarios.findIndex((u) => u.email === email);
+    if (usuarioIndex !== -1) {
+      usuarios[usuarioIndex].role = novoRole;
+      localStorage.setItem('lista-usuarios', JSON.stringify(usuarios));
+    } else {
+      throw new Error('Usuário não encontrado.');
+    }
+  }
+
   // Retorna todos os usuários
   buscarUsuarios() {
     return this.listar();
@@ -40,9 +65,10 @@ class ServicoUsuarios {
   // Função para deletar um usuário pelo e-mail
   deletarUsuario(email) {
     const usuarios = this.listar();
-    const usuariosAtualizados = usuarios.filter(user => user.email !== email);
+    const usuariosAtualizados = usuarios.filter((user) => user.email !== email);
     localStorage.setItem('lista-usuarios', JSON.stringify(usuariosAtualizados));
   }
 }
 
 export default ServicoUsuarios;
+

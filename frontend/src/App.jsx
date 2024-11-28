@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Rodape from './comum/Componentes/Rodape/Rodape';
@@ -11,44 +10,34 @@ import PaginaPerfil from './comum/Pages/PaginaPerfil/PaginaPerfil';
 import PaginaJogar from './comum/Pages/PaginaJogar/PaginaJogar';
 import PaginaSair from './comum/Pages/PaginaSair/PaginaSair';
 import PaginaRoleta from './comum/Pages/PaginaRoleta/PaginaRoleta';
-import AdminPage from './comum/Pages/AdminPage/AdminPage';  
-import HomePage from './comum/Pages/HomePage/HomePage';    
+import AdminPage from './comum/Pages/AdminPage/AdminPage';
+import HomePage from './comum/Pages/PaginaOfertas/HomePage.jsx';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './comum/Componentes/Login/Login';
 
+import RotaPrivada from './comum/servicos/RotaPrivada.jsx'; // Rotas protegidas para usuários autenticados
+import RotaAdmin from './comum/servicos/RotaAdmin.jsx'; // Rotas protegidas para administradores
+
+import ServicoUsuarios from './comum/servicos/ServicoUsuarios';
+
 const App = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  // Cria um usuário administrador automaticamente, caso ele não exista
+  const instanciaServicoUsuarios = new ServicoUsuarios();
 
-  useEffect(() => {
-    const handleBeforeInstallPrompt = (e) => {
-      console.log('Evento beforeinstallprompt capturado');
-      e.preventDefault();
-      setDeferredPrompt(e);
-    };
+  const adminExiste = instanciaServicoUsuarios
+    .listar()
+    .some((usuario) => usuario.email === 'admin@exemplo.com');
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    };
-  }, []);
-
-  const handleInstallClick = () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('Usuário aceitou instalar o PWA');
-        } else {
-          console.log('Usuário recusou instalar o PWA');
-        }
-        setDeferredPrompt(null);
-      });
-    } else {
-      alert('A instalação do aplicativo não está disponível no momento.');
-    }
-  };
+  if (!adminExiste) {
+    instanciaServicoUsuarios.cadastrarUsuario({
+      email: 'admin@exemplo.com',
+      senha: '123456',
+      role: 'admin', // Papel do administrador
+    });
+    console.log('Usuário administrador criado com sucesso!');
+  }
 
   return (
     <>
@@ -56,35 +45,22 @@ const App = () => {
       <Router>
         <div className="container">
           <Cabecalho />
-          {/* Botão de instalação sempre visível */}
-          <button 
-            onClick={handleInstallClick} 
-            style={{
-              position: 'fixed',
-              bottom: '20px',
-              right: '20px',
-              padding: '10px 20px',
-              backgroundColor: '#007BFF',
-              color: '#FFF',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              zIndex: 1000,
-            }}
-          >
-            Instalar App
-          </button>
           <Routes>
+            {/* Rotas públicas */}
             <Route path="/" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/inicio" element={<PaginaInicio />} />
-            <Route path="/sobre" element={<PaginaSobre />} />
-            <Route path="/perfil" element={<PaginaPerfil />} />
-            <Route path="/jogar" element={<PaginaJogar />} />
-            <Route path="/roleta" element={<PaginaRoleta />} />
-            <Route path="/sair" element={<PaginaSair />} />
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/home" element={<HomePage />} />
+
+            {/* Rotas privadas (somente para usuários logados) */}
+            <Route path="/inicio" element={<RotaPrivada element={PaginaInicio} />} />
+            <Route path="/sobre" element={<RotaPrivada element={PaginaSobre} />} />
+            <Route path="/perfil" element={<RotaPrivada element={PaginaPerfil} />} />
+            <Route path="/jogar" element={<RotaPrivada element={PaginaJogar} />} />
+            <Route path="/roleta" element={<RotaPrivada element={PaginaRoleta} />} />
+            <Route path="/sair" element={<RotaPrivada element={PaginaSair} />} />
+            <Route path="/ofertas" element={<RotaPrivada element={HomePage} />} />
+
+            {/* Rotas exclusivas para administradores */}
+            <Route path="/admin" element={<RotaAdmin element={AdminPage} />} />
           </Routes>
           <Rodape />
         </div>

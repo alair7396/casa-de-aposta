@@ -16,13 +16,21 @@ class ServicoAutenticacao {
       throw new Error('Senha incorreta.');
     }
 
-    localStorage.setItem('usuario-logado', JSON.stringify(usuarioLogado));
+    // Adiciona o nome e o papel (role) ao usuário logado
+    const usuarioComInfo = {
+      email: usuarioLogado.email,
+      nome: usuarioLogado.nome, // Adiciona o nome do usuário
+      role: usuarioLogado.role || 'user', // Define 'user' como padrão se o papel não existir
+    };
 
-    return usuarioLogado;
+    // Salva no localStorage
+    localStorage.setItem('usuario-logado', JSON.stringify(usuarioComInfo));
+
+    return usuarioComInfo;
   }
 
   buscarUsuarioLogado() {
-    return JSON.parse(localStorage.getItem('usuario-logado') ?? null);
+    return JSON.parse(localStorage.getItem('usuario-logado')) || null;
   }
 
   sair() {
@@ -31,3 +39,4 @@ class ServicoAutenticacao {
 }
 
 export default new ServicoAutenticacao();
+
