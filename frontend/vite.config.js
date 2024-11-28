@@ -36,7 +36,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    outDir: './frontend/dist', // Certifique-se de que os arquivos de build serão gerados no local correto
+    outDir: '../dist', // Certifique-se de que os arquivos de build serão gerados no local correto
   },
 });
 
