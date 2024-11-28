@@ -14,7 +14,7 @@ export default defineConfig({
         'apple-touch-icon.png',
       ],
       manifest: {
-        name: 'LuckDuck jogos da sorte',
+        name: 'LuckDuck jogos da sorte!',
         short_name: 'LuckDuck',
         description: 'É um projeto para jogos da sorte',
         theme_color: '#ffffff',
