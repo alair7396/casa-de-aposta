@@ -6,7 +6,6 @@
 .roleta-euro__sectors {
   width: 300px; /* Define a área de exibição da imagem */
   height: 300px;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
