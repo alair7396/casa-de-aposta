@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Rodape from './comum/Componentes/Rodape/Rodape';
@@ -39,6 +40,23 @@ const App = () => {
     console.log('Usuário administrador criado com sucesso!');
   }
 
+  // Adiciona o evento `beforeinstallprompt` para alertar o usuário
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault(); // Impede o comportamento padrão do navegador
+      alert('Este site pode ser instalado como um aplicativo no seu dispositivo!');
+      console.log('Evento de instalação detectado:', e);
+    };
+
+    // Adiciona o listener para o evento
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    // Remove o listener ao desmontar o componente
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
   return (
     <>
       <ToastContainer />
@@ -70,3 +88,4 @@ const App = () => {
 };
 
 export default App;
+

@@ -14,12 +14,13 @@ export default defineConfig({
         'apple-touch-icon.png',
       ],
       manifest: {
-        name: 'LuckDuck jogos da sorte!',
+        name: 'LuckDuck jogos da sorte!!!!!',
         short_name: 'LuckDuck',
         description: 'É um projeto para jogos da sorte',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
+        start_url: "/",
         icons: [
           {
             src: '/icons/icon-192x192-transparent.png',
@@ -36,7 +37,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    outDir: '../dist', 
+    outDir: './frontend/dist',
   },
 });
 
