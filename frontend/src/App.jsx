@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Rodape from './comum/Componentes/Rodape/Rodape';
@@ -21,41 +22,14 @@ import Login from './comum/Componentes/Login/Login';
 import RotaPrivada from './comum/servicos/RotaPrivada.jsx'; // Rotas protegidas para usuários autenticados
 import RotaAdmin from './comum/servicos/RotaAdmin.jsx'; // Rotas protegidas para administradores
 
-import ServicoUsuarios from './comum/servicos/ServicoUsuarios';
+import ImagePreloader from './components/ImagePreloader'; // Importação do componente
 
 const App = () => {
-  // Cria um usuário administrador automaticamente, caso ele não exista
-  const instanciaServicoUsuarios = new ServicoUsuarios();
+  const [isLoaded, setIsLoaded] = useState(false); // Controle de carregamento
 
-  const adminExiste = instanciaServicoUsuarios
-    .listar()
-    .some((usuario) => usuario.email === 'admin@exemplo.com');
-
-  if (!adminExiste) {
-    instanciaServicoUsuarios.cadastrarUsuario({
-      email: 'admin@exemplo.com',
-      senha: '123456',
-      role: 'admin', // Papel do administrador
-    });
-    console.log('Usuário administrador criado com sucesso!');
+  if (!isLoaded) {
+    return <ImagePreloader onComplete={() => setIsLoaded(true)} />;
   }
-
-  // Adiciona o evento `beforeinstallprompt` para alertar o usuário
-  useEffect(() => {
-    const handleBeforeInstallPrompt = (e) => {
-      e.preventDefault(); // Impede o comportamento padrão do navegador
-      alert('Este site pode ser instalado como um aplicativo no seu dispositivo!');
-      console.log('Evento de instalação detectado:', e);
-    };
-
-    // Adiciona o listener para o evento
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-
-    // Remove o listener ao desmontar o componente
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    };
-  }, []);
 
   return (
     <>
@@ -88,4 +62,3 @@ const App = () => {
 };
 
 export default App;
-
