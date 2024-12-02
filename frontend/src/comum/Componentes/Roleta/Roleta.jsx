@@ -58,8 +58,9 @@ const segmentOrder = [
   29, 7, 28, 12, 35, 3, 26
 ];
 
-const servicoUsuarios = new ServicoUsuarios();
-ServicoAutenticacao;
+
+
+const preloadedImages = {}; // Objeto para armazenar as imagens pré-carregadas
 
 const Roleta = () => {
   const [selectedSegment, setSelectedSegment] = useState(null);
@@ -68,35 +69,52 @@ const Roleta = () => {
   const [bet, setBet] = useState(0);
   const [betNumbers, setBetNumbers] = useState({});
   const [currentSegment, setCurrentSegment] = useState(segmentOrder[0]);
+  const [isPreloaded, setIsPreloaded] = useState(false);
 
   const NUM_SEGMENTS = 35;
   const MAX_BETS = 10;
   const totalSpins = Math.floor(NUM_SEGMENTS * 4);
 
-  const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF3", "#FFF333", "#07f54e"]; // Lista de cores
-
-  const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
-  const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
-
-  // Função para atualizar bordas dinâmicas
-  const updateBorderColors = (classNames, colors, step) => {
-    classNames.forEach((className, index) => {
-      const elements = document.querySelectorAll(`.${className}`);
-      elements.forEach((element) => {
-        const colorIndex = (step + index) % colors.length;
-        element.style.borderColor = colors[colorIndex];
-      });
-    });
-  };
-
+  // Pré-carregamento de imagens
   useEffect(() => {
-    if (!emailUsuarioLogado) {
-      toast.error("Nenhum usuário logado!");
-      return;
-    }
+    const preloadImages = (images) => {
+      return Promise.all(
+        images.map((src) => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+              preloadedImages[src] = img; // Armazena a instância pré-carregada
+              resolve(img);
+            };
+            img.onerror = (error) => {
+              console.error(`Erro ao carregar imagem: ${src}`, error);
+              reject(error);
+            };
+          });
+        })
+      );
+    };
+
+    preloadImages(imageArray)
+      .then(() => {
+        console.log("Todas as imagens foram pré-carregadas.");
+        setIsPreloaded(true);
+      })
+      .catch((error) => console.error("Erro no pré-carregamento das imagens:", error));
+  }, []);
+
+  // Atualiza o saldo inicial
+  useEffect(() => {
     const fetchSaldoInicial = async () => {
+      if (!ServicoAutenticacao.buscarUsuarioLogado()) {
+        toast.error("Nenhum usuário logado!");
+        return;
+      }
+      const emailUsuarioLogado = ServicoAutenticacao.buscarUsuarioLogado().email;
+
       try {
-        const saldo = await servicoUsuarios.obterSaldoUsuario(emailUsuarioLogado);
+        const saldo = await new ServicoUsuarios().obterSaldoUsuario(emailUsuarioLogado);
         setBalance(saldo);
       } catch (error) {
         toast.error("Erro ao buscar saldo do usuário.");
@@ -104,23 +122,15 @@ const Roleta = () => {
     };
 
     fetchSaldoInicial();
-  }, [emailUsuarioLogado]);
+  }, []);
 
+  // Controle da rotação
   useEffect(() => {
     let interval;
-    if (isSpinning) {
-      const maxSpeed = 70; // Velocidade máxima (mais rápido)
-      const minSpeed = 100; // Velocidade mínima (mais lento)
-      let spins = 0;
-      let currentSpeed = minSpeed;
 
-      const adjustSpeed = () => {
-        if (spins < totalSpins / 3) {
-          currentSpeed = Math.max(maxSpeed, currentSpeed - 5); // Aceleração
-        } else if (spins > (2 * totalSpins) / 3) {
-          currentSpeed = Math.min(minSpeed, currentSpeed + 20); // Desaceleração
-        }
-      };
+    if (isSpinning) {
+      let spins = 0;
+      const spinInterval = 100; // Intervalo entre cada rotação
 
       const spinRoulette = () => {
         setCurrentSegment((prev) => {
@@ -128,126 +138,136 @@ const Roleta = () => {
           return segmentOrder[nextIndex];
         });
 
-        // Atualizar bordas dinâmicas de várias classes
-        updateBorderColors(["fundoroleta", "botoes", "botoes button"], colors, spins);
-
         spins += 1;
-        adjustSpeed();
 
         if (spins >= totalSpins) {
           clearInterval(interval);
           finalizeSpin();
-        } else {
-          clearInterval(interval);
-          interval = setInterval(spinRoulette, currentSpeed);
         }
       };
 
-      interval = setInterval(spinRoulette, currentSpeed);
-
-      return () => clearInterval(interval);
+      interval = setInterval(spinRoulette, spinInterval);
     }
+
+    return () => clearInterval(interval);
   }, [isSpinning]);
 
   const finalizeSpin = () => {
-    // O segmento atual será o número final onde a roleta parou
-    const finalSegment = currentSegment; 
+    const finalSegment = currentSegment;
     setSelectedSegment(finalSegment);
-  
-    setTimeout(() => {
-      const betCount = betNumbers[finalSegment] || 0;
-      let novoSaldo = balance;
-  
-      if (betCount > 0) {
-        const prize = bet * betCount * 2;
-        novoSaldo += prize;
-        toast.success(`Você ganhou ${prize} no número ${finalSegment}!`);
-      } else {
-        novoSaldo -= bet;
-        toast.error(`Você perdeu! O número sorteado foi ${finalSegment}.`);
-      }
-  
-      setBalance(novoSaldo);
-      servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo);
-  
-      setBet(0);
-      setBetNumbers({});
-      setIsSpinning(false);
-    }, 1000);
+    setIsSpinning(false);
+
+    const winnings = betNumbers[finalSegment] ? bet * 2 : 0;
+    const newBalance = winnings > 0 ? balance + winnings : balance - bet;
+
+    setBalance(newBalance);
+    setBet(0);
+    setBetNumbers({});
+
+    if (winnings > 0) {
+      toast.success(`Você ganhou ${winnings}!`);
+    } else {
+      toast.error("Você perdeu!");
+    }
   };
 
   const startSpinning = () => {
-    if (bet <= 0 || bet > balance) {
-      toast.info("Insira uma aposta válida dentro do saldo disponível.");
+    if (!isPreloaded) {
+      toast.info("As imagens ainda estão carregando!");
       return;
     }
+
+    if (bet <= 0 || bet > balance) {
+      toast.info("Insira uma aposta válida.");
+      return;
+    }
+
     if (Object.keys(betNumbers).length === 0) {
       toast.info("Escolha pelo menos um número para apostar.");
       return;
     }
+
     setIsSpinning(true);
     setSelectedSegment(null);
   };
 
   const addBet = (num) => {
     if (isSpinning) return;
+
     if (Object.values(betNumbers).reduce((sum, count) => sum + count, 0) >= MAX_BETS) {
       toast.info(`Você pode apostar no máximo ${MAX_BETS} vezes.`);
       return;
     }
-    setBet(bet + 10);
+
+    setBet((prev) => prev + 10);
     setBetNumbers((prev) => ({
       ...prev,
-      [num]: (prev[num] || 0) + 1,
+      [num]: (prev[num] || 0) + 1
     }));
   };
 
   const clearBets = () => {
     if (isSpinning) return;
+
     setBet(0);
     setBetNumbers({});
   };
-  
+
+  const currentIndex = segmentOrder.indexOf(
+    selectedSegment !== null ? selectedSegment : currentSegment
+  );
+
   return (
     <div className="fundoroleta">
-      <div className="legenda">
-        <strong className="color">Saldo: </strong>${balance}<br />
-        <strong className="color">Aposta Atual: </strong>${bet}<br />
-        <strong className="color">Números Apostados: </strong>
-        {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
-      </div>
+      {!isPreloaded ? (
+        <div>Carregando imagens...</div>
+      ) : (
+        <>
+          <div className="legenda">
+            <strong>Saldo:</strong> ${balance}
+            <br />
+            <strong>Aposta Atual:</strong> ${bet}
+            <br />
+            <strong>Números Apostados:</strong> {Object.keys(betNumbers).join(", ") || "Nenhum"}
+          </div>
 
-      <div className="roleta-euro">
-        <img
-          src={imageArray[segmentOrder.indexOf(selectedSegment !== null ? selectedSegment : currentSegment)]}
-          alt={`Segmento ${selectedSegment !== null ? selectedSegment : currentSegment}`}
-          className="roulette-image"
-        />
-      </div>
+          <div className="roleta-euro">
+            <img
+              src={preloadedImages[imageArray[currentIndex]]?.src || "fallback.png"}
+              alt={`Segmento ${selectedSegment || currentSegment}`}
+              className="roulette-image"
+            />
+          </div>
 
-      <div className="botoes">
-        {Array.from({ length: NUM_SEGMENTS }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => addBet(i)}
-            className="bet-number-button"
-            disabled={isSpinning}
-          >
-            {i}
-          </button>
-        ))}
-      </div>
+          <div className="botoes">
+            {segmentOrder.map((num, index) => (
+              <button
+                key={index}
+                onClick={() => addBet(num)}
+                disabled={isSpinning}
+                className="bet-number-button"
+              >
+                {num}
+              </button>
+            ))}
+          </div>
 
-      <div className="button-group">
-        <button onClick={startSpinning} disabled={isSpinning || bet === 0} className="spin-button">
-          {isSpinning ? "Girando..." : "Girar"}
-        </button>
-        <button onClick={clearBets} disabled={isSpinning} className="clear-button">
-          Limpar Apostas
-        </button>
-        
-      </div>
-    <VerSaldoConsole/></div>
+          <div className="button-group">
+            <button
+              onClick={startSpinning}
+              disabled={isSpinning || bet === 0}
+              className="spin-button"
+            >
+              {isSpinning ? "Girando..." : "Girar"}
+            </button>
+            <button onClick={clearBets} disabled={isSpinning} className="clear-button">
+              Limpar Apostas
+            </button>
+          </div>
+        </>
+      )}
+      <VerSaldoConsole />
+    </div>
   );
 };
 
