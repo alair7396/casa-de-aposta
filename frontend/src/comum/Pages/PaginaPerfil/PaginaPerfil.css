@@ -9,9 +9,15 @@
 
 /* Avatar */
 .avatar-button {
-    border: none;
-    background: none;
-    cursor: pointer;
+    height: 100px;
+  width: 100px;
+  font-size: 30px;
+  border-radius: 50%;
+  font-family: 'Irish Grover';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a552c;
 }
 
 .campo {
