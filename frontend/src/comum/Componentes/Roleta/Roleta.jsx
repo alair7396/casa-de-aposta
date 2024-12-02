@@ -130,49 +130,85 @@ const Roleta = () => {
   // Controle da rotação da roleta
   useEffect(() => {
     let interval;
-
+  
     if (isSpinning) {
       let spins = 0;
-      const spinInterval = 100;
-
+      let spinInterval = 30; // Intervalo inicial
+      const maxIncrement = 5; // Incremento máximo no intervalo para desaceleração suave
+  
       const spinRoulette = () => {
         setCurrentSegment((prev) => {
           const nextIndex = (segmentOrder.indexOf(prev) + 1) % segmentOrder.length;
           return segmentOrder[nextIndex];
         });
-
+  
         spins += 1;
-
+  
+        // Desaceleração progressiva nos últimos 1/3 da rotação
+        if (spins > (2 * totalSpins) / 3) {
+          spinInterval = Math.min(spinInterval + maxIncrement, 200); // Aumenta suavemente até um máximo de 200ms
+        }
+  
         if (spins >= totalSpins) {
           clearInterval(interval);
           finalizeSpin();
+        } else {
+          clearInterval(interval);
+          interval = setInterval(spinRoulette, spinInterval);
         }
       };
-
+  
       interval = setInterval(spinRoulette, spinInterval);
+  
+      return () => clearInterval(interval);
     }
-
-    return () => clearInterval(interval);
   }, [isSpinning]);
 
-  const finalizeSpin = () => {
+  const finalizeSpin = async () => {
     const finalSegment = currentSegment;
     setSelectedSegment(finalSegment);
     setIsSpinning(false);
-
-    const winnings = betNumbers[finalSegment] ? bet * 2 : 0;
+  
+    // Número de apostas no segmento sorteado
+    const betCount = betNumbers[finalSegment] || 0;
+  
+    // Calcula os ganhos com base nas apostas
+    const winnings = betCount > 0 ? bet * betCount * 2 : 0; // Multiplicador de 2 vezes por aposta
     const newBalance = winnings > 0 ? balance + winnings : balance - bet;
-
+  
+    // Atualiza o saldo no estado local
     setBalance(newBalance);
+  
+    // Atualiza o saldo no serviço de usuários
+    try {
+      const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
+      const emailUsuarioLogado = usuarioLogado?.email;
+  
+      if (!emailUsuarioLogado) {
+        toast.error("Erro: Nenhum usuário logado.");
+        return;
+      }
+  
+      await new ServicoUsuarios().atualizarSaldoUsuario(emailUsuarioLogado, newBalance);
+      toast.success("Saldo atualizado com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao atualizar saldo no servidor.");
+      console.error("Erro ao atualizar saldo no backend:", error);
+    }
+  
+    // Reseta as apostas
     setBet(0);
     setBetNumbers({});
-
+  
+    // Exibe o resultado
     if (winnings > 0) {
-      toast.success(`Você ganhou ${winnings}!`);
+      toast.success(`Você ganhou! Número sorteado: ${finalSegment}. Apostas: ${betCount}. Prêmio: $${winnings}`);
     } else {
-      toast.error("Você perdeu!");
+      toast.error(`Você perdeu! Número sorteado: ${finalSegment}`);
     }
   };
+  
+
 
   const startSpinning = () => {
     if (!isPreloaded) {
@@ -195,7 +231,10 @@ const Roleta = () => {
   };
 
   const addBet = (num) => {
-    if (isSpinning) return;
+    if (isSpinning) {
+      toast.info("A roleta está girando. Aguarde para fazer novas apostas!");
+      return;
+    }
 
     if (Object.values(betNumbers).reduce((sum, count) => sum + count, 0) >= MAX_BETS) {
       toast.info(`Você pode apostar no máximo ${MAX_BETS} vezes.`);
@@ -207,13 +246,19 @@ const Roleta = () => {
       ...prev,
       [num]: (prev[num] || 0) + 1
     }));
+
+    toast.success(`Aposta de $10 adicionada no número ${num}`);
   };
 
   const clearBets = () => {
-    if (isSpinning) return;
+    if (isSpinning) {
+      toast.info("A roleta está girando. Aguarde para limpar as apostas!");
+      return;
+    }
 
     setBet(0);
     setBetNumbers({});
+    toast.success("Todas as apostas foram limpas!");
   };
 
   const currentIndex = segmentOrder.indexOf(
@@ -231,7 +276,8 @@ const Roleta = () => {
             <br />
             <strong>Aposta Atual:</strong> ${bet}
             <br />
-            <strong>Números Apostados:</strong> {Object.keys(betNumbers).join(", ") || "Nenhum"}
+            <strong>Números Apostados:</strong> {Object.entries(betNumbers).map(([num, count]) => `${num} (${count}x)`).join(", ") || "Nenhum"}
+
           </div>
 
           <div className="roleta-euro">
@@ -275,4 +321,5 @@ const Roleta = () => {
 };
 
 export default Roleta;
+
 

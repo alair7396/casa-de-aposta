@@ -33,7 +33,16 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer 
+    position="top-right"
+    autoClose={1000}
+    hideProgressBar={false}
+    newestOnTop={true}
+    closeOnClick
+    draggable
+    pauseOnHover
+/>
+
       <Router>
         <div className="container">
           <Cabecalho />

@@ -18,30 +18,60 @@ const InputCadastro = () => {
   const [confirmarSenha, setConfirmarSenha] = useState('');
 
   const cadastrar = () => {
-    if (!nome || !email || !telefone || !senha || !confirmarSenha) {
-      toast.error('Preencha todos os campos obrigatórios!');
+    // Verificação de campos obrigatórios
+    if (!nome) {
+      toast.error('O campo Nome é obrigatório.');
+      return;
+    }
+    if (!email) {
+      toast.error('O campo Email é obrigatório.');
+      return;
+    }
+    if (!telefone) {
+      toast.error('O campo Telefone é obrigatório.');
+      return;
+    }
+    if (!senha) {
+      toast.error('O campo Senha é obrigatório.');
+      return;
+    }
+    if (!confirmarSenha) {
+      toast.error('O campo Confirmar Senha é obrigatório.');
       return;
     }
 
+    // Verificação de senha
     if (senha !== confirmarSenha) {
-      toast.error('As senhas não coincidem!');
+      toast.error('As senhas não coincidem. Verifique e tente novamente.');
       return;
     }
 
+    // Objeto do usuário
     const usuario = {
-       id:Date.now(),
-       nome, 
-       email, 
-       telefone, 
-       senha, 
-       carteira: 500 };
+      id: Date.now(),
+      nome,
+      email,
+      telefone,
+      senha,
+      carteira: 500,
+    };
+
     console.log('Usuário cadastrado:', usuario);
+
     try {
+      // Cadastro do usuário
       instanciaServicoUsuarios.cadastrarUsuario(usuario);
       toast.success('Cadastro realizado com sucesso!');
       navigate('/'); // Redireciona após o cadastro
     } catch (error) {
-      toast.error('Erro ao realizar o cadastro. Tente novamente.');
+      console.error('Erro ao realizar o cadastro:', error);
+      if (error.message.includes('email')) {
+        toast.error('Erro: Este email já está cadastrado.');
+      } else if (error.message.includes('telefone')) {
+        toast.error('Erro: Este telefone já está cadastrado.');
+      } else {
+        toast.error('Erro ao realizar o cadastro. Tente novamente.');
+      }
     }
   };
 

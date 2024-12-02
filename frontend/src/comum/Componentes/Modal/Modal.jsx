@@ -1,7 +1,7 @@
 import React from 'react';
 import './Modal.css';
 
-const Modal = ({ mostrar, comprarTentativas, pontuacao, reiniciarJogo,fechar }) => {
+const Modal = ({ mostrar, comprarTentativas, pontuacao, ofertas,fechar }) => {
     if (!mostrar) {
         return null; // Não renderiza nada se não for para mostrar
     }
@@ -14,7 +14,7 @@ const Modal = ({ mostrar, comprarTentativas, pontuacao, reiniciarJogo,fechar }) 
                 <p>Você deseja comprar mais tentativas?</p>
                 <p>São três tentativas por 500$.</p>
                 <button onClick={comprarTentativas}>Comprar as tentativa</button>
-                <button onClick={reiniciarJogo}>Reiniciar Jogo</button>
+                <button onClick={ofertas}>Para a página de ofertas</button>
                 <button onClick={fechar}>Fechar</button>
             </div>
         </div>

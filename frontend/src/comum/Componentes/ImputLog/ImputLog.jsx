@@ -15,16 +15,21 @@ const ImputLog = () => {
 
   const entrar = () => {
     if (!usuario || !senha) {
-      toast.error('Preencha todos os campos.');
+      toast.error('Preencha todos os campos.'); // Mensagem de erro ao deixar campos vazios
       return;
     }
 
-    const usuarioLogado = ServicoAutenticacao.login(usuario, senha);
-    if (usuarioLogado) {
-      toast.success('Login realizado com sucesso!');
-      navigate('/inicio'); // Redireciona para a página inicial
-    } else {
-      toast.error('Usuário ou senha inválida.');
+    try {
+      const usuarioLogado = ServicoAutenticacao.login(usuario, senha);
+      if (usuarioLogado) {
+        toast.success(`Bem-vindo, ${usuario}! Login realizado com sucesso.`); // Mensagem de sucesso com o nome do usuário
+        navigate('/inicio'); // Redireciona para a página inicial
+      } else {
+        toast.error('Usuário ou senha inválida. Tente novamente.'); // Mensagem de erro em caso de falha no login
+      }
+    } catch (error) {
+      toast.error('Ocorreu um erro ao tentar realizar o login. Tente novamente mais tarde.'); // Erro genérico para problemas no sistema
+      console.error('Erro ao tentar realizar o login:', error);
     }
   };
 
