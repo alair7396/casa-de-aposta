@@ -1,42 +1,48 @@
-.nav {
-    font-size: 18px; /* Aumenta o tamanho da fonte */
-    font-weight: bold; /* Adiciona negrito para destacar mais */
-    background-color: rgba(192, 181, 31, 0.85); /* Aumenta a opacidade para dar mais destaque */
-    border-radius: 10px;
-    border: 3px solid #19179b;
-    padding: 10px 20px; /* Adiciona um pouco de espaço interno para melhorar a aparência */
-    text-align: center; /* Centraliza os links na barra */
-  }
+/* Estilo geral do corpo da página */
+.bodysobre {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  flex-grow: 1;
+  box-sizing: border-box; /* Inclui padding no cálculo de largura */
+  background-color: rgba(0, 0, 0, 0.9); /* Fundo preto para contraste */
+}
+
+/* Estilo da seção de navegação */
+.navsobre {
+  font-size: 20px; /* Tamanho da fonte ajustado para boa leitura */
+  font-weight: bold; /* Destaca o texto */
+  background-color: rgba(50, 50, 50, 0.85); /* Fundo preto semi-transparente */
+  border-radius: 15px; /* Bordas arredondadas */
+  border: 2px solid #ffd700; /* Borda dourada para destaque */
+  padding: 20px; /* Espaçamento interno para organização */
+  text-align: center; /* Centraliza o texto */
+  color: #ffd700; /* Texto dourado */
+ 
+ 
+  margin-bottom: 20px; /* Espaçamento inferior */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para realce */
+}
+
+
+/* Título da página */
+.page-title {
+  font-size: 28px; /* Maior destaque para o título */
+  font-weight: bold; /* Negrito para maior visibilidade */
+  color: #ffd700; /* Cor dourada */
+  text-align: center;
+  margin: 20px 0;
+  font-family: 'Irish Grover', cursive; /* Fonte personalizada */
+}
+
+/* Texto da página */
+.page-text {
+  font-size: 18px; /* Texto confortável para leitura */
+  line-height: 1.8; /* Melhora o espaçamento entre linhas */
+  color: #ffffff; /* Texto branco */
+  text-align: justify; /* Justifica o texto para organização */
   
-  .nav a {
-    color: #19179b; /* Cor da fonte dos links */
-    text-decoration: none; /* Remove o sublinhado dos links */
-    padding: 0 10px; /* Adiciona espaçamento entre os links */
-    transition: color 0.3s ease, transform 0.3s ease; /* Efeito suave nas transições */
-  }
   
-  .nav a:hover {
-    color: #fff; /* Cor do link quando o mouse passa por cima */
-    transform: scale(1.1); /* Aumenta um pouco o tamanho do link ao passar o mouse */
-  }
-  
-  .nav a:active {
-    color: #ff0; /* Muda a cor do link quando ele é clicado */
-  }
-  
-  /* Para garantir que o mesmo estilo seja aplicado nas escritas internas */
-  .page-title {
-    font-size: 24px; /* Maior tamanho de fonte para títulos */
-    font-weight: bold;
-    color: #19179b;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .page-text {
-    font-size: 16px; /* Tamanho de fonte confortável para o texto */
-    line-height: 1.5;
-    color: #333;
-    margin: 15px 0;
-  }
-  
+}

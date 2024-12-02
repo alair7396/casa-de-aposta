@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Certifique-se de importar o Link
+import { toast } from "react-toastify";
 import ServicoUsuarios from '../../servicos/ServicoUsuarios';
 import ServicoAutenticacao from '../../servicos/ServicoAutenticacao';
 import './HomePage.css';
+import HamburgerMenu from '../../Componentes/Menu/HamburgerMenu';
 
 const instanciaServicoUsuarios = new ServicoUsuarios();
-ServicoAutenticacao;
 
 function HomePage() {
   const [offers, setOffers] = useState([]); // Ofertas disponíveis
@@ -32,19 +32,26 @@ function HomePage() {
       setSaldo(saldoAtual); // Atualiza o saldo no estado
     } catch (error) {
       console.error("Erro ao buscar o saldo:", error);
+      toast.error("Erro ao buscar o saldo.");
     }
   };
 
   // Função para comprar moedas
   const handleBuy = async (coins) => {
     if (!user) {
-      alert("Por favor, faça login para comprar.");
+      toast.error("Por favor, faça login para comprar.");
       return;
     }
 
     try {
       // Busca o saldo atualizado no serviço
       const saldoAtual = await instanciaServicoUsuarios.obterSaldoUsuario(user.email);
+
+      // Verifica se o saldo é suficiente
+      if (saldoAtual < parseInt(coins, 10)) {
+        toast.error("Saldo insuficiente para realizar a compra.");
+        return;
+      }
 
       // Calcula o novo saldo
       const novoSaldo = saldoAtual + parseInt(coins, 10);
@@ -55,35 +62,27 @@ function HomePage() {
       // Atualiza o estado local e no localStorage
       setSaldo(novoSaldo);
       const usuarioAtualizado = { ...user, carteira: novoSaldo };
-      setUser(usuarioAtualizado);
-      instanciaServicoAutenticacao.login(user.email, user.senha); // Atualiza o usuário no localStorage
+      setUser(usuarioAtualizado);  // Atualiza o estado do usuário sem precisar chamar login
 
-      alert(`Compra concluída! Seu novo saldo é de ${novoSaldo} moedas.`);
+      // Exibe a mensagem de sucesso
+      toast.success(`Compra concluída! Você comprou ${coins} moedas. Seu novo saldo é de ${novoSaldo} moedas.`);
     } catch (error) {
       console.error("Erro ao processar a compra:", error);
-      alert("Ocorreu um erro ao processar a compra.");
+      toast.error("Ocorreu um erro ao processar a compra.");
     }
   };
 
   return (
     <>
-      {/* Barra de navegação */}
-      <nav className='nav'>
-      |<Link to='/perfil'>Perfil</Link> |  
-        |<Link to='/sobre'>Sobre</Link> |  
-        |<Link to='/inicio'>Início</Link> |   
-        |<Link to='/jogar'>Jogar</Link> |  
-        |<Link to='/sair'>Sair</Link> |
-        |<Link to='/admin'>Admin</Link> |
-        |<Link to='/ofertas'>Ofertas</Link>|
-        |<Link to='/roleta'>Roleta</Link>|
-      </nav>
+      <HamburgerMenu />
 
-      <div className='body'>
+      <div className='bodyoferta'>
         {/* Exibição do saldo e ofertas */}
-        <div className="fundoImput">
-          <h2 className='color'>Ofertas de Moedas</h2>
-          <p className='legenda'><strong className='color'>Saldo da carteira:</strong> {saldo} moedas</p>
+        <div className="fundoImputoferta">
+          <h2 className='coloroferta'>Ofertas de Moedas</h2>
+          <p className='legendaoferta'>
+            <strong className='coloroferta'>Saldo da carteira:</strong> {saldo} moedas
+          </p>
 
           <div className="offer-container">
             {offers.length > 0 ? (
@@ -98,7 +97,7 @@ function HomePage() {
                 </div>
               ))
             ) : (
-              <p >Não há ofertas disponíveis no momento.</p>
+              <p>Não há ofertas disponíveis no momento.</p>
             )}
           </div>
         </div>
@@ -108,4 +107,3 @@ function HomePage() {
 }
 
 export default HomePage;
-

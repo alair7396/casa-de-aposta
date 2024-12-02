@@ -50,8 +50,17 @@ const imageArray = [
   img29, img7, img28, img12, img35, img3, img26
 ];
 
-
-
+const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF3", "#FFF333", "#07f54e"]; // Lista de cores
+// Função para atualizar bordas dinâmicas
+  const updateBorderColors = (classNames, colors, step) => {
+    classNames.forEach((className, index) => {
+      const elements = document.querySelectorAll(`.${className}`);
+      elements.forEach((element) => {
+        const colorIndex = (step + index) % colors.length;
+        element.style.borderColor = colors[colorIndex];
+      });
+    });
+  };
 
 // Ordem dos segmentos
 const segmentOrder = [
@@ -141,7 +150,7 @@ const Roleta = () => {
           const nextIndex = (segmentOrder.indexOf(prev) + 1) % segmentOrder.length;
           return segmentOrder[nextIndex];
         });
-  
+        updateBorderColors(["fundoroleta", "botoes", "botoes button"], colors, spins);
         spins += 1;
   
         // Desaceleração progressiva nos últimos 1/3 da rotação

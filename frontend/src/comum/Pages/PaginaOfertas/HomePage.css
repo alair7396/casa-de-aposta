@@ -1,87 +1,139 @@
-/* Barra de navegação */
-.nav {
-    font-size: 18px;
-    font-weight: bold;
-    background-color: rgba(192, 181, 31, 0.85); /* Mantém a cor de fundo amarela */
-    border-radius: 10px;
-    border: 3px solid #19179b;
-    padding: 10px 20px;
-    text-align: center;
-    margin-bottom: 20px;
+/* Estilo geral da página */
+.bodyoferta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+  color: #f4f4f9; /* Texto claro */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Fundo do input de ofertas */
+.fundoImputoferta {
+  background-color: rgba(58, 46, 24, 0.85); /* Fundo dourado escuro */
+  border-radius: 10px;
+  padding: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Título da seção de ofertas */
+.coloroferta {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffd700; /* Dourado */
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Legenda do saldo */
+.legendaoferta {
+  font-size: 18px;
+  color: #eaeaea;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Contêiner de ofertas */
+.offer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Card da oferta */
+.offer-card {
+  background-color: rgba(58, 46, 24, 0.9); /* Fundo dourado escuro */
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+}
+
+/* Imagem da oferta */
+.offer-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ffd700; /* Borda dourada */
+}
+
+/* Descrição da oferta (quantidade de moedas e preço) */
+.offer-card p {
+  color: #f4f4f9;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Botão de compra */
+.buy-button {
+  background-color: #ffd700; /* Dourado */
+  color: #2b2d42; /* Texto escuro para contraste */
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buy-button:hover {
+  background-color: #e6b800; /* Dourado mais escuro no hover */
+  transform: translateY(-2px); /* Efeito de elevação */
+}
+
+/* Estilos do menu hambúrguer */
+.hamburger-menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #ffd700;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .bodyoferta {
+    padding: 10px;
   }
-  
-  .nav a {
-    color: #19179b;
-    text-decoration: none;
-    padding: 0 15px;
-    transition: color 0.3s ease, transform 0.3s ease;
+
+  .fundoImputoferta {
+    padding: 20px;
   }
-  
-  .nav a:hover {
-    color: #fff;
-    transform: scale(1.1);
-  }
-  
-  .nav a:active {
-    color: #ff0;
-  }
-  
-  /* Conteúdo da página Home */
-  .content {
-    text-align: center;
-    margin: 20px;
-   
-   
-    
-  }
-  
-  .content h2 {
-    font-size: 24px;
-    color: #19179b;
-    margin-bottom: 20px;
-  }
-  
-  .content p {
-    font-size: 18px;
-    color: #4c0b97;
-  }
-  
+
   .offer-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .offer-card {
-    width: 200px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #f9f9f9;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 350px;
   }
-  
+
   .offer-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 80px;
+    height: 80px;
   }
-  
+
   .buy-button {
-    background-color: #19179b;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
+    width: 100%;
   }
-  
-  .buy-button:hover {
-    background-color: #2a2a8a;
-  }
-  
+}

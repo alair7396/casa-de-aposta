@@ -1,40 +1,75 @@
 .input {
-    border-radius: 40px;
-    width: 80%; /* Largura completa do container */
-    opacity: 0.8;
-    background-color: black;
+    border-radius: 25px; /* Arredondamento amigável ao toque */
+    width: 90%; /* Ocupa quase toda a largura da tela */
+    max-width: 350px; /* Largura máxima para telas maiores */
+    opacity: 0.9; /* Leve aumento na opacidade */
+    background-color: black; /* Fundo escuro */
     text-align: center; /* Centraliza o texto */
-    font-size: 32px; /* Tamanho do texto */
-    font-family: 'Irish Grover'; /* Fonte com fallback */
-    color: #5C5F19;
-    border: 3px solid rgb(22, 44, 172);
-    margin: 10px;
+    font-size: 20px; /* Texto ajustado para telas menores */
+    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
+    color: #fcfcfc; /* Texto branco */
+    border: 2px solid rgb(22, 44, 172); /* Azul escuro */
+    margin: 10px auto; /* Espaçamento ao redor e centralizado */
+    padding: 10px; /* Maior espaço para clique */
     display: flex;
     justify-content: center;
     align-items: center;
-   
 }
+
 .input:hover, .input:focus {
-    opacity: 1; /* Aumenta a opacidade ao passar o mouse ou focar */
+    opacity: 1; /* Destaque ao foco */
 }
-.titulo{
-    display: flex;
-    font-size: 32px;
-    font-family: 'Irish Grover';
-    justify-content: center;
-    color: rgb(189, 186, 34); 
+
+.titulo {
+    font-size: 24px; /* Título menor para telas pequenas */
+    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
+    color: rgb(255, 255, 255); /* Branco */
+    text-align: center; /* Centralizado */
+    margin-bottom: 15px; /* Espaçamento para separação */
 }
-.fundoImput{
+
+.fundoImput {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.7); /* 0.5 representa 50% de opacidade */
-    border: 3px solid rgb(189, 34, 106);
-    border-radius: 10%;
-    opacity: 0.9;
-    padding: 10px;
-    
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro */
+    border: 2px solid rgb(189, 34, 106); /* Rosa escuro */
+    border-radius: 20px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    gap: 10px; /* Espaçamento uniforme entre os itens */
+    width: 95%; /* Ocupa quase toda a largura */
+    max-width: 400px; /* Limite máximo para telas maiores */
 }
-.link-cadastro{
-    color: crimson;
+
+.link-cadastro {
+    color: crimson; /* Destaque para o link */
+    font-size: 14px; /* Tamanho menor */
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btcadastrar, .btentrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(32, 185, 70, 0.8); /* Fundo com opacidade */
+    color: #fdfdfd; /* Branco */
+    border-radius: 20px; /* Arredondamento */
+    font-size: 18px; /* Fonte menor para toque fácil */
+    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
+    opacity: 0.9;
+    padding: 10px 20px; /* Padding ajustado */
+    margin-top: 10px; /* Espaçamento superior */
+    width: 90%; /* Quase toda a largura */
+    max-width: 300px; /* Limite para telas maiores */
+    border: 2px solid rgb(34, 189, 47); /* Verde vivo */
+    transition: all 0.3s ease-in-out;
+}
+
+.btcadastrar:hover, .btentrar:hover {
+    opacity: 1;
+    color: rgb(41, 189, 36); /* Destaque no texto */
+    background-color: rgba(34, 57, 189, 0.9); /* Destaque no fundo */
+    transform: scale(1.05); /* Leve aumento */
 }

@@ -1,59 +1,88 @@
 .cabeca {
-    display: flex;
-    background-size: cover;
-    background-position: center;
-    background-image: url('/pato do menu.jpeg');
-    height:100px;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border: 3px solid #195f3c;
-    align-items:end;
-    justify-content: end;
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  background-image: url('/pato do menu.jpeg');
+  height: 120px; /* Altura aumentada para melhor visualização */
+  border-bottom-left-radius: 30px; /* Bordas mais sutis */
+  border-bottom-right-radius: 30px;
+  border: 2px solid #195f3c; /* Borda mais fina */
+  align-items: flex-end; /* Posiciona conteúdo no final */
+  justify-content: flex-end; /* Posiciona no canto direito */
+  padding: 10px; /* Adiciona espaçamento interno */
+}
+
+/* Barra de navegação */
+.nav {
+  font-size: 16px; /* Tamanho ajustado para legibilidade */
+  font-weight: 600; /* Negrito moderado */
+  background-color: rgba(192, 181, 31, 0.9); /* Fundo com opacidade ajustada */
+  border-radius: 12px; /* Bordas mais arredondadas */
+  border: 2px solid #19179b; /* Borda mais fina */
+  padding: 15px; /* Aumenta o espaçamento interno */
+  text-align: center; /* Centraliza os links */
+  margin-bottom: 10px; /* Adiciona margem inferior */
+  display: flex; /* Flex para organização dos links */
+  justify-content: center; /* Centraliza os links horizontalmente */
+  gap: 15px; /* Espaçamento uniforme entre os links */
+}
+
+/* Links na barra de navegação */
+.nav a {
+  color: #19179b; /* Azul escuro */
+  text-decoration: none; /* Remove o sublinhado */
+  padding: 5px 15px; /* Ajusta o espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas para links */
+  transition: color 0.3s ease, transform 0.3s ease; /* Suaviza as transições */
+}
+
+/* Efeito ao passar o mouse */
+.nav a:hover {
+  color: #fff; /* Branco */
+  background-color: #19179b; /* Fundo azul escuro */
+  transform: scale(1.1); /* Leve aumento no tamanho */
+}
+
+/* Efeito ao clicar */
+.nav a:active {
+  color: #ffc107; /* Amarelo vibrante */
+}
+
+/* Título da página */
+.page-title {
+  font-size: 26px; /* Tamanho aumentado */
+  font-weight: 700; /* Negrito forte */
+  color: #19179b; /* Azul escuro */
+  text-align: center;
+  margin: 20px 0; /* Espaçamento superior e inferior */
+}
+
+/* Texto da página */
+.page-text {
+  font-size: 18px; /* Texto mais legível */
+  line-height: 1.6; /* Espaçamento entre linhas */
+  color: #333; /* Cor de texto padrão */
+  margin: 15px 20px; /* Espaçamento ajustado */
+}
+
+/* Para dispositivos menores */
+@media (max-width: 768px) {
+  .cabeca {
+      height: 100px; /* Altura reduzida */
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
   }
-  .nav a:hover {
-    color: #5C5F19; 
-  }
+
   .nav {
-    
-    font-size: 15px; /* Aumenta o tamanho da fonte */
-    font-weight: bold; /* Adiciona negrito para destacar mais */
-    background-color: rgba(192, 181, 31, 0.85); /* Aumenta a opacidade para dar mais destaque */
-    border-radius: 10px;
-    border: 3px solid #19179b;
-    padding: 10px 20px; /* Adiciona um pouco de espaço interno para melhorar a aparência */
-    text-align: center; /* Centraliza os links na barra */
-    margin-bottom: none;
+      font-size: 14px; /* Reduz o tamanho do texto */
+      padding: 10px; /* Reduz o padding */
   }
-  
-  .nav a {
-    color: #19179b; /* Cor da fonte dos links */
-    text-decoration: none; /* Remove o sublinhado dos links */
-    padding: 0 10px; /* Adiciona espaçamento entre os links */
-    transition: color 0.3s ease, transform 0.3s ease; /* Efeito suave nas transições */
-  }
-  
-  .nav a:hover {
-    color: #fff; /* Cor do link quando o mouse passa por cima */
-    transform: scale(1.1); /* Aumenta um pouco o tamanho do link ao passar o mouse */
-  }
-  
-  .nav a:active {
-    color: #ff0; /* Muda a cor do link quando ele é clicado */
-  }
-  
-  /* Para garantir que o mesmo estilo seja aplicado nas escritas internas */
+
   .page-title {
-    font-size: 24px; /* Maior tamanho de fonte para títulos */
-    font-weight: bold;
-    color: #19179b;
-    text-align: center;
-    margin-top: 20px;
+      font-size: 22px; /* Ajusta o título */
   }
-  
+
   .page-text {
-    font-size: 16px; /* Tamanho de fonte confortável para o texto */
-    line-height: 1.5;
-    color: #333;
-    margin: 15px 0;
+      font-size: 16px; /* Ajusta o tamanho do texto */
   }
- 
+}

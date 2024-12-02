@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 import VerSaldoConsole from './VerSaldoConsole.jsx';
 import ServicoUsuarios from "../../servicos/ServicoUsuarios.js";
 import ServicoAutenticacao from "../../servicos/ServicoAutenticacao.js";
-import { useNavigate } from 'react-router-dom';
+
 
 const servicoUsuarios = new ServicoUsuarios();
 ServicoAutenticacao;
@@ -18,7 +18,7 @@ const JogoDoPato = () => {
     const [tabuleiroAtivo, setTabuleiroAtivo] = useState(false);
     const [tentativas, setTentativas] = useState(0);
     const [mostrarModal, setMostrarModal] = useState(false);
-    const navigate = useNavigate(); // Inicializa o hook
+
     const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
     const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
 
@@ -135,48 +135,46 @@ const JogoDoPato = () => {
     };
 
     return (
-        <>  
-            <div className='alinhar'>
-                <div className='nav'>
-                    <strong className='color2'>Moedas:</strong> {pontuacao} <br />
-                    Tentativas: {tentativas}
+            <>  
+                <div className="game-status-container">
+                    <div className="game-status">
+                        <strong className="game-label">Moedas:</strong> {pontuacao} <br />
+                        <strong className="game-label">Tentativas:</strong> {tentativas}
+                    </div>
+                    <div className="game-board-container">
+                        <div className="board-row">
+                            <Quadrados value={use[0]} index={0} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                            <Quadrados value={use[1]} index={1} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                            <Quadrados value={use[2]} index={2} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                        </div>
+                        <div className="board-row">
+                            <Quadrados value={use[3]} index={3} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                            <Quadrados value={use[4]} index={4} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                            <Quadrados value={use[5]} index={5} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                        </div>
+                        <div className="board-row">
+                            <Quadrados value={use[6]} index={6} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                            <Quadrados value={use[7]} index={7} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                            <Quadrados value={use[8]} index={8} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
+                        </div>
+                    
+                        <button className={`game-button ${tabuleiroAtivo ? 'active' : ''}`} onClick={habilitarTabuleiro}>
+                            Jogar<span></span>
+                        </button>
+                        <button className="game-button restart" onClick={reiniciarJogo}>
+                            Reiniciar
+                        </button>
+                    </div>
+                    
+                    <Modal 
+                        mostrar={mostrarModal} 
+                        comprarTentativas={comprarTentativas} 
+                        pontuacao={pontuacao} 
+                        ofertas={ofertas} 
+                        fechar={fechar}
+                    />
                 </div>
-                <div className="fundoImput">
-                    <div className="board-row">
-                        <Quadrados value={use[0]} index={0} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                        <Quadrados value={use[1]} index={1} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                        <Quadrados value={use[2]} index={2} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                    </div>
-                    <div className="board-row">
-                        <Quadrados value={use[3]} index={3} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                        <Quadrados value={use[4]} index={4} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                        <Quadrados value={use[5]} index={5} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                    </div>
-                    <div className="board-row">
-                        <Quadrados value={use[6]} index={6} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                        <Quadrados value={use[7]} index={7} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                        <Quadrados value={use[8]} index={8} clicadoFilho={clicadoPai} ativo={tabuleiroAtivo} />
-                    </div>
-                
-                    <button className={`jogar ${tabuleiroAtivo ? 'ativo' : ''}`} onClick={habilitarTabuleiro}>
-                        Jogar<span></span>
-                    </button>
-                    <button className="reiniciar" onClick={reiniciarJogo}>
-                        Reiniciar
-                    </button>
-                </div>
-                
-                <Modal 
-                    mostrar={mostrarModal} 
-                    comprarTentativas={comprarTentativas} 
-                    pontuacao={pontuacao} 
-                    ofertas={ofertas} 
-                    fechar={fechar}
-                />
-                <VerSaldoConsole />
-            </div>
-        </>
-    );
-};
-
+            </>
+        );
+    }
 export default JogoDoPato;

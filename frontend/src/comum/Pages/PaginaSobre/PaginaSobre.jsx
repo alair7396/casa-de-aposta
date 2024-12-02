@@ -1,22 +1,13 @@
 import React from 'react';
 import './PaginaSobre.css';
-import { Link } from 'react-router-dom';
+import HamburgerMenu from '../../Componentes/Menu/HamburgerMenu';
 
 const PaginaSobre = () => {
   return (  
     <>
-      <nav className='nav'>  
-        |<Link to='/perfil'>Perfil</Link> |  
-        |<Link to='/sobre'>Sobre</Link> |  
-        |<Link to='/inicio'>Início</Link> |   
-        |<Link to='/jogar'>Jogar</Link> |  
-        |<Link to='/sair'>Sair</Link> |
-        |<Link to='/admin'>Admin</Link> |
-        |<Link to='/ofertas'>Ofertas</Link>|
-        |<Link to='/roleta'>Roleta</Link>|
-      </nav>
-<div className='body'>
-      <div className='nav'>
+      <HamburgerMenu/>
+<div className='bodysobre'>
+      <div className='navsobre'>
         <h2 >Sobre o App</h2>
         <p>
     Conheça o <strong>LuckDuck</strong>, um app que não esconde

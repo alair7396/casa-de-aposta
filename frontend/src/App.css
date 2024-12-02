@@ -1,48 +1,40 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Evita rolagem horizontal */
+  background-color: #000; /* Fallback para evitar faixas brancas */
 }
+
 .container {
   display: flex;
   flex-direction: column;
   background-image: url('/icons/backgrund entrar.jpeg');
   background-position: center;
-  height: 100vh;
   background-size: cover;
-  
-  animation: mudaImagens 50s infinite; /* A animação durará 10 segundos e será contínua */
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Garante altura mínima da tela */
+  background-color: #000; /* Fallback */
+  animation: mudaImagens 50s infinite;
   transition: background-image 3s ease-in-out;
 }
 
 @keyframes mudaImagens {
-  50% {
+  0% {
+    background-image: url('/icons/backgrund entrar.jpeg');
+  }
+  20% {
     background-image: url('/icons/a.webp');
-    background-size: cover;
-    background-position: center;
   }
-  55% {
+  40% {
     background-image: url('/icons/b.webp');
-    background-size: cover;
-    background-position: center;
   }
-  50% {
+  60% {
     background-image: url('/icons/c.webp');
-    background-size: cover;
-    background-position: center;
   }
-  75% {
+  80% {
     background-image: url('/icons/d.webp');
-    background-size: cover;
-    background-position: center;
   }
   100% {
-    background-image: url('/icons//e.webp');
-    background-size: cover;
-    background-position: center;
-  }
-  50% {
-    background-image: url('/icons//e.webp');
-    background-size: cover;
-    background-position: center;
+    background-image: url('/icons/e.webp');
   }
 }

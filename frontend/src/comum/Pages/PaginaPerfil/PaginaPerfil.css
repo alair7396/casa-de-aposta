@@ -1,0 +1,47 @@
+/* Container da página */
+.perfil-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Avatar */
+.avatar-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.campo {
+    margin-bottom: 15px;
+    /* Ajusta o campo para ocupar toda a largura do contêiner */
+    max-width: 400px; /* Define um limite de largura para melhor responsividade */
+}
+
+.campo label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+/* Menu hambúrguer */
+.nav-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-sizing: border-box; /* Considera o padding no cálculo da largura */
+    overflow-x: hidden; /* Evita rolagem horizontal */
+}
+

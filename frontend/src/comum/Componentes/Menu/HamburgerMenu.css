@@ -1,0 +1,50 @@
+.hamburger-menu {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
+  
+  .hamburger-button {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffd700;
+    font-size: 24px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger-button:hover {
+    background-color: rgba(255, 215, 0, 0.9);
+    color: #000;
+  }
+  
+  .menu-links {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: none; /* Menu oculto por padrão */
+  }
+  
+  .menu-links a {
+    display: block;
+    color: #ffd700;
+    text-decoration: none;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+  }
+  
+  .menu-links a:hover {
+    color: #fff;
+  }
+  
+  .menu-links.active {
+    display: block; /* Torna o menu visível */
+  }
+  

@@ -1,37 +1,30 @@
-import { Link, useNavigate } from "react-router-dom";
-import './PaginaSair.css'; // Importando o arquivo CSS
+import { useNavigate } from "react-router-dom"; 
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import './PaginaSair.css';
 import ServicoAutenticacao from '../../servicos/ServicoAutenticacao';
+import HamburgerMenu from "../../Componentes/Menu/HamburgerMenu";
 
 const PaginaSair = () => {
   const navigate = useNavigate();
-
   const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
 
   const sair = () => {
     if (usuarioLogado) {
       ServicoAutenticacao.sair();
-      alert('Você saiu com sucesso!'); // Mensagem de feedback
+      toast.success('Você saiu com sucesso!'); // Toast de sucesso
       navigate('/'); // Redireciona para a página de login
     } else {
-      alert('Nenhum usuário logado!'); // Mensagem de erro
-      navigate('/'); // Redireciona mesmo assim
+      toast.error('Nenhum usuário está logado!'); // Toast de erro
+      navigate('/'); // Redireciona para login mesmo assim
     }
   };
 
   return (
     <>
-      <nav className='nav'>
-      |<Link to='/perfil'>Perfil</Link> |  
-        |<Link to='/sobre'>Sobre</Link> |  
-        |<Link to='/inicio'>Início</Link> |   
-        |<Link to='/jogar'>Jogar</Link> |  
-        |<Link to='/sair'>Sair</Link> |
-        |<Link to='/admin'>Admin</Link> |
-        |<Link to='/ofertas'>Ofertas</Link>|
-        |<Link to='/roleta'>Roleta</Link>|
-      </nav>
+      <HamburgerMenu/>
 
-      <div className='body'>
+      <div className='logout-container'>
         <h1>Bem-vindo, {usuarioLogado?.nome || 'Visitante'}!</h1>
         <p>Deseja realmente sair?</p>
         <button 

@@ -1,45 +1,63 @@
-/* Estilo para a barra de navegação */
-.nav {
-    font-size: 18px; /* Aumenta o tamanho da fonte */
-    font-weight: bold; /* Adiciona negrito para destacar mais */
-    background-color: rgba(192, 181, 31, 0.85); /* Aumenta a opacidade para dar mais destaque */
-    border-radius: 10px;
-    border: 3px solid #19179b;
-    padding: 10px 20px; /* Adiciona um pouco de espaço interno para melhorar a aparência */
-    text-align: center; /* Centraliza os links na barra */
-  }
+/* Container principal */
+.logout-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background-color: #fff7fb3a;
+  padding: 20px;
+  text-align: center;
+  opacity: 0.9;
   
-  .nav a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px 10px;
+}
+
+/* Estilo do título */
+.logout-container h1 {
+  font-size: 40px;
+  color: #020201;
+  margin-bottom: 10px;
+  font-family: 'Irish Grover', cursive;
+}
+
+/* Estilo do texto */
+.logout-container p {
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* Botão de logout */
+.logout-button {
+  background-color: #e63946;
+  color: white;
+  font-size: 18px;
+  font-family: 'Irish Grover', cursive;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeito hover no botão */
+.logout-button:hover {
+  background-color: #d62828;
+  transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .logout-container h1 {
+      font-size: 24px;
   }
-  
-  .nav a:hover {
-    color: #ff6347;
+
+  .logout-container p {
+      font-size: 16px;
   }
-  
-  /* Estilo para o corpo da página */
-  .body {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  /* Estilo para o botão de logout */
+
   .logout-button {
-    padding: 10px 20px;
-    background-color: #ff6347;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
+      font-size: 16px;
+      padding: 8px 16px;
   }
-  
-  .logout-button:hover {
-    background-color: #ff4500;
-  }
-  
+}

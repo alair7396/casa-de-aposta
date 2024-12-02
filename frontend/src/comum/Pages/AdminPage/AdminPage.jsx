@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Importando o Link para navegação
 import ServicoUsuarios from '../../servicos/ServicoUsuarios';
 import './AdminPage.css';
+import HamburgerMenu from '../../Componentes/Menu/HamburgerMenu';
 
 const instanciaServicoUsuarios = new ServicoUsuarios();
 
@@ -51,17 +52,13 @@ function AdminPage() {
 
   return (
     <>
-    <nav className='nav'>
-        |<Link to='/sair'>Sair</Link> |
-        |<Link to='/ofertas'>Ofertas</Link>|
-        
-      </nav>
+    <HamburgerMenu/>
     <div className='bodyadm'>
       {/* Barra de navegação */}
       
 
       {/* Conteúdo da página Admin */}
-      <div className="nav">
+      <div className="navs">
         <h3>Adicionar Oferta de Moedas</h3>
         <input
           type="text"
@@ -88,9 +85,9 @@ function AdminPage() {
       </div>
 
       {/* Lista de Ofertas Cadastradas */}
-      <div className="nav">
+      <div className="ofertascadastradas">
         <h3>Ofertas Cadastradas</h3>
-        <div className="nav">
+        <div className="nav3">
           {offers.length > 0 ? (
             offers.map((offer, index) => (
               <div key={index} className="offer-card">
@@ -107,7 +104,7 @@ function AdminPage() {
       </div>
 
       {/* Lista de Usuários */}
-      <div className="nav">
+      <div className="nav4">
         <h3>Lista de Usuários</h3>
         <div className="users">
           {users.length > 0 ? (

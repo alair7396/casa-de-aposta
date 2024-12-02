@@ -3,20 +3,26 @@
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
     text-align: center; /* Centraliza o texto */
-    background-color: rgba(32, 185, 70, 0.5); /* 0.5 representa 50% de opacidade */
-    color: #fdfdfd; /* Cor do texto */
-    border-radius: 30px; /* Bordas arredondadas */
-    font-size: 50px; /* Tamanho da fonte */
+    background-color: rgba(41, 128, 185, 0.8); /* Azul médio com transparência */
+    color: #ffffff; /* Texto branco para contraste */
+    border-radius: 20px; /* Bordas arredondadas mais sutis */
+    font-size: 36px; /* Fonte menor para manter harmonia */
     font-family: 'Irish Grover', cursive; /* Fonte personalizada */
-    opacity: 0.7;
-    padding: 20px;
-    margin-top: 40px;
-    width: 100%;
-   /*} border: 3px solid #5C5F19;*/
-   border: 3px solid rgb(34, 189, 47);
+    opacity: 0.9; /* Opacidade inicial ajustada */
+    padding: 15px 30px; /* Padding ajustado para proporcionalidade */
+    margin-top: 20px; /* Reduzi o espaçamento superior */
+    width: 80%; /* Reduzido para evitar expansão excessiva */
+    max-width: 300px; /* Tamanho máximo para manter proporção */
+    border: 3px solid rgb(34, 153, 84); /* Verde escuro na borda */
+    transition: all 0.3s ease-in-out; /* Transição suave ao interagir */
 }
+
 /* Estilo ao passar o mouse */
 .btentrar:hover {
     opacity: 1; /* Aumenta a opacidade ao passar o mouse */
-    color: rgb(189, 186, 34); /* Muda a cor do texto*/
+    color: rgb(255, 255, 255); /* Mantém o texto branco */
+    background-color: rgba(39, 174, 96, 0.9); /* Verde suave com transparência */
+    border-color: rgb(46, 204, 113); /* Verde claro na borda */
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
 }
+
