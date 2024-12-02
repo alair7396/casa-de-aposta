@@ -17,8 +17,8 @@ export default defineConfig({
         name: 'LuckDuck jogos da sorte!!!!!',
         short_name: 'LuckDuck',
         description: 'É um projeto para jogos da sorte',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
+        theme_color: '#DAA520',
+        background_color: '#FFF8DC',
         display: 'standalone',
         start_url: "/",
         icons: [
