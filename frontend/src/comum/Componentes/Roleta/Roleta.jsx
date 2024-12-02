@@ -51,14 +51,15 @@ const imageArray = [
 ];
 
 
+
+
+// Ordem dos segmentos
 const segmentOrder = [
   0, 32, 15, 19, 4, 21, 2, 25, 17, 34,
   6, 27, 13, 11, 30, 8, 23, 10, 5,
   24, 16, 33, 1, 20, 14, 31, 9, 22, 18,
   29, 7, 28, 12, 35, 3, 26
 ];
-
-
 
 const preloadedImages = {}; // Objeto para armazenar as imagens pré-carregadas
 
@@ -75,44 +76,46 @@ const Roleta = () => {
   const MAX_BETS = 10;
   const totalSpins = Math.floor(NUM_SEGMENTS * 4);
 
-  // Pré-carregamento de imagens
+  // Função de pré-carregamento de imagens
   useEffect(() => {
-    const preloadImages = (images) => {
-      return Promise.all(
-        images.map((src) => {
-          return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.src = src;
-            img.onload = () => {
-              preloadedImages[src] = img; // Armazena a instância pré-carregada
-              resolve(img);
-            };
-            img.onerror = (error) => {
-              console.error(`Erro ao carregar imagem: ${src}`, error);
-              reject(error);
-            };
-          });
-        })
-      );
-    };
-
-    preloadImages(imageArray)
-      .then(() => {
+    const preloadImages = async () => {
+      try {
+        await Promise.all(
+          imageArray.map((src) => {
+            return new Promise((resolve, reject) => {
+              const img = new Image();
+              img.src = src;
+              img.onload = () => {
+                preloadedImages[src] = img; // Armazena a instância pré-carregada
+                resolve(img);
+              };
+              img.onerror = (error) => {
+                console.error(`Erro ao carregar imagem: ${src}`, error);
+                reject(error);
+              };
+            });
+          })
+        );
         console.log("Todas as imagens foram pré-carregadas.");
         setIsPreloaded(true);
-      })
-      .catch((error) => console.error("Erro no pré-carregamento das imagens:", error));
+      } catch (error) {
+        console.error("Erro no pré-carregamento das imagens:", error);
+      }
+    };
+
+    preloadImages();
   }, []);
 
   // Atualiza o saldo inicial
   useEffect(() => {
     const fetchSaldoInicial = async () => {
-      if (!ServicoAutenticacao.buscarUsuarioLogado()) {
+      const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
+      if (!usuarioLogado) {
         toast.error("Nenhum usuário logado!");
         return;
       }
-      const emailUsuarioLogado = ServicoAutenticacao.buscarUsuarioLogado().email;
 
+      const emailUsuarioLogado = usuarioLogado.email;
       try {
         const saldo = await new ServicoUsuarios().obterSaldoUsuario(emailUsuarioLogado);
         setBalance(saldo);
@@ -124,13 +127,13 @@ const Roleta = () => {
     fetchSaldoInicial();
   }, []);
 
-  // Controle da rotação
+  // Controle da rotação da roleta
   useEffect(() => {
     let interval;
 
     if (isSpinning) {
       let spins = 0;
-      const spinInterval = 100; // Intervalo entre cada rotação
+      const spinInterval = 100;
 
       const spinRoulette = () => {
         setCurrentSegment((prev) => {
@@ -272,3 +275,4 @@ const Roleta = () => {
 };
 
 export default Roleta;
+
