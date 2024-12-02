@@ -21,12 +21,12 @@
 }
 
 .campo label {
-    font-size: 16px;
+    font-size: 30px;
     font-weight: bold;
-    color: #ffd700;
+    color: #020200;
 }
 
-.campo input {
+.input2 {
     width: 100%;
     padding: 10px;
     border-radius: 8px;

@@ -52,8 +52,8 @@
 }
 
 /* Inputs de texto e botões */
-input[type="text"],
-input[type="number"] {
+.input2[type="text"],
+.input2[type="number"] {
   width: 100%; /* Garante que ocupa a largura disponível */
   margin: 10px 0;
   padding: 10px;

@@ -85,17 +85,17 @@ const PaginaPerfil = () => {
 
         <div className="campo">
           <label>Nome</label>
-          <input type="text" value={usuarioLogado?.nome || ""} disabled />
+          <input className="input2" type="text" value={usuarioLogado?.nome || ""} disabled />
         </div>
 
         <div className="campo">
           <label>Email</label>
-          <input type="text" value={usuarioLogado?.email || ""} disabled />
+          <input className="input2"  type="text" value={usuarioLogado?.email || ""} disabled />
         </div>
 
         <div className="campo">
           <label>Saldo da Carteira</label>
-          <input
+          <input className="input2" 
             type="text"
             value={saldo !== null ? `$ ${saldo}` : "Carregando..."}
             disabled

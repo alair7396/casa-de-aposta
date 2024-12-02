@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import BtCadastrar from '../BtCadastrar/BtCadastrar';
 import ServicoUsuarios from '../../servicos/ServicoUsuarios';
@@ -123,6 +123,7 @@ const InputCadastro = () => {
       />
 
       <BtCadastrar onClick={cadastrar} />
+      <Link to="/" className="link-cadastro">Já tem conta?</Link>
     </div>
   );
 };
