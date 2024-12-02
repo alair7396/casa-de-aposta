@@ -2,7 +2,9 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Evita rolagem horizontal */
-  background-color: #000; /* Fallback para evitar faixas brancas */
+  background-color: #000; 
+  
+  
 }
 
 .container {

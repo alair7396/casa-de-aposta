@@ -18,16 +18,18 @@
 .botoes {
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* 6 colunas de tamanho igual */
-  width: 200px; /* Ajusta a imagem para preencher a largura */
-  border: 3px solid rgb(34, 189, 73);
+   /* Ajusta a imagem para preencher a largura */
+  border: 4px solid rgb(5, 5, 0);
+  width: auto;
+  
   
 }
 .botoes button {
-   color: #07f54e;
+   color: #faf6f6;
   font-size: 14px; /* Fonte menor */
-  width: 100%; /* Faz com que o botão preencha totalmente a coluna */
+  width: auto; /* Faz com que o botão preencha totalmente a coluna */
   
-  border: 1px solid rgb(49, 175, 18);
+  border: 2px solid rgba(237, 248, 239, 0.979);
   
 }
 /* Cor específica para o botão 0 */
@@ -55,10 +57,12 @@
 .bet-number-button:nth-child(13),
 .bet-number-button:nth-child(4) {
   background-color: #fd0000; /* Vermelho */
+  color: #f7f3f3;
 }
 /* Cor preta para os números não citados */
 .bet-number-button {
   background-color: #000000; /* Preto por padrão */
+  
 }
 /* Estilo para os botões "Girar" e "Limpar Apostas" */
 .spin-button, .clear-button {
@@ -67,26 +71,37 @@
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px; /* Botões retangulares */
-  width: 120px; /* Mesmo tamanho */
+  width: auto; /* Mesmo tamanho */
+  border-radius: 50%;
 }
 .clear-button {
   background-color: #FF5555; /* Vermelho */
+  width: auto;
+  border-radius: 50%;
+  border: 4px solid rgba(184, 52, 28, 0.979);
 }
 .spin-button:disabled, .clear-button:disabled {
   background-color: #0a6b12;
   cursor: not-allowed;
+  width: auto;
+  border-radius: 50%;
+  border: 4px solid rgba(1, 0, 7, 0.979);
 }
 .button-group {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+  width: auto;
+  border-radius: 10%;
 }
 
 
 .legenda{
-  color: #32d332;
+  color: #a9c23afa;
   font-family: 'Irish Grover';
+  border-radius: 5%;
+  
 }
 
 .fundoroleta{
@@ -94,11 +109,11 @@
   flex-direction: column;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7); /* 0.5 representa 50% de opacidade */
-  border: 3px solid rgb(189, 34, 106);
+  border: 5px solid rgb(189, 34, 106);
   border-radius: 10%;
   opacity: 0.9;
   padding: 10px;
-  width: 300px;
+  width: 70%;
   justify-content: center;
   
   

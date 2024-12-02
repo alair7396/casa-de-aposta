@@ -83,18 +83,18 @@ const PaginaPerfil = () => {
           </button>
         </div>
 
-        <div className="campo">
-          <label>Nome</label>
+        <div className="campo"><br />
+          <label>Nome</label><br />
           <input className="input2" type="text" value={usuarioLogado?.nome || ""} disabled />
         </div>
 
         <div className="campo">
-          <label>Email</label>
+          <label>Email</label><br />
           <input className="input2"  type="text" value={usuarioLogado?.email || ""} disabled />
         </div>
 
         <div className="campo">
-          <label>Saldo da Carteira</label>
+          <label>Saldo da Carteira</label><br />
           <input className="input2" 
             type="text"
             value={saldo !== null ? `$ ${saldo}` : "Carregando..."}

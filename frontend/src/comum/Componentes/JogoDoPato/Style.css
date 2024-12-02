@@ -1,22 +1,24 @@
 /* Estilo original dos quadrados */
 .square {
     background: linear-gradient(-30deg, #3d0b0b 50%, #2b0808 50%);
-    width: 70px; /* Tamanho ajustado para melhor proporção */
-    height: 70px;
-    border: 2px solid #9b910d;
+    width: 60px; /* Tamanho ajustado para melhor proporção */
+    height: 60px;
+    border: 3px solid #9b910d;
     font-size: 20px; /* Texto proporcional ao tamanho */
     font-weight: bold;
-    line-height: 70px; /* Centraliza verticalmente */
+    /*line-height: 60px; */
     margin: 5px; /* Espaçamento uniforme entre quadrados */
     text-align: center;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Sombra mais sutil */
     border-radius: 8px; /* Bordas levemente arredondadas */
-    transition: transform 0.2s ease, background 0.3s ease; /* Efeitos suaves */
+    transition: transform 0.2s ease, background 0.3s ease; 
+    /* Efeitos suaves */
 }
 
 .square:hover {
     transform: scale(1.05); /* Leve aumento ao passar o mouse */
     cursor: pointer;
+    opacity: 0.7;
 }
 
 /* Estilo para os quadrados quando o jogo estiver habilitado */
@@ -61,6 +63,7 @@
     color: rgb(255, 0, 0);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(247, 0, 0, 0.3);
+    opacity: 1;
 }
 
 /* Tabela de pontuação */
@@ -141,16 +144,17 @@
     margin-bottom: 20px;
     padding: 15px;
     background-image: url('/pato do menu.jpeg');
-    border: 2px solid #aaa232;
+    border: 4px solid #aaa232;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #045c2c;
     font-size:large;
+    opacity: 0.9;
 }
 
 /* Texto do status */
 .game-label {
-    color: #ffffff;
+    color: #c9c621;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -176,25 +180,31 @@
 
 /* Botões do jogo */
 .game-button {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: #457b9d;
-    color: #ffffff;
+    background-color: #DAA520; /* Dourado intenso */
+    color: #181b04; /* Texto dourado claro */
     font-size: 18px;
     font-family: 'Irish Grover', cursive;
     border-radius: 8px;
     padding: 10px 20px;
     margin-top: 15px;
-    border: none;
+    border: 3px solid #000000; /* Borda dourada escura */
     cursor: pointer;
     transition: all 0.3s ease;
+    width: auto;
+    box-shadow: 0 8px 16px rgba(218, 165, 32, 0.5); /* Sombra dourada suave */
 }
 
+
+
+
 .game-button:hover {
-    background-color: #1d3557;
+    background-color: #1a5f24;
     transform: scale(1.05);
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    opacity: 1;
 }
 
 .game-button.restart {

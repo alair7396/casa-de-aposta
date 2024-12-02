@@ -61,12 +61,12 @@
   border-radius: 5px;
   font-size: 16px;
   background-color: rgba(58, 46, 24, 0.85); /* Fundo dourado escuro */
-  color: #fffbea; /* Texto claro */
+  color: #c5c4bd; /* Texto claro */
 }
 
 button {
   display: block;
-  width: 100%; /* Botões ocupam toda a largura */
+  width: 100%; 
   padding: 12px;
   font-size: 16px;
   font-weight: bold;

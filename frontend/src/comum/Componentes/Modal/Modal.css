@@ -1,69 +1,83 @@
 /* Estilos do Modal */
 .modal {
-    position: fixed;
-    top: 50%;
+    position: fixed; /* Modal fixo na tela */
+    top: 15%; /* Espaço abaixo do cabeçalho */
+    bottom: 15%; /* Espaço acima do rodapé */
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #411212;
-    padding: 20px;
-    max-width: 300px;
-    width: 80%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    transform: translate(-50%, 0); /* Centraliza horizontalmente */
+    max-height: 70%; /* Limita a altura máxima do modal */
+    overflow-y: auto; /* Ativa rolagem interna caso o conteúdo exceda a altura */
+    background-color: rgba(20, 20, 20, 0.95); /* Fundo escuro opaco */
+    width: 80%; /* Largura adaptativa */
+    max-width: 400px; /* Limita a largura máxima */
+    height: auto; /* Altura automática com base no conteúdo */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra para destaque */
+    border: 2px solid #DAA520; /* Borda dourada */
+    color: #FFD700; /* Texto dourado claro */
+    z-index: 1000; /* Certifica-se de que fique acima do overlay */
+    display: flex;
+    flex-direction: column; /* Garantir alinhamento vertical */
+    justify-content: space-between; /* Distribuir botões e conteúdo */
+    align-items: center; /* Alinha os botões e conteúdo centralmente */
 }
 
+/* Fundo de sobreposição */
 .overlay {
-    position: fixed;
+    position: fixed; /* Preenche toda a tela */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+    z-index: 999; /* Certifica-se de que fique abaixo do modal */
 }
 
+/* Botões no Modal */
+.modal-conteudo button {
+    margin: 10px 0;
+    padding: 12px 24px; /* Botões maiores para apps */
+    font-size: 16px; /* Fonte adaptada */
+    background-color: #DAA520; /* Fundo dourado */
+    color: #000; /* Texto escuro */
+    border: 2px solid #B8860B; /* Borda dourada escura */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: auto; /* Botões ocupam toda a largura do modal */
+    max-width: 250px; /* Limite máximo de largura */
+    text-align: center;
+}
+
+/* Efeito de Hover nos Botões */
+.modal-conteudo button:hover {
+    background-color: #C3A715; /* Dourado mais escuro */
+    transform: scale(1.05); /* Efeito de zoom suave */
+}
+
+/* Botão Fechar */
+.modal-fechar {
+    padding: 8px 20px;
+    font-size: 16px;
+    background-color: #E63946; /* Vermelho elegante */
+    color: #FFFFFF; /* Texto branco */
+    border: 2px solid #D62828; /* Borda vermelha escura */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.modal-fechar:hover {
+    background-color: #D62828; /* Vermelho mais escuro no hover */
+    transform: scale(1.05); /* Efeito de zoom suave */
+}
+
+/* Conteúdo Flexível */
 .modal-conteudo {
     display: flex;
     flex-direction: column;
+    gap: 15px; /* Espaçamento entre elementos */
     align-items: center;
-}
-
-.modal-conteudo button {
-    margin: 10px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.modal-conteudo button:hover {
-    background-color: #388e3c;
-}
-
-.comprar-tentativas {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 20px;
-}
-
-.comprar-tentativas:hover {
-    background-color: #388e3c;
-}
-
-.pontuacao {
-    margin-top: 20px;
-    font-size: xx-large;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
+    width: 100%;
 }

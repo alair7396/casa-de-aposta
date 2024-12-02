@@ -12,7 +12,7 @@ const HamburgerMenu = () => {
   return (
     <div className="hamburger-menu">
       <button className="hamburger-button" onClick={toggleMenu}>
-        ☰Menu
+        ☰ Menu
       </button>
       <div className={`menu-links ${menuOpen ? "active" : ""}`}>
         <Link to="/perfil">Perfil</Link>

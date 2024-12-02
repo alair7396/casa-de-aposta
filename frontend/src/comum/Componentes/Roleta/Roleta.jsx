@@ -324,7 +324,7 @@ const Roleta = () => {
           </div>
         </>
       )}
-      <VerSaldoConsole />
+      
     </div>
   );
 };

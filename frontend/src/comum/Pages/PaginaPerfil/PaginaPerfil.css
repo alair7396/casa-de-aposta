@@ -23,16 +23,15 @@
 .campo label {
     font-size: 30px;
     font-weight: bold;
-    color: #020200;
+    color: #91dd03;
 }
 
 .input2 {
-    width: 100%;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
     background-color: #333;
-    color: #fff;
+    color: #279752;
     text-align: center;
 }
 
