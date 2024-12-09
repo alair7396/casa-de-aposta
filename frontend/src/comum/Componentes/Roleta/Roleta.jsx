@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Roleta.css";
-import ServicoUsuarios from "../../servicos/ServicoUsuarios";
-import ServicoAutenticacao from "../../servicos/ServicoAutenticacao";
-import { toast } from "react-toastify";
+import api from "../../servicos/api"; import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Importação das imagens
 import img0 from "../../../assets/images/0.png";
 import img1 from "../../../assets/images/1.png";
 import img2 from "../../../assets/images/2.png";
@@ -42,7 +39,7 @@ import img32 from "../../../assets/images/32.png";
 import img33 from "../../../assets/images/33.png";
 import img34 from "../../../assets/images/34.png";
 import img35 from "../../../assets/images/35.png";
-import VerSaldoConsole from "../JogoDoPato/VerSaldoConsole";
+
 const imageArray = [
   img0, img32, img15, img19, img4, img21, img2, img25, img17, img34,
   img6, img27, img13, img11, img30, img8, img23, img10, img5,
@@ -50,19 +47,18 @@ const imageArray = [
   img29, img7, img28, img12, img35, img3, img26
 ];
 
-const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF3", "#FFF333", "#07f54e"]; // Lista de cores
-// Função para atualizar bordas dinâmicas
-  const updateBorderColors = (classNames, colors, step) => {
-    classNames.forEach((className, index) => {
-      const elements = document.querySelectorAll(`.${className}`);
-      elements.forEach((element) => {
-        const colorIndex = (step + index) % colors.length;
-        element.style.borderColor = colors[colorIndex];
-      });
-    });
-  };
+const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33FFF3", "#FFF333", "#07f54e"];
 
-// Ordem dos segmentos
+const updateBorderColors = (classNames, colors, step) => {
+  classNames.forEach((className, index) => {
+    const elements = document.querySelectorAll(`.${className}`);
+    elements.forEach((element) => {
+      const colorIndex = (step + index) % colors.length;
+      element.style.borderColor = colors[colorIndex];
+    });
+  });
+};
+
 const segmentOrder = [
   0, 32, 15, 19, 4, 21, 2, 25, 17, 34,
   6, 27, 13, 11, 30, 8, 23, 10, 5,
@@ -70,7 +66,7 @@ const segmentOrder = [
   29, 7, 28, 12, 35, 3, 26
 ];
 
-const preloadedImages = {}; // Objeto para armazenar as imagens pré-carregadas
+const preloadedImages = {};
 
 const Roleta = () => {
   const [selectedSegment, setSelectedSegment] = useState(null);
@@ -85,7 +81,6 @@ const Roleta = () => {
   const MAX_BETS = 10;
   const totalSpins = Math.floor(NUM_SEGMENTS * 4);
 
-  // Função de pré-carregamento de imagens
   useEffect(() => {
     const preloadImages = async () => {
       try {
@@ -95,7 +90,7 @@ const Roleta = () => {
               const img = new Image();
               img.src = src;
               img.onload = () => {
-                preloadedImages[src] = img; // Armazena a instância pré-carregada
+                preloadedImages[src] = img;
                 resolve(img);
               };
               img.onerror = (error) => {
@@ -105,7 +100,6 @@ const Roleta = () => {
             });
           })
         );
-        console.log("Todas as imagens foram pré-carregadas.");
         setIsPreloaded(true);
       } catch (error) {
         console.error("Erro no pré-carregamento das imagens:", error);
@@ -115,36 +109,34 @@ const Roleta = () => {
     preloadImages();
   }, []);
 
-  // Atualiza o saldo inicial
   useEffect(() => {
     const fetchSaldoInicial = async () => {
-      const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
-      if (!usuarioLogado) {
-        toast.error("Nenhum usuário logado!");
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error("Usuário não está logado.");
         return;
       }
 
-      const emailUsuarioLogado = usuarioLogado.email;
       try {
-        const saldo = await new ServicoUsuarios().obterSaldoUsuario(emailUsuarioLogado);
-        setBalance(saldo);
-      } catch (error) {
+        const headers = { Authorization: `Bearer ${token}` };
+        const response = await api.get(`/api/usuarios/saldo`, { headers });
+        const saldo = response.data?.saldo || 0;         setBalance(saldo);       } catch (error) {
         toast.error("Erro ao buscar saldo do usuário.");
+        console.error("Erro ao buscar saldo do usuário:", error);
       }
     };
 
     fetchSaldoInicial();
   }, []);
 
-  // Controle da rotação da roleta
   useEffect(() => {
     let interval;
-  
+
     if (isSpinning) {
       let spins = 0;
-      let spinInterval = 30; // Intervalo inicial
-      const maxIncrement = 5; // Incremento máximo no intervalo para desaceleração suave
-  
+      let spinInterval = 30;
+      const maxIncrement = 5;
+
       const spinRoulette = () => {
         setCurrentSegment((prev) => {
           const nextIndex = (segmentOrder.indexOf(prev) + 1) % segmentOrder.length;
@@ -152,12 +144,11 @@ const Roleta = () => {
         });
         updateBorderColors(["fundoroleta", "botoes", "botoes button"], colors, spins);
         spins += 1;
-  
-        // Desaceleração progressiva nos últimos 1/3 da rotação
+
         if (spins > (2 * totalSpins) / 3) {
-          spinInterval = Math.min(spinInterval + maxIncrement, 200); // Aumenta suavemente até um máximo de 200ms
+          spinInterval = Math.min(spinInterval + maxIncrement, 200);
         }
-  
+
         if (spins >= totalSpins) {
           clearInterval(interval);
           finalizeSpin();
@@ -166,9 +157,9 @@ const Roleta = () => {
           interval = setInterval(spinRoulette, spinInterval);
         }
       };
-  
+
       interval = setInterval(spinRoulette, spinInterval);
-  
+
       return () => clearInterval(interval);
     }
   }, [isSpinning]);
@@ -177,47 +168,38 @@ const Roleta = () => {
     const finalSegment = currentSegment;
     setSelectedSegment(finalSegment);
     setIsSpinning(false);
-  
-    // Número de apostas no segmento sorteado
+
     const betCount = betNumbers[finalSegment] || 0;
-  
-    // Calcula os ganhos com base nas apostas
-    const winnings = betCount > 0 ? bet * betCount * 2 : 0; // Multiplicador de 2 vezes por aposta
-    const newBalance = winnings > 0 ? balance + winnings : balance - bet;
-  
-    // Atualiza o saldo no estado local
+
+    const winnings = betCount > 0 ? bet * betCount * 2 : 0;
+    const newBalance = Math.max(balance + (winnings - bet), 0);
+
     setBalance(newBalance);
-  
-    // Atualiza o saldo no serviço de usuários
+
     try {
-      const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
-      const emailUsuarioLogado = usuarioLogado?.email;
-  
-      if (!emailUsuarioLogado) {
+      const token = localStorage.getItem('token');
+      if (!token) {
         toast.error("Erro: Nenhum usuário logado.");
         return;
       }
-  
-      await new ServicoUsuarios().atualizarSaldoUsuario(emailUsuarioLogado, newBalance);
+      
+      const headers = { Authorization: `Bearer ${token}` };
+      await api.put('/api/usuarios/saldo', { saldo: newBalance }, { headers }); 
       toast.success("Saldo atualizado com sucesso!");
     } catch (error) {
       toast.error("Erro ao atualizar saldo no servidor.");
       console.error("Erro ao atualizar saldo no backend:", error);
     }
-  
-    // Reseta as apostas
+
     setBet(0);
     setBetNumbers({});
-  
-    // Exibe o resultado
+
     if (winnings > 0) {
       toast.success(`Você ganhou! Número sorteado: ${finalSegment}. Apostas: ${betCount}. Prêmio: $${winnings}`);
     } else {
       toast.error(`Você perdeu! Número sorteado: ${finalSegment}`);
     }
   };
-  
-
 
   const startSpinning = () => {
     if (!isPreloaded) {
@@ -324,11 +306,8 @@ const Roleta = () => {
           </div>
         </>
       )}
-      
     </div>
   );
 };
 
 export default Roleta;
-
-

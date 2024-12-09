@@ -1,61 +1,61 @@
-/* Estilo original dos quadrados */
+
 .square {
     background: linear-gradient(-30deg, #3d0b0b 50%, #2b0808 50%);
-    width: 60px; /* Tamanho ajustado para melhor proporção */
+    width: 60px; 
     height: 60px;
     border: 3px solid #9b910d;
-    font-size: 20px; /* Texto proporcional ao tamanho */
+    font-size: 20px; 
     font-weight: bold;
-    /*line-height: 60px; */
-    margin: 5px; /* Espaçamento uniforme entre quadrados */
+    
+    margin: 5px; 
     text-align: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Sombra mais sutil */
-    border-radius: 8px; /* Bordas levemente arredondadas */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); 
+    border-radius: 8px; 
     transition: transform 0.2s ease, background 0.3s ease; 
-    /* Efeitos suaves */
+    
 }
 
 .square:hover {
-    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+    transform: scale(1.05); 
     cursor: pointer;
     opacity: 0.7;
 }
 
-/* Estilo para os quadrados quando o jogo estiver habilitado */
+
 .square.ativo {
     background: linear-gradient(50deg, #3d0b0b 5%, #045c2c 150%);
-    color: rgb(255, 255, 255); /* Contraste para melhor legibilidade */
+    color: rgb(255, 255, 255); 
 }
 
 .square.ativo.ganhou {
     background: linear-gradient(0deg, #c7a40b 5%, #075c31 50%);
-    color: rgb(48, 204, 17); /* Ajuste de contraste */
-    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
+    color: rgb(48, 204, 17); 
+    font-family: 'Irish Grover', cursive; 
 }
 
 .square.ativo.perdeu {
     background: linear-gradient(0deg, #050505 5%, #580404 50%);
-    color: rgb(255, 3, 3); /* Contraste para destaque */
+    color: rgb(255, 3, 3); 
     font-family: 'Irish Grover', cursive;
 }
 
-/* Botões */
+
 .jogar, .reiniciar, .apostar {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgb(243, 239, 13); /* Cor de fundo padrão */
+    background-color: rgb(243, 239, 13); 
     color: #5C5F19;
-    border-radius: 15px; /* Bordas suavizadas */
+    border-radius: 15px; 
     font-size: 22px;
     font-family: 'Irish Grover', cursive;
     padding: 10px 20px;
     margin-top: 20px;
     width: 80%;
-    max-width: 300px; /* Limite de largura */
+    max-width: 300px; 
     border: 2px solid #5C5F19;
-    transition: all 0.3s ease; /* Efeito suave nas interações */
+    transition: all 0.3s ease; 
 }
 
 .jogar:hover, .reiniciar:hover, .apostar:hover {
@@ -66,15 +66,15 @@
     opacity: 1;
 }
 
-/* Tabela de pontuação */
+
 .pontuacao {
     margin-top: 20px;
-    font-size: 24px; /* Tamanho confortável */
+    font-size: 24px; 
     font-weight: bold;
     color: rgb(13, 110, 253);
 }
 
-/* Resultado */
+
 .resultado {
     margin-top: 10px;
     font-size: 18px;
@@ -82,7 +82,7 @@
     text-align: center;
 }
 
-/* Modal */
+
 .modal {
     position: fixed;
     top: 50%;
@@ -96,7 +96,7 @@
     z-index: 1000;
     box-shadow: 0 8px 16px rgba(247, 0, 0, 0.5);
     border: 2px solid #5C5F19;
-    color: #fff; /* Texto branco */
+    color: #fff; 
     text-align: center;
 }
 
@@ -106,11 +106,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro com transparência */
+    background-color: rgba(0, 0, 0, 0.6); 
     z-index: 999;
 }
 
-/* Tentativas */
+
 .tentativas {
     color: chartreuse;
     font-size: 18px;
@@ -118,25 +118,25 @@
     margin: 10px 0;
 }
 
-/* Layout de linhas do tabuleiro */
+
 .board-row {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Espaçamento entre os quadrados */
+    gap: 10px; 
     margin-bottom: 10px;
 }
 
-/* Estilo para centralizar o conteúdo */
+
 .alinhar {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px; /* Espaçamento entre elementos */
+    gap: 15px; 
     width: 100%;
     padding: 20px;
 }
-/* Container do status do jogo */
+
 .game-status-container {
     display: flex;
     flex-direction: column;
@@ -152,7 +152,7 @@
     opacity: 0.9;
 }
 
-/* Texto do status */
+
 .game-label {
     color: #c9c621;
     font-size: 18px;
@@ -160,7 +160,7 @@
     margin-bottom: 10px;
 }
 
-/* Container do tabuleiro */
+
 .game-board-container {
     display: flex;
     flex-direction: column;
@@ -172,29 +172,29 @@
     gap: 10px;
 }
 
-/* Linha do tabuleiro */
+
 .board-row {
     display: flex;
     gap: 10px;
 }
 
-/* Botões do jogo */
+
 .game-button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: #DAA520; /* Dourado intenso */
-    color: #181b04; /* Texto dourado claro */
+    background-color: #DAA520; 
+    color: #181b04; 
     font-size: 18px;
     font-family: 'Irish Grover', cursive;
     border-radius: 8px;
     padding: 10px 20px;
     margin-top: 15px;
-    border: 3px solid #000000; /* Borda dourada escura */
+    border: 3px solid #000000; 
     cursor: pointer;
     transition: all 0.3s ease;
     width: auto;
-    box-shadow: 0 8px 16px rgba(218, 165, 32, 0.5); /* Sombra dourada suave */
+    box-shadow: 0 8px 16px rgba(218, 165, 32, 0.5); 
 }
 
 

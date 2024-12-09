@@ -3,14 +3,10 @@ import { toast } from "react-toastify";
 import Quadrados from "./Quadrados";
 import { useState, useEffect } from 'react';
 import Modal from '../Modal/Modal';
-import BotaoEstiloso from '../BotaoEtiloso/BotaoEstiloso.jsx';
-import ServicoUsuarios from "../../servicos/ServicoUsuarios.js";
-import ServicoAutenticacao from "../../servicos/ServicoAutenticacao.js";
 import { useNavigate } from "react-router-dom";
 import React from 'react';
-
-const servicoUsuarios = new ServicoUsuarios();
-
+import api from '../../servicos/api';
+import BotaoEtiloso from'../BotaoEtiloso/BotaoEstiloso.jsx'
 const JogoDoPato = () => {
     const [use, setUse] = useState(Array(9).fill(null));
     const [mensagem, setMensagem] = useState('');
@@ -19,24 +15,46 @@ const JogoDoPato = () => {
     const [tentativas, setTentativas] = useState(0);
     const [mostrarModal, setMostrarModal] = useState(false);
 
-    const navigate = useNavigate(); // Inicialização correta de navigate
-
-    const ofertas = () => {
-        navigate('/ofertas'); // Uso correto do navigate
-    };
-
-    const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
-    const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
-
-    if (!emailUsuarioLogado) {
-        toast.error("Nenhum usuário está logado.");
-    }
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const buscarSaldoInicial = async () => {
+        if (!tabuleiroAtivo) {
+            const interval = setInterval(() => {
+                toast.info("Clique em 'Jogar' para ativar o tabuleiro!");
+            }, 5000);
+    
+                        return () => clearInterval(interval);
+        }
+    }, [tabuleiroAtivo]);
+    
+    
+
+
+
+
+        const ofertas = () => {
+        navigate('/ofertas');     };
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            toast.error("Nenhum usuário está logado.");
+            navigate('/login');
+            return;
+        }
+
+        const headers = { Authorization: `Bearer ${token}` };
+
+                const buscarSaldoInicial = async () => {
             try {
-                const saldo = await servicoUsuarios.obterSaldoUsuario(emailUsuarioLogado);
-                setPontuacao(saldo);
+                const response = await api.get(`/api/usuarios/saldo`, { headers });
+                const saldo = response.data?.saldo;
+
+                if (typeof saldo !== 'undefined') {
+                    setPontuacao(saldo);
+                } else {
+                    throw new Error("Saldo não encontrado.");
+                }
             } catch (error) {
                 toast.error("Erro ao buscar o saldo inicial do usuário.");
                 console.error("Erro ao buscar saldo:", error);
@@ -44,9 +62,15 @@ const JogoDoPato = () => {
         };
 
         buscarSaldoInicial();
-    }, [emailUsuarioLogado]);
+    }, [navigate]);
 
-    const clicadoPai = (index) => {
+    const clicadoPai = async (index) => {
+        
+        const token = localStorage.getItem('token');
+        const headers = { Authorization: `Bearer ${token}` };
+
+        
+
         if (mostrarModal) {
             toast.info("Feche o modal antes de jogar!");
             return;
@@ -70,16 +94,23 @@ const JogoDoPato = () => {
         novoTabuleiro[index] = resultado;
         setUse(novoTabuleiro);
 
-        if (resultado === "Ganhou +200$") {
-            const novoSaldo = pontuacao + 200;
-            setPontuacao(novoSaldo);
-            servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo);
-            toast.success("Parabéns! Você ganhou +200 moedas.");
-        } else {
-            const novoSaldo = pontuacao - 100;
-            setPontuacao(novoSaldo);
-            servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo);
-            toast.error("Ah não! Você perdeu 100 moedas.");
+        try {
+            let novoSaldo = pontuacao;
+
+            if (resultado === "Ganhou +200$") {
+                novoSaldo += 200;
+                toast.success("Parabéns! Você ganhou +200 moedas.");
+            } else {
+                novoSaldo -= 100;
+                toast.error("Ah não! Você perdeu 100 moedas.");
+            }
+
+                        setPontuacao(novoSaldo);
+            await api.put('/api/usuarios/saldo', { saldo: novoSaldo }, { headers });
+
+        } catch (error) {
+            toast.error("Erro ao atualizar o saldo do usuário.");
+            console.error("Erro ao atualizar saldo:", error);
         }
 
         setTentativas(tentativas - 1);
@@ -118,14 +149,22 @@ const JogoDoPato = () => {
         toast.success("O jogo foi reiniciado.");
     };
 
-    const comprarTentativas = () => {
+    const comprarTentativas = async () => {
+        const token = localStorage.getItem('token');
+        const headers = { Authorization: `Bearer ${token}` };
+
         if (pontuacao >= 500) {
-            const novoSaldo = pontuacao - 500;
-            setPontuacao(novoSaldo);
-            servicoUsuarios.atualizarSaldoUsuario(emailUsuarioLogado, novoSaldo);
-            setTentativas(tentativas + 3);
-            setMostrarModal(false);
-            toast.success("Você comprou mais 3 tentativas!");
+            try {
+                const novoSaldo = pontuacao - 500;
+                await api.put('/api/usuarios/saldo', { saldo: novoSaldo }, { headers });
+                setPontuacao(novoSaldo);
+                setTentativas(tentativas + 3);
+                setMostrarModal(false);
+                toast.success("Você comprou mais 3 tentativas!");
+            } catch (error) {
+                toast.error("Erro ao atualizar saldo após comprar tentativas.");
+                console.error("Erro ao atualizar saldo:", error);
+            }
         } else {
             toast.error("Você não tem pontos suficientes para comprar tentativas!");
         }
@@ -165,6 +204,7 @@ const JogoDoPato = () => {
                     <button className="game-button restart" onClick={reiniciarJogo}>
                         Reiniciar
                     </button>
+                    
                 </div>
                 <Modal 
                     mostrar={mostrarModal} 

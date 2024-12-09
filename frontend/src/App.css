@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Evita rolagem horizontal */
+  overflow-x: hidden; 
   background-color: #000; 
   
   
@@ -14,8 +14,8 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh; /* Garante altura mínima da tela */
-  background-color: #000; /* Fallback */
+  min-height: 100vh; 
+  background-color: #000; 
   animation: mudaImagens 50s infinite;
   transition: background-image 3s ease-in-out;
 }

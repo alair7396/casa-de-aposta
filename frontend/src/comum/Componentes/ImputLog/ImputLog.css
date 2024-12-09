@@ -1,75 +1,64 @@
-.input {
-    border-radius: 25px; /* Arredondamento amigável ao toque */
-    width: 90%; /* Ocupa quase toda a largura da tela */
-    max-width: 350px; /* Largura máxima para telas maiores */
-    opacity: 0.9; /* Leve aumento na opacidade */
-    background-color: black; /* Fundo escuro */
-    text-align: center; /* Centraliza o texto */
-    font-size: 20px; /* Texto ajustado para telas menores */
-    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
-    color: #fcfcfc; /* Texto branco */
-    border: 2px solid rgb(22, 44, 172); /* Azul escuro */
-    margin: 10px auto; /* Espaçamento ao redor e centralizado */
-    padding: 10px; /* Maior espaço para clique */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.input:hover, .input:focus {
-    opacity: 1; /* Destaque ao foco */
-}
-
-.titulo {
-    font-size: 24px; /* Título menor para telas pequenas */
-    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
-    color: rgb(255, 255, 255); /* Branco */
-    text-align: center; /* Centralizado */
-    margin-bottom: 15px; /* Espaçamento para separação */
-}
-
-.fundoImput {
+.fundoInput {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro */
-    border: 2px solid rgb(189, 34, 106); /* Rosa escuro */
-    border-radius: 20px; /* Bordas arredondadas */
-    padding: 20px; /* Espaçamento interno */
-    gap: 10px; /* Espaçamento uniforme entre os itens */
-    width: 95%; /* Ocupa quase toda a largura */
-    max-width: 400px; /* Limite máximo para telas maiores */
-}
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #346b3b;     border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.596);     box-sizing: border-box;
+    margin: 150px auto 0 auto; 
+    border: 1px solid #a1cc3c;
+    }
 
-.link-cadastro {
-    color: crimson; /* Destaque para o link */
-    font-size: 14px; /* Tamanho menor */
-    text-align: center;
-    margin-top: 10px;
-}
-
-.btcadastrar, .btentrar {
+.mascote-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: rgba(32, 185, 70, 0.8); /* Fundo com opacidade */
-    color: #fdfdfd; /* Branco */
-    border-radius: 20px; /* Arredondamento */
-    font-size: 18px; /* Fonte menor para toque fácil */
-    font-family: 'Irish Grover', cursive; /* Fonte personalizada */
-    opacity: 0.9;
-    padding: 10px 20px; /* Padding ajustado */
-    margin-top: 10px; /* Espaçamento superior */
-    width: 90%; /* Quase toda a largura */
-    max-width: 300px; /* Limite para telas maiores */
-    border: 2px solid rgb(34, 189, 47); /* Verde vivo */
-    transition: all 0.3s ease-in-out;
-}
+    margin-top: auto; }
 
-.btcadastrar:hover, .btentrar:hover {
-    opacity: 1;
-    color: rgb(41, 189, 36); /* Destaque no texto */
-    background-color: rgba(34, 57, 189, 0.9); /* Destaque no fundo */
-    transform: scale(1.05); /* Leve aumento */
+.mascote-img {
+    max-width: 600px;     max-height: 600px;     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.input {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #46ca6e;     border: 1px solid #a1cc3c;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+.mascote-img:hover {
+    
+    box-shadow: 0px 6px 15px rgba(12, 21, 139, 0.4); }
+
+@media (max-width: 768px) {
+    .fundoInput {
+        padding: 15px;
+    }
+
+    .titulo {
+        font-size: 13px;
+    }
+
+    .input {
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    .link-cadastro {
+        font-size: 12px;
+    }
+
+        .mascote-img {
+        max-width: 300px;         max-height: 300px;
+    }
 }

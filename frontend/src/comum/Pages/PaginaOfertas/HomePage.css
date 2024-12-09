@@ -1,20 +1,15 @@
-/* Estilo geral da página */
 .bodyoferta {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
-  color: #f4f4f9; /* Texto claro */
-  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);   color: #f4f4f9;   padding: 20px;
   box-sizing: border-box;
+  flex-grow: 1;
 }
 
-/* Fundo do input de ofertas */
 .fundoImputoferta {
-  background-color: rgba(58, 46, 24, 0.85); /* Fundo dourado escuro */
-  border-radius: 10px;
+  background-color: rgba(58, 46, 24, 0.85);   border-radius: 10px;
   padding: 30px;
   width: 100%;
   max-width: 1000px;
@@ -22,16 +17,13 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Título da seção de ofertas */
 .coloroferta {
   font-size: 24px;
   font-weight: bold;
-  color: #ffd700; /* Dourado */
-  text-align: center;
+  color: #ffd700;   text-align: center;
   margin-bottom: 15px;
 }
 
-/* Legenda do saldo */
 .legendaoferta {
   font-size: 18px;
   color: #eaeaea;
@@ -39,7 +31,6 @@
   text-align: center;
 }
 
-/* Contêiner de ofertas */
 .offer-container {
   display: flex;
   flex-wrap: wrap;
@@ -47,10 +38,8 @@
   justify-content: center;
 }
 
-/* Card da oferta */
 .offer-card {
-  background-color: rgba(58, 46, 24, 0.9); /* Fundo dourado escuro */
-  border-radius: 10px;
+  background-color: rgba(58, 46, 24, 0.9);   border-radius: 10px;
   padding: 20px;
   width: 250px;
   text-align: center;
@@ -59,31 +48,24 @@
 }
 
 .offer-card:hover {
-  transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-}
+  transform: translateY(-5px); }
 
-/* Imagem da oferta */
 .offer-image {
   width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 15px;
-  border: 2px solid #ffd700; /* Borda dourada */
-}
+  border: 2px solid #ffd700; }
 
-/* Descrição da oferta (quantidade de moedas e preço) */
 .offer-card p {
   color: #f4f4f9;
   font-size: 16px;
   margin: 5px 0;
 }
 
-/* Botão de compra */
 .buy-button {
-  background-color: #ffd700; /* Dourado */
-  color: #2b2d42; /* Texto escuro para contraste */
-  padding: 10px 20px;
+  background-color: #ffd700;   color: #2b2d42;   padding: 10px 20px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
@@ -93,11 +75,8 @@
 }
 
 .buy-button:hover {
-  background-color: #e6b800; /* Dourado mais escuro no hover */
-  transform: translateY(-2px); /* Efeito de elevação */
-}
+  background-color: #e6b800;   transform: translateY(-2px); }
 
-/* Estilos do menu hambúrguer */
 .hamburger-menu {
   position: absolute;
   top: 20px;
@@ -108,7 +87,6 @@
   z-index: 1000;
 }
 
-/* Responsividade para telas menores */
 @media (max-width: 768px) {
   .bodyoferta {
     padding: 10px;

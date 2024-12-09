@@ -3,38 +3,50 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import BtEntrar from '../BtEntrar/BtEntrar';
-import ServicoAutenticacao from '../../servicos/ServicoAutenticacao';
-
-ServicoAutenticacao;
+import api from '../../servicos/api';
 
 const ImputLog = () => {
   const navigate = useNavigate();
-
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
 
-  const entrar = () => {
+  const entrar = async () => {
     if (!usuario || !senha) {
-      toast.error('Preencha todos os campos.'); // Mensagem de erro ao deixar campos vazios
+      toast.error('Preencha todos os campos.');
       return;
     }
 
     try {
-      const usuarioLogado = ServicoAutenticacao.login(usuario, senha);
-      if (usuarioLogado) {
-        toast.success(`Bem-vindo, ${usuario}! Login realizado com sucesso.`); // Mensagem de sucesso com o nome do usuário
-        navigate('/inicio'); // Redireciona para a página inicial
-      } else {
-        toast.error('Usuário ou senha inválida. Tente novamente.'); // Mensagem de erro em caso de falha no login
-      }
+      // Faz a requisição para autenticar o usuário
+      const response = await api.post(
+        '/api/usuarios/login',
+        { email: usuario, senha },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const { token, usuario: usuarioLogado } = response.data;
+
+      // Armazenar o token de autenticação no localStorage
+      localStorage.setItem('token', token);
+
+      toast.success(`Bem-vindo, ${usuarioLogado.nome}! Login realizado com sucesso.`);
+      navigate('/inicio');
     } catch (error) {
-      toast.error('Ocorreu um erro ao tentar realizar o login. Tente novamente mais tarde.'); // Erro genérico para problemas no sistema
+      if (error.response && error.response.status === 401) {
+        toast.error('Usuário ou senha inválida. Tente novamente.');
+      } else {
+        toast.error('Ocorreu um erro ao tentar realizar o login. Tente novamente mais tarde.');
+      }
       console.error('Erro ao tentar realizar o login:', error);
     }
   };
 
-  return (
-    <div className='fundoImput'>
+  return (<>
+    <div className='fundoInput'>
       <label className='titulo'>Email</label>
       <input
         className='input'
@@ -56,6 +68,14 @@ const ImputLog = () => {
       <BtEntrar onClick={entrar} />
       <Link to="/cadastro" className="link-cadastro">Ainda não tem conta?</Link>
     </div>
+     <div className="mascote-container">
+     <img
+       src="/icons/duck_transparent-removebg-preview.png"
+       alt="Mascote"
+       className="mascote-img"
+     />
+   </div>
+   </>
   );
 };
 

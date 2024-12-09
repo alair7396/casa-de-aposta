@@ -1,13 +1,17 @@
-import './Avatar.css';
+import React from "react";
+import "./Avatar.css";
 
-const Avatar = (props) => {
-  const [primeiroNome, segundoNome] = props.nome.split(' ');
-
-  const iniciais = segundoNome ? primeiroNome[0] + segundoNome[0] : primeiroNome[0];
+const Avatar = ({ nome = "", perfil, imagem }) => {
+ 
+  const inicial = nome ? nome.charAt(0).toUpperCase() : "?";
 
   return (
-    <div className={props.perfil ? 'avatar_perfil' : 'avatar_root'}>
-      {props.imagem ? <img src={props.imagem} width="100%" style={{ borderRadius: '50%' }} /> : iniciais}
+    <div className={`avatar ${perfil ? "perfil" : ""}`}>
+      {imagem ? (
+        <img src={imagem} alt="Avatar" />
+      ) : (
+        <span>{inicial}</span>
+      )}
     </div>
   );
 };

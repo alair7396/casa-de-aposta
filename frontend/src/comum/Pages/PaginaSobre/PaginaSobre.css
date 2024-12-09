@@ -1,4 +1,3 @@
-/* Estilo geral do corpo da página */
 .bodysobre {
   display: flex;
   flex-direction: column;
@@ -6,43 +5,20 @@
   align-items: center;
   padding: 20px;
   flex-grow: 1;
-  box-sizing: border-box; /* Inclui padding no cálculo de largura */
-  background-color: rgba(0, 0, 0, 0.9); /* Fundo preto para contraste */
-}
+  box-sizing: border-box;   background-color: rgba(0, 0, 0, 0.9); }
 
-/* Estilo da seção de navegação */
 .navsobre {
-  font-size: 20px; /* Tamanho da fonte ajustado para boa leitura */
-  font-weight: bold; /* Destaca o texto */
-  background-color: rgba(50, 50, 50, 0.85); /* Fundo preto semi-transparente */
-  border-radius: 15px; /* Bordas arredondadas */
-  border: 2px solid #ffd700; /* Borda dourada para destaque */
-  padding: 20px; /* Espaçamento interno para organização */
-  text-align: center; /* Centraliza o texto */
-  color: #ffd700; /* Texto dourado */
+  font-size: 20px;   font-weight: bold;   background-color: rgba(50, 50, 50, 0.85);   border-radius: 15px;   border: 2px solid #ffd700;   padding: 20px;   text-align: center;   color: #ffd700;  
  
- 
-  margin-bottom: 20px; /* Espaçamento inferior */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para realce */
-}
+  margin-bottom: 20px;   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); }
 
 
-/* Título da página */
 .page-title {
-  font-size: 28px; /* Maior destaque para o título */
-  font-weight: bold; /* Negrito para maior visibilidade */
-  color: #ffd700; /* Cor dourada */
-  text-align: center;
+  font-size: 28px;   font-weight: bold;   color: #ffd700;   text-align: center;
   margin: 20px 0;
-  font-family: 'Irish Grover', cursive; /* Fonte personalizada */
-}
+  font-family: 'Irish Grover', cursive; }
 
-/* Texto da página */
 .page-text {
-  font-size: 18px; /* Texto confortável para leitura */
-  line-height: 1.8; /* Melhora o espaçamento entre linhas */
-  color: #ffffff; /* Texto branco */
-  text-align: justify; /* Justifica o texto para organização */
-  
+  font-size: 18px;   line-height: 1.8;   color: #ffffff;   text-align: justify;   
   
 }

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-// Import all images dynamically from the assets folder
+
 const images = import.meta.glob('../assets/images/*.{png,jpg,jpeg,svg,webp}', { eager: true });
 
 const ImagePreloader = ({ onComplete }) => {
   const [loadedCount, setLoadedCount] = useState(0);
-  const [imagePaths, setImagePaths] = useState([]); // Store resolved image paths
+  const [imagePaths, setImagePaths] = useState([]); 
 
   useEffect(() => {
-    // Extract public URLs from the resolved imports
+    
     const resolvedImages = Object.values(images).map((module) => module.default || module);
 
     if (resolvedImages.length === 0) {
@@ -39,7 +39,7 @@ const ImagePreloader = ({ onComplete }) => {
       try {
         await Promise.all(promises);
         if (isMounted) {
-          onComplete(); // Notify when loading is complete
+          onComplete(); 
         }
       } catch (error) {
         console.error('Error preloading images:', error);
@@ -58,7 +58,7 @@ const ImagePreloader = ({ onComplete }) => {
 
     const interval = setInterval(() => {
       setLoadedCount((prev) => (prev < imagePaths.length ? prev + 1 : prev));
-    }, 100); // Simulate progress
+    }, 100); 
     return () => clearInterval(interval);
   }, [imagePaths]);
 

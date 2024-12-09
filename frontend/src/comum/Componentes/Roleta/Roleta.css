@@ -4,21 +4,21 @@
   margin-bottom: 20px;
 }
 .roleta-euro__sectors {
-  width: 300px; /* Define a área de exibição da imagem */
+  width: 300px; 
   height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .roulette-image {
-  width: 90%; /* Ajusta a imagem para preencher a largura */
+  width: 90%; 
   height: 90%;
   
 }
 .botoes {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 colunas de tamanho igual */
-   /* Ajusta a imagem para preencher a largura */
+  grid-template-columns: repeat(6, 1fr); 
+   
   border: 4px solid rgb(5, 5, 0);
   width: auto;
   
@@ -26,18 +26,18 @@
 }
 .botoes button {
    color: #faf6f6;
-  font-size: 14px; /* Fonte menor */
-  width: auto; /* Faz com que o botão preencha totalmente a coluna */
+  font-size: 14px; 
+  width: auto; 
   
   border: 2px solid rgba(237, 248, 239, 0.979);
   
 }
-/* Cor específica para o botão 0 */
+
 .bet-number-button:nth-child(1) {
-  background-color: #4CAF50; /* Verde */
+  background-color: #4CAF50; 
   color: #000000;
 }
-/* Cor vermelha para os números citados */
+
 .bet-number-button:nth-child(33),
 .bet-number-button:nth-child(20),
 .bet-number-button:nth-child(22),
@@ -56,26 +56,26 @@
 .bet-number-button:nth-child(8),
 .bet-number-button:nth-child(13),
 .bet-number-button:nth-child(4) {
-  background-color: #fd0000; /* Vermelho */
+  background-color: #fd0000; 
   color: #f7f3f3;
 }
-/* Cor preta para os números não citados */
+
 .bet-number-button {
-  background-color: #000000; /* Preto por padrão */
+  background-color: #000000; 
   
 }
-/* Estilo para os botões "Girar" e "Limpar Apostas" */
+
 .spin-button, .clear-button {
   padding: 10px 20px;
   font-size: 18px;
   color: rgb(0, 0, 0);
   border: none;
-  border-radius: 5px; /* Botões retangulares */
-  width: auto; /* Mesmo tamanho */
+  border-radius: 5px; 
+  width: auto; 
   border-radius: 50%;
 }
 .clear-button {
-  background-color: #FF5555; /* Vermelho */
+  background-color: #FF5555; 
   width: auto;
   border-radius: 50%;
   border: 4px solid rgba(184, 52, 28, 0.979);
@@ -108,7 +108,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.7); /* 0.5 representa 50% de opacidade */
+  background-color: rgba(0, 0, 0, 0.7); 
   border: 5px solid rgb(189, 34, 106);
   border-radius: 10%;
   opacity: 0.9;

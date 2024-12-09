@@ -12,7 +12,7 @@ const VerSaldoConsole = () => {
     
     if (!emailUsuarioLogado) {
         console.error("Nenhum usuário está logado.");
-        // Opcional: redirecionar ou exibir uma mensagem
+        
     }
 
     const buscarSaldoNoConsole = async () => {

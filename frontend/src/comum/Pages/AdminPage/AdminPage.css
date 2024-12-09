@@ -1,9 +1,7 @@
-/*/* Aplica box-sizing globalmente */
 *, *::before, *::after {
   box-sizing: inherit;
 }
 
-/* Corpo principal */
 .bodyadm {
   display: flex;
   flex-direction: column;
@@ -12,14 +10,9 @@
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
-  backdrop-filter: blur(10px); /* Desfoque aplicado */
-  color: #fffbea; /* Texto claro com tom dourado suave */
-  z-index: 1; /* Garante que fica sobre o vídeo */
-  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);   backdrop-filter: blur(10px);   color: #fffbea;   z-index: 1;   position: relative;
 }
 
-/* Vídeo de fundo */
 .video-background {
   position: fixed;
   top: 0;
@@ -27,19 +20,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1; /* Garante que o vídeo fique no plano de fundo */
-}
+  z-index: -1; }
 
-/* Navegação e título */
 .navs, .ofertascadastradas, .nav4 {
   width: 100%;
-  max-width: 800px; /* Limita largura */
-  background-color: rgba(58, 46, 24, 0.85); /* Fundo dourado semitransparente */
-  border-radius: 10px;
+  max-width: 800px;   background-color: rgba(58, 46, 24, 0.85);   border-radius: 10px;
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra suave */
-}
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); }
 
 .navs h3, .ofertascadastradas h3, .nav4 h3 {
   display: flex;
@@ -47,56 +35,32 @@
   justify-content: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #ffd700; /* Dourado vibrante para títulos */
-  text-align: center;
+  color: #ffd700;   text-align: center;
 }
 
-/* Inputs de texto e botões */
 .input2[type="text"],
 .input2[type="number"] {
-  width: 100%; /* Garante que ocupa a largura disponível */
-  margin: 10px 0;
+  width: 100%;   margin: 10px 0;
   padding: 10px;
-  border: 1px solid #ffd700; /* Borda dourada */
-  border-radius: 5px;
+  border: 1px solid #ffd700;   border-radius: 5px;
   font-size: 16px;
-  background-color: rgba(58, 46, 24, 0.85); /* Fundo dourado escuro */
-  color: #c5c4bd; /* Texto claro */
-}
+  background-color: rgba(58, 46, 24, 0.85);   color: #c5c4bd; }
 
-button {
-  display: block;
-  width: 100%; 
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #000; /* Texto preto para contraste */
-  background-color: #ffd700; /* Fundo dourado */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+
 
 button:hover {
-  background-color: #daa520; /* Dourado mais escuro no hover */
-  transform: translateY(-2px); /* Efeito de elevação */
-}
+  background-color: #daa520;   transform: translateY(-2px); }
 
-/* Ofertas cadastradas */
 .offer-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: rgba(58, 46, 24, 0.9); /* Fundo dourado escuro */
-  border: 1px solid #ffd700; /* Borda dourada */
-  border-radius: 10px;
+  background-color: rgba(58, 46, 24, 0.9);   border: 1px solid #ffd700;   border-radius: 10px;
   padding: 15px;
   margin: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Sombra leve */
-  color: #388519;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);   color: #388519;
 }
 
 .offer-image {
@@ -105,12 +69,10 @@ button:hover {
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
-  border: 2px solid #ffd700; /* Destaque dourado para imagens */
-}
+  border: 2px solid #ffd700; }
 
 .delete-button {
-  background-color: #c62828; /* Vermelho profundo */
-  color: white;
+  background-color: #c62828;   color: white;
   padding: 8px 15px;
   font-size: 14px;
   border: none;
@@ -121,19 +83,15 @@ button:hover {
 }
 
 .delete-button:hover {
-  background-color: #b71c1c; /* Vermelho mais escuro no hover */
-  transform: translateY(-2px);
+  background-color: #b71c1c;   transform: translateY(-2px);
 }
 
-/* Lista de usuários */
 .user-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
-  background-color: rgba(58, 46, 24, 0.9); /* Fundo dourado escuro */
-  border: 1px solid #ffd700; /* Borda dourada */
-  border-radius: 10px;
+  background-color: rgba(58, 46, 24, 0.9);   border: 1px solid #ffd700;   border-radius: 10px;
   margin: 10px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   color: #fffbea;
@@ -151,7 +109,6 @@ button:hover {
   gap: 10px;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .navs, .ofertascadastradas, .nav4 {
     padding: 15px;

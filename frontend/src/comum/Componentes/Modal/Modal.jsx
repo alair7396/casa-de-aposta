@@ -3,7 +3,7 @@ import './Modal.css';
 
 const Modal = ({ mostrar, comprarTentativas, pontuacao, ofertas,fechar }) => {
     if (!mostrar) {
-        return null; // Não renderiza nada se não for para mostrar
+        return null; 
     }
 
     return (

@@ -3,86 +3,34 @@
   background-size: cover;
   background-position: center;
   background-image: url('/pato do menu.jpeg');
-  height: 120px; /* Altura aumentada para melhor visualização */
-  border-bottom-left-radius: 30px; /* Bordas mais sutis */
-  border-bottom-right-radius: 30px;
-  border: 2px solid #195f3c; /* Borda mais fina */
-  align-items: flex-end; /* Posiciona conteúdo no final */
-  justify-content: flex-end; /* Posiciona no canto direito */
-  padding: 10px; /* Adiciona espaçamento interno */
+  height: 120px; 
+  
+  border: 1px solid #195f3c; 
+  align-items: flex-end; 
+  justify-content: flex-end; 
+  padding: 10px; 
 }
 
-/* Barra de navegação */
-.nav {
-  font-size: 16px; /* Tamanho ajustado para legibilidade */
-  font-weight: 600; /* Negrito moderado */
-  background-color: rgba(192, 181, 31, 0.9); /* Fundo com opacidade ajustada */
-  border-radius: 12px; /* Bordas mais arredondadas */
-  border: 2px solid #19179b; /* Borda mais fina */
-  padding: 15px; /* Aumenta o espaçamento interno */
-  text-align: center; /* Centraliza os links */
-  margin-bottom: 10px; /* Adiciona margem inferior */
-  display: flex; /* Flex para organização dos links */
-  justify-content: center; /* Centraliza os links horizontalmente */
-  gap: 15px; /* Espaçamento uniforme entre os links */
-}
 
-/* Links na barra de navegação */
-.nav a {
-  color: #19179b; /* Azul escuro */
-  text-decoration: none; /* Remove o sublinhado */
-  padding: 5px 15px; /* Ajusta o espaçamento interno */
-  border-radius: 5px; /* Bordas arredondadas para links */
-  transition: color 0.3s ease, transform 0.3s ease; /* Suaviza as transições */
-}
-
-/* Efeito ao passar o mouse */
-.nav a:hover {
-  color: #fff; /* Branco */
-  background-color: #19179b; /* Fundo azul escuro */
-  transform: scale(1.1); /* Leve aumento no tamanho */
-}
-
-/* Efeito ao clicar */
-.nav a:active {
-  color: #ffc107; /* Amarelo vibrante */
-}
-
-/* Título da página */
 .page-title {
-  font-size: 26px; /* Tamanho aumentado */
-  font-weight: 700; /* Negrito forte */
-  color: #19179b; /* Azul escuro */
+  font-size: 26px;
+  font-weight: 700;
+  color: #19179b; 
   text-align: center;
-  margin: 20px 0; /* Espaçamento superior e inferior */
+  margin: 20px 0; 
 }
 
-/* Texto da página */
 .page-text {
-  font-size: 18px; /* Texto mais legível */
-  line-height: 1.6; /* Espaçamento entre linhas */
-  color: #333; /* Cor de texto padrão */
-  margin: 15px 20px; /* Espaçamento ajustado */
-}
+  font-size: 18px;   line-height: 1.6;   color: #333;   margin: 15px 20px; }
 
-/* Para dispositivos menores */
 @media (max-width: 768px) {
   .cabeca {
-      height: 100px; /* Altura reduzida */
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-  }
-
-  .nav {
-      font-size: 14px; /* Reduz o tamanho do texto */
-      padding: 10px; /* Reduz o padding */
+      height: 130px;       
   }
 
   .page-title {
-      font-size: 22px; /* Ajusta o título */
-  }
+      font-size: 22px;   }
 
   .page-text {
-      font-size: 16px; /* Ajusta o tamanho do texto */
-  }
+      font-size: 16px;   }
 }

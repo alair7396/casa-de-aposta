@@ -1,52 +1,112 @@
-/* Container da página */
 .perfil-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(31, 61, 34, 0.281);     border-radius: 12px;     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);     box-sizing: border-box;
     flex-grow: 1;
 }
 
-/* Avatar */
-.avatar-button {
-    height: 100px;
-  width: 100px;
-  font-size: 30px;
-  border-radius: 50%;
-  font-family: 'Irish Grover';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #1a552c;
+.botao-logout {
+    width: 100%;
+    max-width: 150px;
+    padding: 10px 15px;
+    background-color: rgba(255, 76, 76, 0.9);     color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #080201;
 }
+
+.botao-logout:hover {
+    background-color: rgba(255, 51, 51, 0.9);     transform: scale(1.05); }
+
+.avatar-container {
+    margin-bottom: 20px;
+}
+
+.dados-usuario {
+    width: 100%;
+    background-color: rgba(25, 80, 29, 0.8);     border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2); 
+    border: 1px solid #a1cc3c;}
 
 .campo {
     margin-bottom: 15px;
-    /* Ajusta o campo para ocupar toda a largura do contêiner */
-    max-width: 400px; /* Define um limite de largura para melhor responsividade */
 }
 
 .campo label {
-    font-size: 30px;
+    display: block;
+    color: #ffffff;
+    font-size: 14px;
     font-weight: bold;
-    color: #91dd03;
+    margin-bottom: 5px;
 }
 
-.input2 {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #333;
-    color: #279752;
-    text-align: center;
+.campo label + label {
+    color: rgba(211, 211, 211, 0.8);     font-size: 14px;
+    font-weight: normal;
 }
 
-/* Menu hambúrguer */
-.nav-container {
-    display: flex;
+.compra-card {
+    background-color: rgba(51, 51, 51, 0.8);     border: 1px solid rgba(68, 68, 68, 0.8);     border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); }
+
+.compra-card p {
+    margin: 5px 0;
+    color: rgba(211, 211, 211, 0.8);     font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .perfil-container {
+        padding: 15px;
+    }
+
+    .botao-logout {
+        max-width: 100%;
+    }
+
+    .campo label {
+        font-size: 13px;
+    }
+
+    .campo label + label {
+        font-size: 12px;
+    }
+
+    .compra-card p {
+        font-size: 13px;
+    }
+}
+.input-dado {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #d3d3d3;     background-color: rgba(31, 61, 34, 0.8);     border: 1px solid #444444;     border-radius: 5px;
+    box-sizing: border-box;
+    pointer-events: none;     border: 1px solid #a1cc3c;
+}
+
+.input-dado:focus {
+    outline: none;
+    border-color: #76FF03; }
+
+.avatar-container {
+    width: 100px;     height: 100px;     border-radius: 50%;     overflow: hidden;     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
-    box-sizing: border-box; /* Considera o padding no cálculo da largura */
-    overflow-x: hidden; /* Evita rolagem horizontal */
+    background: linear-gradient(135deg, #4caf50, #ffeb3b);     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);     font-size: 18px;     color: #010c04;     font-weight: bold;     text-align: center;     text-transform: uppercase;     border: 1px solid #a1cc3c;
 }
-

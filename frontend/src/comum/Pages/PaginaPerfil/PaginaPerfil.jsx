@@ -1,109 +1,158 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import ServicoAutenticacao from "../../servicos/ServicoAutenticacao";
-import ServicoUsuarios from "../../servicos/ServicoUsuarios";
+import { useNavigate } from "react-router-dom";
+import api from "../../servicos/api";
 import Avatar from "../../Componentes/Avatar/Avatar";
 import { toast } from "react-toastify";
 import "./PaginaPerfil.css";
 import HamburgerMenu from "../../Componentes/Menu/HamburgerMenu";
 
-const servicoUsuarios = new ServicoUsuarios();
-
 const PaginaPerfil = () => {
-  const usuarioLogado = ServicoAutenticacao.buscarUsuarioLogado();
-  const emailUsuarioLogado = usuarioLogado ? usuarioLogado.email : null;
+  const [user, setUser] = useState(null);   const [compras, setCompras] = useState([]);   const [imagemUsuario, setImagemUsuario] = useState("");   const [erroCompras, setErroCompras] = useState(false);   const navigate = useNavigate();
 
-  const [imagemUsuario, setImagemUsuario] = useState("");
-  const [saldo, setSaldo] = useState(null);
-  const [menuAberto, setMenuAberto] = useState(false); // Controla o estado do menu hambúrguer
-
-  // Busca o saldo do usuário ao carregar o componente
-  useEffect(() => {
-    const buscarSaldoUsuario = async () => {
-      if (!emailUsuarioLogado) {
+      useEffect(() => {
+    const loadUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
         toast.error("Usuário não está logado.");
-        return;
+        navigate("/");         return;
       }
-
+  
       try {
-        const saldoAtualizado = await servicoUsuarios.obterSaldoUsuario(emailUsuarioLogado);
-        setSaldo(saldoAtualizado);
+        const headers = { Authorization: `Bearer ${token}` };
+  
+                const responseUsuario = await api.get(`/api/usuarios/perfil`, { headers });
+        setUser(responseUsuario.data);   
       } catch (error) {
-        toast.error("Erro ao buscar saldo do usuário.");
-        console.error("Erro ao buscar saldo:", error);
+        if (error.response?.status === 403) {
+          toast.error("Acesso negado. Verifique suas credenciais.");
+          navigate("/");
+        } else {
+          toast.error("Erro ao carregar as informações do usuário.");
+        }
+        console.error("Erro ao carregar dados do usuário:", error);
       }
     };
+  
+    loadUserData();
+  }, [navigate]);
 
-    buscarSaldoUsuario();
-  }, [emailUsuarioLogado]);
-
-  // Recupera a imagem do avatar ao carregar o componente
-  useEffect(() => {
+      useEffect(() => {
     const avatarSalvo = localStorage.getItem("avatarUsuario");
     if (avatarSalvo) {
       setImagemUsuario(avatarSalvo);
     }
   }, []);
 
-  const mudarAvatar = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        const base64String = event.target.result;
-        setImagemUsuario(base64String);
-        localStorage.setItem("avatarUsuario", base64String);
-      };
-      reader.readAsDataURL(file);
-    }
+      const logout = () => {
+    localStorage.removeItem("token");
+    toast.success("Logout realizado com sucesso.");
+    navigate("/");
   };
 
-  
-  
-  return (
+      return (
     <>
-      <HamburgerMenu/>
-
-
+      <HamburgerMenu />
+  
       <div className="perfil-container">
+        {/* Avatar */}
         <div className="avatar-container">
-          <input
-            type="file"
-            accept="image/*"
-            multiple={false}
-            id="fileInput"
-            style={{ display: "none" }}
-            onChange={mudarAvatar}
-          />
-          <button
-            onClick={() => document.getElementById("fileInput").click()}
-            className="avatar-button"
-          >
-            <Avatar nome={usuarioLogado?.nome} perfil={true} imagem={imagemUsuario} />
-          </button>
+          <Avatar nome={user?.nome || "Usuário"} perfil={true} imagem={imagemUsuario} />
         </div>
-
-        <div className="campo"><br />
-          <label>Nome</label><br />
-          <input className="input2" type="text" value={usuarioLogado?.nome || ""} disabled />
-        </div>
-
+  
+        {/* Dados do usuário */}
+        {user ? (
+          <div className="dados-usuario">
+            <div className="campo">
+              <label>ID do Usuário:</label>
+              <input
+                className="input-dado"
+                type="text"
+                value={user.id_usuario || ""}
+                readOnly
+              />
+            </div>
+  
+            <div className="campo">
+              <label>Nome:</label>
+              <input
+                className="input-dado"
+                type="text"
+                value={user.nome || ""}
+                readOnly
+              />
+            </div>
+  
+            <div className="campo">
+              <label>Telefone:</label>
+              <input
+                className="input-dado"
+                type="text"
+                value={user.telefone || ""}
+                readOnly
+              />
+            </div>
+  
+            <div className="campo">
+              <label>Email:</label>
+              <input
+                className="input-dado"
+                type="text"
+                value={user.email || ""}
+                readOnly
+              />
+            </div>
+  
+            <div className="campo">
+              <label>Saldo da Carteira:</label>
+              <input
+                className="input-dado"
+                type="text"
+                value={user.carteira || "0.00"}
+                readOnly
+              />
+            </div>
+  
+            <div className="campo">
+              <label>Data de Criação da Conta:</label>
+              <input
+                className="input-dado"
+                type="text"
+                value={new Date(user.criado_em).toLocaleString() || ""}
+                readOnly
+              />
+            </div>
+          </div>
+        ) : (
+          <p>Carregando informações do usuário...</p>
+        )}
+  
+        {/* Compras */}
         <div className="campo">
-          <label>Email</label><br />
-          <input className="input2"  type="text" value={usuarioLogado?.email || ""} disabled />
+          <label>Compras Realizadas</label>
+          {erroCompras ? (
+            <p>Erro ao carregar compras. Tente novamente mais tarde.</p>
+          ) : compras.length > 0 ? (
+            compras.map((compra, index) => (
+              <div key={index} className="compra-card">
+                <p>ID da Compra: {compra.id_compra}</p>
+                <p>ID da Oferta: {compra.oferta_id}</p>
+                <p>Data da Compra: {new Date(compra.data_compra).toLocaleString()}</p>
+              </div>
+            ))
+          ) : (
+            <p>Não há compras realizadas.</p>
+          )}
         </div>
-
-        <div className="campo">
-          <label>Saldo da Carteira</label><br />
-          <input className="input2" 
-            type="text"
-            value={saldo !== null ? `$ ${saldo}` : "Carregando..."}
-            disabled
-          />
-        </div>
+  
+        {/* Botão de Logout */}
+        <button onClick={logout} className="botao-logout">
+          Logout
+        </button>
       </div>
     </>
   );
+  
 };
 
 export default PaginaPerfil;
+
