@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Rodape from './comum/Componentes/Rodape/Rodape';
 import Cabecalho from './comum/Componentes/Cabecalho/Cabecalho';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Cadastro from './comum/Pages/Cadastro/Cadastro';
 import PaginaInicio from './comum/Pages/PaginaInicio/PaginaInicio';
