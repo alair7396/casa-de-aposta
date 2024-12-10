@@ -44,11 +44,11 @@ function HomePage() {
             const novoSaldo = saldo + parseInt(offer.quantidade);
 
             await api.post('/api/compras', { oferta_id: offer.id_oferta }, { headers });
-
+            
             setSaldo(novoSaldo);
       const usuarioAtualizado = { ...user, carteira: novoSaldo };
       setUser(usuarioAtualizado);
-
+      await api.put('/api/usuarios/saldo', { saldo: novoSaldo }, { headers }); 
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioAtualizado));
 
             toast.success(`Compra concluída! Você comprou ${offer.quantidade} moedas. Seu novo saldo é de ${novoSaldo} moedas.`);

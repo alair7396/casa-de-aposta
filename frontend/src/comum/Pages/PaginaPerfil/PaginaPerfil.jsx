@@ -48,7 +48,28 @@ const PaginaPerfil = () => {
     toast.success("Logout realizado com sucesso.");
     navigate("/");
   };
-
+  useEffect(() => {
+    const loadUserPurchases = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setErroCompras(true);
+        return;
+      }
+  
+      try {
+        const headers = { Authorization: `Bearer ${token}` };
+        const responseCompras = await api.get(`/api/compras`, { headers });
+        setCompras(responseCompras.data);
+      } catch (error) {
+        setErroCompras(true);
+        toast.error("Erro ao carregar as compras realizadas.");
+        console.error("Erro ao carregar compras:", error);
+      }
+    };
+  
+    loadUserPurchases();
+  }, []);
+  
       return (
     <>
       <HamburgerMenu />
